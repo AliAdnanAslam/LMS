@@ -1,15 +1,10 @@
 // Importing the necessary packages.
 import React, {Component} from 'react';
-import Header from './user/Header';
-import Footer from './user/Footer';
+import Header from './Header';
+import Footer from './Footer';
 import './FrontPage.css';
 import BGImage from '../header.jpg'
 
-
-    let cssStyle = {
-
-
-    }
 /**
  *
  */

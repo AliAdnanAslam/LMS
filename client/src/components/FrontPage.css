@@ -1,6 +1,6 @@
 .bgImg {
  // position: relative;
-  background: linear-gradient(0deg,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('../header.jpg');
+  background: linear-gradient(0deg,rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url('../images/header.jpg');
   /* Set rules to fill background */
   min-height: 800px;
   min-width: 100%;
@@ -18,7 +18,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('../header.jpg');
+    background: linear-gradient(0deg,rgba(0,0,0,0.3),rgba(0,0,0,0.3)),url('../images/header.jpg');
     opacity: .6;
   }
 }
@@ -39,6 +39,6 @@
   margin:0 10px 0 0;
 }
 .search-bar .btn {
-  width: 20%;
+  width: 16%;
   float: left;
 }
