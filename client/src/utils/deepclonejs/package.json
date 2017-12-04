@@ -1,0 +1,59 @@
+{
+  "_from": "deepclonejs",
+  "_id": "deepclonejs@1.0.3",
+  "_inBundle": false,
+  "_integrity": "sha512-BduGcYSRd5hlFbARIEbj1Qnkzamz1bydTeZ08epe/3zLhoYpMS+X7pMmatpKXg1BDahZA7OMfmZ7IC02vItL2g==",
+  "_location": "/deepclonejs",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "deepclonejs",
+    "name": "deepclonejs",
+    "escapedName": "deepclonejs",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/deepclonejs/-/deepclonejs-1.0.3.tgz",
+  "_shasum": "e6cfed572ed0b2f12cdfce94ebb8fd5ca72ed685",
+  "_spec": "deepclonejs",
+  "_where": "C:\\Users\\Saqib Ameen\\Desktop\\lms\\client",
+  "author": {
+    "name": "Segun Ola"
+  },
+  "bugs": {
+    "url": "https://github.com/segunolalive/deepClone/issues"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "A zero-dependency utility for deeply copying javascript objects",
+  "homepage": "https://github.com/segunolalive/deepClone#readme",
+  "keywords": [
+    "clone",
+    "copy",
+    "deep",
+    "immutable"
+  ],
+  "license": "MIT",
+  "main": "deepClone.js",
+  "maintainers": [
+    {
+      "name": "Segun Ola",
+      "email": "segunolalive@gmail.com"
+    }
+  ],
+  "name": "deepclonejs",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/segunolalive/deepClone.git"
+  },
+  "scripts": {
+    "test": "node test"
+  },
+  "version": "1.0.3"
+}

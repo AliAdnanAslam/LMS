@@ -14,28 +14,28 @@ class SideBar extends Component {
 			<div class="span3">
 		        <div class="sidebar">
 		            <ul class="widget widget-menu unstyled">
-		                <li class="active">
-		                	<Link to='/user/Dashboard'>
+		                <li>
+		                	<Link activeClassName="active" to='/user/Dashboard'>
 		                		<i class="menu-icon icon-dashboard"></i>Dashboard
 		                	</Link>
 		                </li>
 		                <li>
-		                	<Link to='/user/ReserveBook'>
+		                	<Link activeClassName="active" to='/user/ReserveBook'>
 		                		<i class="menu-icon icon-bullhorn"></i>Reserve Book
 		            		</Link>
 		                </li>
 		                <li>
-		                	<Link to='/user/DonateBook'>
+		                	<Link activeClassName="active" to='/user/DonateBook'>
 		                		<i class="menu-icon icon-inbox"></i>Donate Book
 		                    </Link>
 		                </li>
 		                <li>
-		                	<Link to='/user/FineStatus'>
+		                	<Link activeClassName="active" to='/user/FineStatus'>
 		                		<i class="menu-icon icon-tasks"></i>Fine Status
 		                    </Link>
 		                </li>
 		                <li>
-		                	<Link to="/user/BookStatus">
+		                	<Link activeClassName="active" to="/user/BookStatus">
 		                		<i class="menu-icon icon-tasks"></i>Books Status
 		                    </Link>
 		                </li>

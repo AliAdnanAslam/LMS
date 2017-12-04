@@ -5,7 +5,7 @@ import Footer from '../user/Footer';
 class ForgetPassword extends Component {
     /**
      *
-     */	
+     */
 	render() {
 		return (
 			<div>
