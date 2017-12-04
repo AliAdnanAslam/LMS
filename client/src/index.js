@@ -1,12 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Provider } from 'react-redux';
 import './index.css';
 import Main from './components/main';
 import registerServiceWorker from './registerServiceWorker';
+import setAuthToken from './utils/setAuthToken';
+import store from './store/store'
 
-//import { BrowserRouter, Route, Switch, Redirect } from 'react-router-dom'
 
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
-
-ReactDOM.render(<Main />, document.getElementById('root'));
+ReactDOM.render(
+	<Provider store={store}>
+	<Main />
+	</Provider>
+	, document.getElementById('root'));
 registerServiceWorker();
