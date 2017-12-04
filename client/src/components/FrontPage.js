@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Header from './user/Header';
 import Footer from './user/Footer';
 import './FrontPage.css';
-import BGImage from '../header.jpg'
+import BGImage from '../images/header.jpg';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
