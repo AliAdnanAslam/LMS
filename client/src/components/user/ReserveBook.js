@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 
 /**
- * 
+ *
  */
 class ReserveBook extends Component {
   render() {
@@ -20,11 +20,11 @@ class ReserveBook extends Component {
 					<h5>Publication Year: 1998</h5>
 					<h5>Remaining Books: 182</h5>
 				</div>
-				<img src={require('E:\\Study\\SE_Project\\LMS\\LMS\\client\\src\\images\\beginning_ruby.jpg')} 
+				<img src={require('../../images/beginning_ruby.jpg')}
 				alt=""
 				/>
 			</div>
-			
+
 		</div>
     );
   }
