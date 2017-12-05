@@ -12,6 +12,7 @@ let lineItemSchema = mongoose.Schema({
 	},
 	expectedReturnDate: { // Expected date of returning book.
 		type: Date,
+
 	},
 	issueDate: {
 		type: Date,
@@ -22,7 +23,7 @@ let lineItemSchema = mongoose.Schema({
 let LineItem = mongoose.model('Orders', lineItemSchema, 'lineItems');
 
 // Get all line items.
-LineItem.getAllOrders = (callback) => { LineItem.find(callback)};
+LineItem.getAllLineItems = (callback) => { LineItem.find(callback)};
 
 // Add new line item.
 LineItem.add = (linItem, callback) => {
