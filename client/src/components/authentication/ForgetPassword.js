@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import Header from '../user/Header';
-import Footer from '../user/Footer';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
 
 class ForgetPassword extends Component {
     /**

@@ -1,7 +1,7 @@
 // Importing the necessary packages.
 import React, {Component} from 'react';
-import Header from './user/Header';
-import Footer from './user/Footer';
+import Header from './common/Header';
+import Footer from './common/Footer';
 import './FrontPage.css';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom'

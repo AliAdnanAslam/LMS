@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import Header from '../user/Header';
+import Header from '../common/Header';
 import PropTypes from 'prop-types';
-import { Redirect } from 'react-router-dom';
-import Footer from '../user/Footer';
+import { Redirect, Link } from 'react-router-dom';
+import Footer from '../common/Footer';
 import { connect } from 'react-redux';
 import { validateLogin } from '../../utils/validation/auth';
 import { login } from '../../actions/login';
@@ -77,6 +77,9 @@ handleChange(event) {
 									<div class="control-group">
 										<div class="controls clearfix">
 											<button type="submit" name="submit" class="btn btn-primary pull-right">Login</button>
+											<Link to="/forgetpassword" style={{textDecoration: 'none'}}> 
+												Forget Password
+											</Link>
 										</div>
 									</div>
 								</div>

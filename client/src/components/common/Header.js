@@ -56,9 +56,6 @@ class Header extends Component {
                     <li><Link to={ rightNavLink }>
                         { rightNavMessage }
                     </Link></li>
-                    <li><Link to='/forgetpassword'>
-                        Forgot password?
-                    </Link></li>
                 </ul>
             );
         } else {
