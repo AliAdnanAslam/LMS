@@ -3,14 +3,12 @@ import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from '../common/SideBar';
-import Dashboard from './Dashboard';
-import ReserveBook from './ReserveBook';
-import BookStatus from './BookStatus';
-import FineStatus from './FineStatus';
-import DonateBook from './DonateBook';
+import ManageBooks from './ManageBooks';
+import AddBook from './AddBook';
+import ModifyBook from './ModifyBook';
  
 /**
- *
+ * Home class proviedes the main interface of admin
  */ 
 class Home extends Component {
   render() {
@@ -21,7 +19,7 @@ class Home extends Component {
     			<div class="container">
             <div class="row">
     						<SideBar />
-    						<BookStatus />  
+    						<ManageBooks />  
           	</div>
           </div>
         </div>

@@ -20,6 +20,7 @@ class FrontPage extends Component {
             <div>
                 <Header />
                     <div className="bgImg">
+                        <h1 class="text">Welcome to Hello Books</h1>
                         <div className="searchBox">
                             <div class="search-bar clearfix">
                                 <input class="form-control" type="text" name="" placeholder="Search"/>

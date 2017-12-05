@@ -25,7 +25,7 @@
 
 
 .searchBox {
-  padding: 20% 0;
+  padding: 3% 0;
 }
 .search-bar {
   padding: 20px 10px 10px 10px;
@@ -41,4 +41,12 @@
 .search-bar .btn {
   width: 16%;
   float: left;
+
+}
+
+.text {
+  color: white;
+  text-align: center;
+  padding-top: 16%; 
+  font-size: 4.1rem;
 }

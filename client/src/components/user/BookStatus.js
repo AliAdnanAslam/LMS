@@ -8,7 +8,7 @@ class BookStatus extends Component {
   render() {
     return (
 		<div class="span9">
-			<div class="jumbotron thumbnail">
+			<div class="jumbotron well">
 				<div>
 					<br />
 					<h1 style={{textAlign: 'center'}}>Books</h1>

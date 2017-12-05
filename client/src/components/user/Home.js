@@ -11,7 +11,7 @@ import FineStatus from './FineStatus';
 import DonateBook from './DonateBook';
 
 /**
- *
+ * Home class proviedes the main interface of user
  */
 class Home extends Component {
   render() {
