@@ -5,8 +5,12 @@ import actionTypes from '../actions/actionTypes';
 const bookReducer = (state = { pagination: {} }, action) => {
   let newState, books, borrowedBooks;
   switch (action.type) {
+
     case actionTypes.GET_BORROWED_BOOKS:
       return { ...state, borrowedBooks: action.borrowedBooks };
+
+
+
     case actionTypes.BORROW_BOOK:
       books = deepclone(state.books);
       books = books.map((book) => {
@@ -16,11 +20,13 @@ const bookReducer = (state = { pagination: {} }, action) => {
         return book;
       });
       return { ...state, books };
+
     case actionTypes.RETURN_BOOK:
       borrowedBooks = state.borrowedBooks.filter(book =>
         book.id !== action.id
       );
       return { ...state, borrowedBooks };
+
     case actionTypes.SEARCH_BOOKS:
       return { ...state, books: action.books };
     case actionTypes.GET_BOOK:
@@ -35,7 +41,7 @@ const bookReducer = (state = { pagination: {} }, action) => {
       return { ...state, categories: action.categories };
     case actionTypes.FILTER_BOOKS_CATEGORY:
       return { ...state, books: action.books };
-    case actionTypes.READ_BOOK:
+    case actionTypes.DONATE_BOOK:
       return { ...state, readBook: action.book };
     case action.DELETE_BOOK:
       newState = state.filter(book => book.id !== action.id);
