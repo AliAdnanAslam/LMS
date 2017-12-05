@@ -179,6 +179,9 @@ app.post('/api/books/donate', (req, res) => {
 	// Get user data.
 	let newBook = req.body;
 
+	let loginToken = AuthCheck (req, res);
+	let userId = loginToken.id;
+
 	console.log(newBook);
 
 	Book.findBook(newBook, (err, book) => {
@@ -186,30 +189,55 @@ app.post('/api/books/donate', (req, res) => {
 			console.log(err);
 		} else if (book != null) {
 
-			let loginToken = AuthCheck (req, res);
-			let userId = loginToken.id;
 			let bookId = book._id;
 
 			DonateBooks.addBook (
-				{ bookId, userId }, (err, _res) => {
+				{ bookId, userId, status: newBook.status }, (err, _res) => {
 					if (err){
 						console.log(err)
 					} else {
 						res.json(_res);
 					}
 				} );
-
-
+		} else {
+			Book.addBook( newBook, (err, book) => {
+				if(err) {
+					console.log(err);
+				} else {
+					bookId = book._id;
+					DonateBooks.addBook (
+					{ bookId, userId, status: newBook.status }, (err, _res) => {
+						if (err){
+							console.log(err)
+						} else {
+							res.json(_res);
+						}
+					} );
+				}
+			} )
 		}
 	})
+});
 
+
+
+// Search book by id
+app.get('/api/books/:id', (req, res) => {
+	let bookId = req.params.id;
+	console.log(typeof(bookId));
+	Book.searchBookById( bookId, (err, book) => {
+		if (err) {
+			console.log(err);
+		} else {
+			res.json(book);
+		}
+	});
 
 });
 
 
-// Get all users.
-app.get('/api/books/donatedBooks', (req, res) => {
-
+// Get all donated books.
+app.get('/api/donatedBooks', (req, res) => {
 	// Post the query.
 	DonateBooks.getDonatedBooks((err, books) => {
 		if(err) { // If error
@@ -225,11 +253,7 @@ app.get('/api/books/donatedBooks', (req, res) => {
 app.post(('/api/orders/new'), (req, res) => {
 	let loginToken = AuthCheck(req,res);
 	let userId = loginToken.id;
-	try {
-		var type = req.body.type;
-	} catch(e) {
-		console.log(e.Message);
-	}
+	let type = req.body.type;
 
 	Order.add( {
 		userId:userId,
@@ -277,7 +301,7 @@ const AuthCheck = (req,res) => {
 
 // Listen at port 3002.
 app.listen(3002);
-console.log('Running on Port 3000...');
+console.log('Running on Port 3002...');
 
 
 

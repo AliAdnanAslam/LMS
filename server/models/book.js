@@ -51,6 +51,10 @@ Book.findBook = (book, callback) => { Book.findOne( {
 	} , callback);
 }
 
+// Search Book by id.
+Book.searchBookById = (id, callback) => {
+	Book.findOne( {_id: id}, callback);
+}
 
 
 // Update book.
