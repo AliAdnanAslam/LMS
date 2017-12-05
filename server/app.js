@@ -78,6 +78,20 @@ app.put('/api/users/:id', (req, res) => {
 
 });
 
+// Search user by id
+app.get('/api/users/:id', (req, res) => {
+	let userId = req.params.id;
+
+	User.searchUserById( userId, (err, user) => {
+		if (err) {
+			console.log(err);
+		} else {
+			res.json(user);
+		}
+	});
+
+});
+
 
 // Remove user.
 app.delete('/api/users/:id', (req, res) => {
@@ -146,20 +160,6 @@ app.post('/api/users/authenticate', (req, res) => {
 
 });
 
-
-// Get Details of the User
-app.get('/api/users/detail', (req, res) => {
-
-	let decodedId = AuthCheck (req, res);
-
-	User.getUserDetail( decodedId.id, (err, user) => {
-		if(err){ // If error.
-			console.log(err);
-		}
-		res.json(user);
-	});
-
-});
 
 
 app.get('/api/books', (req, res) => {

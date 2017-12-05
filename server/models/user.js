@@ -66,12 +66,10 @@ User.login = ( user, callback ) => {
 	User.findOne(email, callback);
 }
 
-// Get user details.
-User.getUserDetail = ( id, callback) => {
-	let idObj = {
-		_id: id,
-	}
-	User.findOne(idObj, callback);
+
+// Search user by id
+User.searchUserById = ( id, callback) => {
+	User.findOne({_id: id}, callback);
 }
 
 module.exports = User;
