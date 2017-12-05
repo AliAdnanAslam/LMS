@@ -5,7 +5,9 @@ const User           = require('./models/user');
 const config	     = require('./config/config');
 const jwt 			 = require('jsonwebtoken');
 const bcrypt 		 = require('bcryptjs');
-
+const Book			 = require('./models/book');
+const DonateBooks 	 = require('./models/donateBook');
+const Order			 = require('./models/order');
 
 let app = express();
 
@@ -99,18 +101,32 @@ app.post('/api/users/authenticate', (req, res) => {
 	// Access user name and password.
 	let userObj = req.body;
 
+	console.log(userObj);
 	// Call query.
 	User.login( userObj, (err, user) => {
+
 		if(err){ //If error.
 			console.log(err);
 		} else if (!user) {
+
 			// If email is not right.
 			res.json({ success: false, message: 'Authentication failed. User not found.' });
+
 		} else if (user) { // If user exists.
+			console.log("User exists");
 			// If password is not right.
-			let passwordIsValid = bcrypt.compareSync(userObj.password, user.password);
+			let passwordIsValid = false ;
+			try {
+				console.log(userObj.password);
+				passwordIsValid	 = bcrypt.compareSync(userObj.password, user.password);
+			} catch (e) {
+				console.log(e.message);
+			}
+
+
 			if (! passwordIsValid) {
 				res.json({ success: false, message: 'Authentication failed. Wrong password.' });
+
 			} else { // User found & Password is correct.
 				const payload = { id: user._id };
 				console.log(payload);
@@ -133,6 +149,118 @@ app.post('/api/users/authenticate', (req, res) => {
 
 // Get Details of the User
 app.get('/api/users/detail', (req, res) => {
+
+	let decodedId = AuthCheck (req, res);
+
+	User.getUserDetail( decodedId.id, (err, user) => {
+		if(err){ // If error.
+			console.log(err);
+		}
+		res.json(user);
+	});
+
+});
+
+
+app.get('/api/books', (req, res) => {
+	Book.getAllBooks((err,books) =>{
+		if(err) {
+			console.log(err);
+		} else {
+			res.json(books);
+		}
+	});
+});
+
+
+// Add new book.
+app.post('/api/books/donate', (req, res) => {
+
+	// Get user data.
+	let newBook = req.body;
+
+	console.log(newBook);
+
+	Book.findBook(newBook, (err, book) => {
+		if(err){
+			console.log(err);
+		} else if (book != null) {
+
+			let loginToken = AuthCheck (req, res);
+			let userId = loginToken.id;
+			let bookId = book._id;
+
+			DonateBooks.addBook (
+				{ bookId, userId }, (err, _res) => {
+					if (err){
+						console.log(err)
+					} else {
+						res.json(_res);
+					}
+				} );
+
+
+		}
+	})
+
+
+});
+
+
+// Get all users.
+app.get('/api/books/donatedBooks', (req, res) => {
+
+	// Post the query.
+	DonateBooks.getDonatedBooks((err, books) => {
+		if(err) { // If error
+			console.log(err);
+		}
+		console.log(books);
+		res.json(books); // Show result.
+	});
+});
+
+
+// Create new order
+app.post(('/api/orders/new'), (req, res) => {
+	let loginToken = AuthCheck(req,res);
+	let userId = loginToken.id;
+	try {
+		var type = req.body.type;
+	} catch(e) {
+		console.log(e.Message);
+	}
+
+	Order.add( {
+		userId:userId,
+		type:type,
+	},
+		(err, order) => {
+		if(err){
+			console.log(err);
+		} else {
+			res.json(order);
+		}
+	});
+
+});
+
+
+// Get all orders
+app.get('/api/orders', (req, res) => {
+
+	let loginToken = AuthCheck(req,res);
+
+	Order.getAllOrders((err, orders) => {
+		if (err) {
+			console.log(err);
+		}
+		res.json(orders);
+	});
+});
+
+
+const AuthCheck = (req,res) => {
 	let token = req.headers['x-access-token'];
 	if (!token) return res.status(401).send({ auth: false, message: 'No token provided.' });
 
@@ -142,21 +270,9 @@ app.get('/api/users/detail', (req, res) => {
     if (err) return res.status(500).send({ auth: false, message: 'Failed to authenticate token.' })
 	decodedId = decoded;
 	});
-
 	console.log(decodedId);
-
-	User.getUserDetail( decodedId.id, (err, user) => {
-		if(err){ // If error.
-			console.log(err);
-		}
-		res.json(user);
-	});
-
-
-
-
-});
-
+	return decodedId;
+}
 
 
 // Listen at port 3002.

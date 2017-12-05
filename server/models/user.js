@@ -13,7 +13,15 @@ let userSchema = {
 	},
 	email: {
 		type: String,
-		require: true
+		require: true,
+		validate: {
+          validator: function(v, cb) {
+            User.find({email: v}, function(err,docs){
+               cb(docs.length == 0);
+            });
+          },
+          message: 'User already exists!'
+        }
 	},
 	date: {
 		type: Date,
