@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
+const randomToken = require('../utils/randomToken');
 
 // Users schema
 let userSchema = {
@@ -22,6 +23,10 @@ let userSchema = {
           },
           message: 'User already exists!'
         }
+	},
+	resetToken: {
+		type: String,
+		default:""
 	},
 	date: {
 		type: Date,
@@ -52,6 +57,17 @@ User.updateUser = (id, user, options, callback) => {
 	User.findOneAndUpdate(query, update, options, callback);
 };
 
+// Add user token [UPDATE]
+User.addResetToken = (user, options, callback) => {
+	let token = randomToken(40);
+	let updatedUser = {
+		...user,
+		resetToken: ""
+	};
+	User.findOneAndUpdate({_id: user._id}, updatedUser, options, callback);
+}
+
+
 // Remove user.
 User.removeUser = (id, callback) => {
 	let query = { _id:id };
@@ -70,6 +86,11 @@ User.login = ( user, callback ) => {
 // Search user by id
 User.searchUserById = ( id, callback) => {
 	User.findOne({_id: id}, callback);
+}
+
+// Search user by email
+User.searchByEmail = ( email, callback) => {
+	User.findOne({email:email}, callback);
 }
 
 module.exports = User;

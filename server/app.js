@@ -8,6 +8,7 @@ const bcrypt 		 = require('bcryptjs');
 const Book			 = require('./models/book');
 const DonateBooks 	 = require('./models/donateBook');
 const Order			 = require('./models/order');
+const Emailer 		 = require('./utils/email/emailTransporter.js');
 
 let app = express();
 
@@ -280,6 +281,50 @@ app.get('/api/orders', (req, res) => {
 			console.log(err);
 		}
 		res.json(orders);
+	});
+});
+
+
+app.put('/api/forgetPassword', (req,res) => {
+
+
+	// Check if request body exists.
+	if(!req.body) return res.status(400).json({message: 'No Request Body'});
+	if(!req.body.email) return res.status(400).json({message: 'No email id'});
+
+	// Email of the user.
+	let email = req.body.email;
+
+	// Time to get the user id.
+	User.searchByEmail( email, (err, user) => {
+		if(err) {
+			console.log(err);
+		} else { // If user exists.
+			User.addResetToken(user.toObject(), {}, (err, updatedUser) => {
+				if(err){
+					console.log(err);
+				} else {
+					//updatedUser = updatedUser.toObject();
+					const mailOptions = {
+					  from: 'mra6541@gmail.com',
+					  to: updatedUser.email, // list of receivers
+					  subject: 'Reset Password', // Subject line
+					  html: '<div>' +
+					  	'<div>Hello ' + updatedUser.name + '</div>'+
+					  	'<div> You have recently requested for a password change.'+
+					  	'Kindly click on the link to modify your password.</div>'+
+					  '</div>'
+					};
+
+					Emailer.sendMail(mailOptions, function (err, info) {
+					   if(err)
+					     console.log(err)
+					   else
+					     res.json(info);
+					});
+				}
+			});
+		}
 	});
 });
 
