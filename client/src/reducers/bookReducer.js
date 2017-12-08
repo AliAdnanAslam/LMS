@@ -2,13 +2,17 @@ import deepclone from '../utils/deepclonejs/deepClone';
 import actionTypes from '../actions/actionTypes';
 
 
-const bookReducer = (state = { pagination: {} }, action) => {
+const bookReducer = (state = {}, action) => {
   let newState, books, borrowedBooks;
   switch (action.type) {
 
     case actionTypes.GET_BORROWED_BOOKS:
       return { ...state, borrowedBooks: action.borrowedBooks };
 
+    case actionTypes.ADD_BOOK:
+      books = deepclone(state.books);
+      books.push(action.book);
+      return { ...state, books }; 
 
 
     case actionTypes.BORROW_BOOK:
@@ -46,8 +50,6 @@ const bookReducer = (state = { pagination: {} }, action) => {
     case action.DELETE_BOOK:
       newState = state.filter(book => book.id !== action.id);
       return newState;
-    case actionTypes.SET_LIBRARY_PAGINATION:
-      return { ...state, pagination: action.pagination };
     default:
       return state;
   }

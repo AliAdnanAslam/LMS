@@ -16,6 +16,7 @@ const actionList = [
   'BORROW_BOOK',
   'RETURN_BOOK',
   'CREATE_BOOK',
+  'ADD_BOOK',
   'UPDATE_BOOK',
   'DONATE_BOOK',
   'EDIT_BOOK_INFO',

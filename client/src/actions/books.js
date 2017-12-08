@@ -16,7 +16,7 @@ export const addBookAction = book => ({
  * @return {Object}      sends nextwork request
  */
 export const addBook = data => () => (
-  axios.post(`${API}/books/add`, data)
+  axios.post(`${API}/books/donate`, data)
     .then((response) => {
       notify.success(response.data.message);
     }, (error) => {
