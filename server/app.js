@@ -46,13 +46,24 @@ app.post('/api/users', (req, res) => {
 	// Get user data.
 	let userObj = req.body;
 
-	// Call query.
-	User.addUser(userObj, (err, user) => {
-		if(err) { // If error.
-			console.log(err);
+	// Check if user already exists.
+	User.searchByEmail(userObj.email, (err, user) => {
+		if(err) { // Error in API Call.
+			res.json ({success: false, message: 'An Error Occurred While Calling API.'});
+		} else {
+			if (user) { // If user exists
+				res.json({success: false, message: 'User with this email already exists!'});
+			} if (!user) { // If user does not exists.
+				User.addUser(userObj, (err, user) => {
+				if(err) { // If error.
+					console.log(err);
+				}
+				res.json(user); // Show result in Json.
+				});
+			}
 		}
-		res.json(user); // Show result in Json.
-	});
+	})
+
 
 });
 
@@ -300,6 +311,7 @@ app.put('/api/forgetPassword', (req,res) => {
 		if(err) {
 			console.log(err);
 		} else { // If user exists.
+			if(!user) return res.json ( { success: false, message: "No User with this email exists" });
 			User.addResetToken(user.toObject(), {}, (err, updatedUser) => {
 				if(err){
 					console.log(err);

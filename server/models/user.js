@@ -8,6 +8,14 @@ let userSchema = {
 		type: String,
 		required: true
 	},
+	fatherName: {
+		type: String,
+		required: true,
+	},
+	registrationNo: {
+		type: String,
+		required: true,
+	},
 	password: {
 		type: String,
 		require: true
@@ -15,14 +23,12 @@ let userSchema = {
 	email: {
 		type: String,
 		require: true,
-		validate: {
-          validator: function(v, cb) {
-            User.find({email: v}, function(err,docs){
-               cb(docs.length == 0);
-            });
-          },
-          message: 'User already exists!'
-        }
+	},
+	type: {
+		type: String,
+		require: true,
+		enum: ['student', 'faculty'],
+		lowercase: true
 	},
 	resetToken: {
 		type: String,
@@ -63,7 +69,7 @@ User.addResetToken = (user, options, callback) => {
 	let token = randomToken(40);
 	let updatedUser = {
 		...user,
-		resetToken: ""
+		resetToken: token
 	};
 	User.findOneAndUpdate({_id: user._id}, updatedUser, options, callback);
 }

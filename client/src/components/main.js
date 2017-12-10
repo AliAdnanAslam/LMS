@@ -6,6 +6,7 @@ import Login from './authentication/Login';
 import SignUp from './authentication/SignUp';
 import ForgetPassword from './authentication/ForgetPassword';
 import FrontPage from './FrontPage';
+import Search from './common/SearchResult';
 
 
 class Main extends Component {
@@ -18,7 +19,8 @@ class Main extends Component {
             <Route path='/admin' exact component={ HomeAdmin } />
             <Route path='/login'  component={ Login } />
             <Route path='/signup'  component={ SignUp } />
-            <Route path='/forgetpassword'  component={ ForgetPassword } />          
+            <Route path='/forgetpassword'  component={ ForgetPassword } />
+            <Route path="/search/:query" component={ Search }/>
         </div>
       </BrowserRouter>
     );

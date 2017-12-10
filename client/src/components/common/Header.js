@@ -3,9 +3,17 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 
 class Header extends Component {
-    /**
-     * checkPage() function
-     */
+
+    constructor(props) {
+    super(props);
+    this.logout = this.logout.bind(this);
+  }
+
+
+    logout(){
+        localStorage.removeItem('token');
+    }
+
     checkPage(props) {
         // Checks if page is authenitcation page.
         let authenticationPage =  this.props.login || this.props.signup || this.props.forgetPassword;
@@ -15,12 +23,7 @@ class Header extends Component {
         if (this.props.userLoggedIn) {
             return (
                 <div>
-                    <form class="navbar-search pull-left input-append" action="">
-                        <input type="text" class="span3" />
-                        <button class="btn" type="button">
-                            <i class="icon-search"></i>
-                        </button>
-                    </form>                
+
                     <ul class="nav  pull-right">
                         <li><a href="">Support </a></li>
                         <li class="nav-user dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">
@@ -31,10 +34,10 @@ class Header extends Component {
                                 <li><a href="">Edit Profile</a></li>
                                 <li><a href="">Account Settings</a></li>
                                 <li class="divider"></li>
-                                <li><a href="">Logout</a></li>
+                                <li><a onClick={this.logout}>Logout</a></li>
                             </ul>
                         </li>
-                    </ul>                
+                    </ul>
                 </div>
             );
         } else if(authenticationPage) {    // If page is authentication page.// If page is not authentication page.
@@ -59,7 +62,7 @@ class Header extends Component {
                 </ul>
             );
         } else {
-            return (            
+            return (
                 <ul class="nav pull-right">
                     <li><Link to='/login'>
                         Log In
