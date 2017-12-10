@@ -6,12 +6,14 @@ import './FrontPage.css';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
+import isAuthorized from '../utils/validation/isAuthorized';
 
 
 class FrontPage extends Component {
 
-    returnContent(props) {
-        if (this.props.isLoggedIn) {
+
+    render() {
+		if (isAuthorized()) {
         return (
             <Redirect to='/user' />
             );
@@ -32,12 +34,6 @@ class FrontPage extends Component {
             </div>
             );
         }
-
-    }
-
-
-    render() {
-		return this.returnContent()
 	}
 }
 

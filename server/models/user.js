@@ -38,6 +38,7 @@ let User = mongoose.model ( 'user', userSchema);
 
 
 // Get users.
+
 User.getUsers = (callback, limit) => User.find(callback).limit(limit);
 
 // Add users.

@@ -6,7 +6,7 @@ import Footer from '../common/Footer';
 import { connect } from 'react-redux';
 import { validateLogin } from '../../utils/validation/auth';
 import { login } from '../../actions/login';
-
+import isAuthorized from '../../utils/validation/isAuthorized';
 
 
 class Login extends Component {
@@ -17,6 +17,7 @@ constructor(props) {
       email: '',
       password: '',
     };
+
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -41,7 +42,10 @@ handleChange(event) {
 
 	render() {
 
-		return (
+		// if(isAuthorized()) {
+		// return <Redirect to='/'  />
+		// } else {
+			return (
 
 			<div>
 			<Header login="true" />
@@ -77,7 +81,7 @@ handleChange(event) {
 									<div class="control-group">
 										<div class="controls clearfix">
 											<button type="submit" name="submit" class="btn btn-primary pull-right">Login</button>
-											<Link to="/forgetpassword" style={{textDecoration: 'none'}}> 
+											<Link to="/forgetpassword" style={{textDecoration: 'none'}}>
 												Forget Password
 											</Link>
 										</div>
@@ -92,7 +96,9 @@ handleChange(event) {
 			<Footer />
 			</div>
 		);
-	}
+	// }
+		}
+
 }
 
 

@@ -1,22 +1,24 @@
 // Importing the necessary packages.
 import React, { Component } from 'react';
 import { addBook } from '../apiCalls/Books';
- 
+
 /**
  *
- */ 
+ */
 class DonateBook extends Component {
 
 	// Calling constructor
 	constructor(props) {
 		super(props);
 		this.state = {
-			bookName: '',
+			name: '',
 			authorName: '',
 			edition: '',
 			publication: '',
 			publicationYear: '',
-			image: ''
+			image: '',
+			response: '',
+
 		};
 
 		// Binding functions to instances
@@ -24,14 +26,34 @@ class DonateBook extends Component {
 	    this.handleChange = this.handleChange.bind(this);
 	    this.imageUplaod = this.imageUplaod.bind(this);
 	    this.getBase64 = this.getBase64.bind(this);
+
 	}
 
 	// Function call onSubmit
-	handleDonation(event) {
+	handleDonation = event => {
 		event.preventDefault();
-		console.log(this.state)
-		addBook(this.state);
+		this.setState({response:''});
+		console.log(this.state);
+		addBook(this.state)
+		.then((resp) => {
+			console.log(resp);
+			if(resp.status == 200){
+				console.log("im in");
+				this.setState({
+					name: '',
+					authorName: '',
+					edition: '',
+					publication: '',
+					publicationYear: '',
+					image: '',
+					response: 'Submitted'
+				})
+			}
+		})
+		.catch((err)=>console.log(err));
 	}
+
+
 
 	// Tracking the input change state
 	handleChange(event) {
@@ -41,7 +63,7 @@ class DonateBook extends Component {
 	    book[formField] = event.target.value.trim();
 	    this.setState(() => book);
 	 	//console.log(this.state)
-	}	
+	}
 
 	// Uplaod image from local storage and save to monogoose in base64
 	imageUplaod(e) {
@@ -59,9 +81,9 @@ class DonateBook extends Component {
 	     reader.onerror = error => reject(error);
 	     reader.readAsDataURL(file);
 	  });
-	}	
+	}
 
-	// 
+	//
 	render() {
 	return (
 		<div class="span9">
@@ -73,11 +95,11 @@ class DonateBook extends Component {
 					<div class="module-body">
 						<div class="control-group">
 							<div class="controls row-fluid">
-								<input class="span12" type="text" name="bookName" onChange={this.handleChange} placeholder="Book Name" required />
+								<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Book Name" required />
 								<span>
 	                				{this.state.errors &&
 	                				this.state.errors.name}
-	              				</span>							
+	              				</span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -86,7 +108,7 @@ class DonateBook extends Component {
 								<span>
 	                				{this.state.errors &&
 	                				this.state.errors.authorName}
-	              				</span>							
+	              				</span>
 							</div>
 						</div>
 						<div class="control-group">
@@ -95,32 +117,32 @@ class DonateBook extends Component {
 								<span>
 	                				{this.state.errors &&
 	                				this.state.errors.edition}
-	              				</span>								
+	              				</span>
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="controls row-fluid">
-								<input class="span12" type="text" name="publication" onChange={this.handleChange} placeholder="Publication" required />
+								<input class="span12" type="text" name="publication" onChange={this.handleChange} placeholder="Publication"  />
 								<span>
 	                				{this.state.errors &&
 	                				this.state.errors.publication}
-	              				</span>								
+	              				</span>
 							</div>
 						</div>
 						<div class="control-group">
 							<div class="controls row-fluid">
-								<input class="span12" type="text" name="publicationYear" onChange={this.handleChange} placeholder="Publication Year" required />
+								<input class="span12" type="text" name="publicationYear" onChange={this.handleChange} placeholder="Publication Year"  />
 								<span>
 	                				{this.state.errors &&
 	                				this.state.errors.publicationYear}
-	              				</span>								
+	              				</span>
 							</div>
-						</div>																								
+						</div>
 					</div>
 					<div style={{marginLeft: '20px'}}>
 						<label class="control-label"><b>Select Image From Your Computer</b></label>
-						<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" required/>
-						<br /><br />			
+						<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
+						<br /><br />
 					</div>
 					<div class="module-foot">
 						<div class="control-group">
@@ -130,8 +152,9 @@ class DonateBook extends Component {
 						</div>
 					</div>
 				</form>
+				{ this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
 			</div>
-		</div>         
+		</div>
 	);
 	}
 }
