@@ -248,6 +248,22 @@ app.get('/api/books/:id', (req, res) => {
 });
 
 
+
+// Search book by name
+app.get('/api/books/search/:name', (req, res) => {
+	let name = req.params.name;
+	Book.searchBookByName( name, (err, book) => {
+		if (err) {
+			console.log(err);
+		} else {
+			res.json(book);
+		}
+	});
+
+});
+
+
+
 // Get all donated books.
 app.get('/api/donatedBooks', (req, res) => {
 	// Post the query.
