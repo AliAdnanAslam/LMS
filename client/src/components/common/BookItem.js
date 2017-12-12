@@ -29,7 +29,6 @@ render() {
                                 <li><h4>Edition: </h4>{this.props.item.edition}</li>
                                 <li><h4>Donated By: </h4>{this.props.item.donerName ? this.props.item.donerName: "null"}</li>
                                 <li><h4>Status: </h4>{this.props.item.status ? this.props.item.status: "undefined"}</li>
-                                <li><h4>Donated Date: </h4>{this.props.item.donationDate}</li>
                             </ul>
                         </div>
                     </div>

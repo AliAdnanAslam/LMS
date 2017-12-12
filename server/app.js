@@ -248,7 +248,27 @@ app.get('/api/books/:id', (req, res) => {
 });
 
 
-
+app.put('/api/resetPassword', (req, res) => {
+	let obj = req.body;
+	User.searchUserbyToken(obj.token, (err, user) => {
+		if (err) {
+			console.log(err);
+		} else {
+			if(!user){
+				res.json({success:false, respones: "Invalid Token"});
+			} else {
+				obj.password = bcrypt.hashSync(obj.password, 8);
+				User.updatePassword(obj.token, obj.password, {}, (err, info) => {
+					if(err) {
+						console.log(err);
+					} else {
+						res.json({...info, success:true});
+					}
+				})
+			}
+		}
+	})
+})
 
 
 // Search book by name
@@ -384,24 +404,31 @@ app.put('/api/forgetPassword', (req,res) => {
 				if(err){
 					console.log(err);
 				} else {
-					//updatedUser = updatedUser.toObject();
-					const mailOptions = {
-					  from: 'mra6541@gmail.com',
-					  to: updatedUser.email, // list of receivers
-					  subject: 'Reset Password', // Subject line
-					  html: '<div>' +
-					  	'<div>Hello ' + updatedUser.name + '</div>'+
-					  	'<div> You have recently requested for a password change.'+
-					  	'Kindly click on the link to modify your password.</div>'+
-					  '</div>'
-					};
+					userId = updatedUser._id;
 
-					Emailer.sendMail(mailOptions, function (err, info) {
-					   if(err)
-					     console.log(err)
-					   else
-					     res.json(info);
-					});
+					User.searchUserById(userId, (err,inf) => {
+						if(err) console.log(err)
+							else {
+								const mailOptions = {
+									  from: 'mra6541@gmail.com',
+									  to: inf.email, // list of receivers
+									  subject: 'Reset Password', // Subject line
+									  html: '<div>' +
+									  	'<div>Hello ' + inf.name + '</div>'+
+									  	'<div> You have recently requested for a password change.'+
+									  	'Kindly click on the <a href="http://localhost:3000/resetPassword/'+ inf.resetToken +
+									  	'">link</a> to change your password.</div>'+
+									  '</div>'
+								};
+
+								Emailer.sendMail(mailOptions, function (err, info) {
+								   if(err)
+								     console.log(err)
+								   else
+								     res.json(info);
+								});
+							}
+					})
 				}
 			});
 		}
