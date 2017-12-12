@@ -32,7 +32,6 @@ let userSchema = {
 	},
 	image: {
 		type: String,
-		deafult: '',
 	},
 	resetToken: {
 		type: String,

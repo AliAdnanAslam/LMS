@@ -54,9 +54,10 @@ class ForgetPassword extends Component {
 
 
 	render() {
+		let bool = true;
 		return (
 			<div>
-			<Header forgetPassword="true" />
+			<Header forgetPassword={bool} />
 			<div class="wrapper">
 				<div class="container">
 					<div class="row">

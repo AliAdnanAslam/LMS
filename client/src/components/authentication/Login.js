@@ -17,7 +17,6 @@ constructor(props) {
       email: '',
       password: '',
     };
-
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
   }
@@ -42,13 +41,10 @@ handleChange(event) {
 
 	render() {
 
-		// if(isAuthorized()) {
-		// return <Redirect to='/'  />
-		// } else {
+		let bool = true;
 			return (
-
 			<div>
-			<Header login="true" />
+			<Header login={login} />
 			<div class="wrapper">
 				<div class="container">
 					<div class="row">

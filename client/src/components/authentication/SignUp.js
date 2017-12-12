@@ -80,9 +80,10 @@ handleSubmit = event => {
 }
 
 render() {
+	let bool = true;
 	return (
 		<div>
-			<Header signup="true" />
+			<Header signup = {bool} />
 			<div class="wrapper">
 				<div class="container">
 					<div class="row">

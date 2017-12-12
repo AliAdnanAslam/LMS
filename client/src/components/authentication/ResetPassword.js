@@ -63,9 +63,10 @@ handleChange(event) {
 
 
 render() {
+	let bool = true;
 	return (
 		<div>
-		<Header />
+		<Header resetPassword = {bool}  />
 		<div class="wrapper">
 			<div class="container">
 				<div class="row">
