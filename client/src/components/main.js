@@ -12,6 +12,7 @@ import ResetPassword from './authentication/ResetPassword';
 import FrontPage from './FrontPage';
 import Search from './common/SearchResult';
 import Profile from './common/Profile';
+import PrivateRoute from './common/PrivateRoute';
 
 
 class Main extends Component {
@@ -21,7 +22,7 @@ class Main extends Component {
         <div className='main'>
             <Route path='/' exact component={ FrontPage } />
             <Route path='/user' exact component={ Home } />
-            <Route path='/admin/manageusers' component={ ManageUsers } />
+            <PrivateRoute path='/admin/manageusers' component={ ManageUsers } />
             <Route path='/admin/managebooks' component={ ManageBooks } />
             <Route path='/admin/modifybook' component={ ModifyBook } />
             <Route path='/admin/addbook' component={ AddBook } />
