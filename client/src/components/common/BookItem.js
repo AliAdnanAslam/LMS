@@ -4,6 +4,10 @@ class BookItem extends Component {
 
 constructor(props) {
     super(props);
+    this.available = true;
+    if(this.props.item.status != 'available') {
+        this.available = false;
+    }
 }
 
 
@@ -23,18 +27,20 @@ render() {
                             <ul class="inline">
                                 <li><h4>Author: </h4>{this.props.item.authorName}</li>
                                 <li><h4>Edition: </h4>{this.props.item.edition}</li>
-                                <li><h4>Publisher: </h4>{this.props.item.publisher ? this.props.item.publisher: "null"}</li>
+                                <li><h4>Donated By: </h4>{this.props.item.donerName ? this.props.item.donerName: "null"}</li>
+                                <li><h4>Status: </h4>{this.props.item.status ? this.props.item.status: "undefined"}</li>
+                                <li><h4>Donated Date: </h4>{this.props.item.donationDate}</li>
                             </ul>
                         </div>
                     </div>
 
                     <div class="stream-options">
+                        {this.available ?
                         <button type="button" href="#" class="btn btn-small btn-primary">
                             Reserve
-                        </button>
-                        <button type="button" href="#" class="btn btn-small btn-primary" disabled>
+                        </button> : <button type="button" href="#" class="btn btn-small btn-primary" disabled>
                             Not Available
-                        </button>
+                        </button> }
                     </div>
                 </div>
             </div>

@@ -90,6 +90,12 @@ User.login = ( user, callback ) => {
 }
 
 
+// Search user by email
+User.getUserNames = ( userIds, callback) => {
+	User.find( {_id: {$in:userIds}}, callback);
+}
+
+
 // Search user by id
 User.searchUserById = ( id, callback) => {
 	User.findOne({_id: id}, callback);

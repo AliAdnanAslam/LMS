@@ -249,14 +249,66 @@ app.get('/api/books/:id', (req, res) => {
 
 
 
+
+
 // Search book by name
 app.get('/api/books/search/:name', (req, res) => {
 	let name = req.params.name;
-	Book.searchBookByName( name, (err, book) => {
+	Book.searchBookByName( name, (err, books) => {
 		if (err) {
 			console.log(err);
 		} else {
-			res.json(book);
+			if(books.length !== 0) {
+				let booksIds = []; // Get the IDs of the books.
+				books.forEach(book => {
+					booksIds.push(book._id);
+				})
+
+
+				 // Get all the instances of that book.
+				DonateBooks.searchBookById( booksIds, (err, book) => {
+						if(err) {
+							console.log(err);
+						} else {
+							if(book.length !== 0){ // If instances exists
+								let users = [...new Set(book.map(item => item.userId))]; // Unique doners name.
+								let ret= [];
+								User.getUserNames(users, (err,doners) => {
+									if(err) {
+										console.log(err);
+									} else {
+										console.log(doners); // Got profiles of all the users.
+										// Time to finalize our return statement
+										ret = book.map(instance => {
+											var userName = doners.filter(doner => doner._id == instance.userId);
+											var bookSample = books.filter(item => item._id == instance.bookId);
+											return {
+												status: instance.status,
+										        donationDate: instance.donationDate,
+										        userId: instance.userId,
+										        bookId: instance.bookId,
+										        _id: instance.id ,
+												donerName: userName[0].name,
+												name: bookSample[0].name,
+												authorName: bookSample[0].authorName,
+												edition: bookSample[0].edition,
+												image: bookSample[0].image,
+												donationDate: bookSample[0].donataionDate,
+											}
+										});
+										console.log(ret);
+										res.json(ret);
+									}
+								})
+
+							}
+						}
+					});
+
+			//	res.json(books);
+			} else { // If no book with this name exists.
+				res.json(books);
+			}
 		}
 	});
 
