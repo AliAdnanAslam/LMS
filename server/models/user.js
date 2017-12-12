@@ -30,6 +30,10 @@ let userSchema = {
 		enum: ['student', 'faculty'],
 		lowercase: true
 	},
+	image: {
+		type: String,
+		deafult: '',
+	},
 	resetToken: {
 		type: String,
 		default:""

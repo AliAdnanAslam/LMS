@@ -29,8 +29,8 @@ class Header extends Component {
                             <img src="images/user.png" alt="avatar" class="nav-avatar" />
                             <b class="caret"></b></a>
                             <ul class="dropdown-menu">
-                                <li><a href="">Your Profile</a></li>
-                                <li><a href="">Edit Profile</a></li>
+
+                                <li><Link to='/user/profile'> Edit Profile </Link></li>
                                 <li><a href="">Account Settings</a></li>
                                 <li class="divider"></li>
                                 <li><a onClick={this.logout}>Logout</a></li>

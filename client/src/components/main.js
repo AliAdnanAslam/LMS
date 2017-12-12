@@ -8,6 +8,7 @@ import ForgetPassword from './authentication/ForgetPassword';
 import ResetPassword from './authentication/ResetPassword';
 import FrontPage from './FrontPage';
 import Search from './common/SearchResult';
+import Profile from './common/Profile';
 
 
 class Main extends Component {
@@ -23,6 +24,7 @@ class Main extends Component {
             <Route path='/forgetpassword'  component={ ForgetPassword } />
             <Route path="/search/:query" component={ Search }/>
             <Route path="/resetPassword/:token" component={ ResetPassword }/>
+            <Route path="/user/profile" component={ Profile }/>
         </div>
       </BrowserRouter>
     );
