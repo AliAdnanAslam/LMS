@@ -1,4 +1,6 @@
 const mongoose = require('mongoose');
+var textSearch = require('mongoose-text-search');
+
 
 // Book Schema
 
@@ -30,6 +32,12 @@ let bookSchema = mongoose.Schema({
 	}
 });
 
+
+//bookSchema.plugin(textSearch);
+bookSchema.index({ name: 'text' });
+
+
+
 let Book = mongoose.model('Book', bookSchema);
 
 // Add Book.
@@ -54,6 +62,11 @@ Book.findBook = (book, callback) => { Book.findOne( {
 // Search Book by id.
 Book.searchBookById = (id, callback) => {
 	Book.findOne( {_id: id}, callback);
+}
+
+// Search Book by name.
+Book.searchBookByName = (name, callback) => {
+	Book.find( { $text: { $search: name } }, callback );
 }
 
 

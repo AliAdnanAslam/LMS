@@ -36,7 +36,10 @@ DonateBooks.addBook = (donatedBook, callback) => {
 	DonateBooks.create(donatedBook, callback);
 };
 
-
+// Search Book by id.
+DonateBooks.searchBookById = (id, callback) => {
+	DonateBooks.find( {bookId: {$in:id}}, callback);
+}
 
 
 

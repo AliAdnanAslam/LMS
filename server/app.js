@@ -248,6 +248,94 @@ app.get('/api/books/:id', (req, res) => {
 });
 
 
+app.put('/api/resetPassword', (req, res) => {
+	let obj = req.body;
+	User.searchUserbyToken(obj.token, (err, user) => {
+		if (err) {
+			console.log(err);
+		} else {
+			if(!user){
+				res.json({success:false, respones: "Invalid Token"});
+			} else {
+				obj.password = bcrypt.hashSync(obj.password, 8);
+				User.updatePassword(obj.token, obj.password, {}, (err, info) => {
+					if(err) {
+						console.log(err);
+					} else {
+						res.json({...info, success:true});
+					}
+				})
+			}
+		}
+	})
+})
+
+
+// Search book by name
+app.get('/api/books/search/:name', (req, res) => {
+	let name = req.params.name;
+	Book.searchBookByName( name, (err, books) => {
+		if (err) {
+			console.log(err);
+		} else {
+			if(books.length !== 0) {
+				let booksIds = []; // Get the IDs of the books.
+				books.forEach(book => {
+					booksIds.push(book._id);
+				})
+
+
+				 // Get all the instances of that book.
+				DonateBooks.searchBookById( booksIds, (err, book) => {
+						if(err) {
+							console.log(err);
+						} else {
+							if(book.length !== 0){ // If instances exists
+								let users = [...new Set(book.map(item => item.userId))]; // Unique doners name.
+								let ret= [];
+								User.getUserNames(users, (err,doners) => {
+									if(err) {
+										console.log(err);
+									} else {
+										console.log(doners); // Got profiles of all the users.
+										// Time to finalize our return statement
+										ret = book.map(instance => {
+											var userName = doners.filter(doner => doner._id == instance.userId);
+											var bookSample = books.filter(item => item._id == instance.bookId);
+											return {
+												status: instance.status,
+										        donationDate: instance.donationDate,
+										        userId: instance.userId,
+										        bookId: instance.bookId,
+										        _id: instance.id ,
+												donerName: userName[0].name,
+												name: bookSample[0].name,
+												authorName: bookSample[0].authorName,
+												edition: bookSample[0].edition,
+												image: bookSample[0].image,
+												donationDate: bookSample[0].donataionDate,
+											}
+										});
+										console.log(ret);
+										res.json(ret);
+									}
+								})
+
+							}
+						}
+					});
+
+			//	res.json(books);
+			} else { // If no book with this name exists.
+				res.json(books);
+			}
+		}
+	});
+
+});
+
+
+
 // Get all donated books.
 app.get('/api/donatedBooks', (req, res) => {
 	// Post the query.
@@ -316,24 +404,31 @@ app.put('/api/forgetPassword', (req,res) => {
 				if(err){
 					console.log(err);
 				} else {
-					//updatedUser = updatedUser.toObject();
-					const mailOptions = {
-					  from: 'mra6541@gmail.com',
-					  to: updatedUser.email, // list of receivers
-					  subject: 'Reset Password', // Subject line
-					  html: '<div>' +
-					  	'<div>Hello ' + updatedUser.name + '</div>'+
-					  	'<div> You have recently requested for a password change.'+
-					  	'Kindly click on the link to modify your password.</div>'+
-					  '</div>'
-					};
+					userId = updatedUser._id;
 
-					Emailer.sendMail(mailOptions, function (err, info) {
-					   if(err)
-					     console.log(err)
-					   else
-					     res.json(info);
-					});
+					User.searchUserById(userId, (err,inf) => {
+						if(err) console.log(err)
+							else {
+								const mailOptions = {
+									  from: 'mra6541@gmail.com',
+									  to: inf.email, // list of receivers
+									  subject: 'Reset Password', // Subject line
+									  html: '<div>' +
+									  	'<div>Hello ' + inf.name + '</div>'+
+									  	'<div> You have recently requested for a password change.'+
+									  	'Kindly click on the <a href="http://localhost:3000/resetPassword/'+ inf.resetToken +
+									  	'">link</a> to change your password.</div>'+
+									  '</div>'
+								};
+
+								Emailer.sendMail(mailOptions, function (err, info) {
+								   if(err)
+								     console.log(err)
+								   else
+								     res.json(info);
+								});
+							}
+					})
 				}
 			});
 		}

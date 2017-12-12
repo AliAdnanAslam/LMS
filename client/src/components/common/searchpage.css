@@ -1,0 +1,18 @@
+.book-img {
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  border: 1px solid grey;
+  margin-right: 30px !important;
+}
+
+.book-img img {
+    width: 100%;
+    min-height: 100%;
+}
+
+.search-bar {
+margin:0 auto;
+width: 70%;
+background: transparent !important;
+}

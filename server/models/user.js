@@ -64,6 +64,18 @@ User.updateUser = (id, user, options, callback) => {
 	User.findOneAndUpdate(query, update, options, callback);
 };
 
+
+// Update user password.
+User.updatePassword = (token, password, options, callback) => {
+	let query = { resetToken:token };
+	let update = {
+		password: password,
+		resetToken: "",
+	};
+	User.findOneAndUpdate(query, update, options, callback);
+};
+
+
 // Add user token [UPDATE]
 User.addResetToken = (user, options, callback) => {
 	let token = randomToken(40);
@@ -90,13 +102,23 @@ User.login = ( user, callback ) => {
 }
 
 
+// Search user by email
+User.getUserNames = (userIds, callback) => {
+	User.find( {_id: {$in:userIds}}, callback);
+}
+
+// Search user by token.
+User.searchUserbyToken = (token, callback) => {
+	User.findOne ( {resetToken: token}, callback);
+}
+
 // Search user by id
-User.searchUserById = ( id, callback) => {
+User.searchUserById = (id, callback) => {
 	User.findOne({_id: id}, callback);
 }
 
 // Search user by email
-User.searchByEmail = ( email, callback) => {
+User.searchByEmail = (email, callback) => {
 	User.findOne({email:email}, callback);
 }
 
