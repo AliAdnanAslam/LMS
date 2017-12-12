@@ -18,6 +18,10 @@ let donateBooksSchema = mongoose.Schema({
 		lowercase: true,
 		required: true,
 	},
+	reservedBy: {
+		type: String,
+		default: '',
+	},
 	donationDate: {
 		type: Date,
 		default: Date.now
@@ -41,6 +45,10 @@ DonateBooks.searchBookById = (id, callback) => {
 	DonateBooks.find( {bookId: {$in:id}}, callback);
 }
 
+// Reserve Book.
+DonateBooks.reserveBook = (id, donerId, options, callback) => {
+	DonateBooks.findOneAndUpdate( {_id:id}, {reservedBy: donerId, status: 'reserved'}, options, callback );
+}
 
 
 module.exports = DonateBooks;

@@ -1,13 +1,44 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import { reserveBook } from '../apiCalls/reserveBook';
+
+
+
 class BookItem extends Component {
 
 constructor(props) {
     super(props);
+    let isLoggedIn = false;
+    if( localStorage.getItem('token') ) {
+        isLoggedIn = true;
+    }
+    this.state = {
+        isLoggedIn: isLoggedIn,
+        bookId: this.props.item._id,
+        response: ''
+    }
+
     this.available = true;
     if(this.props.item.status != 'available') {
         this.available = false;
     }
+
+    this.reserveBook = this.reserveBook.bind(this);
+}
+
+reserveBook = (event) => {
+    if(this.state.isLoggedIn) {
+        reserveBook(this.state)
+        .then((resp) => {
+            this.available = false;
+            this.setState({response: 'reserved!'});
+
+        })
+        .catch((err)=>console.log(err));
+    } else {
+        this.setState({response: 'Please Login First'});
+    }
+
 }
 
 
@@ -35,11 +66,13 @@ render() {
 
                     <div class="stream-options">
                         {this.available ?
-                        <button type="button" href="#" class="btn btn-small btn-primary">
+                        <button type="button" href="#" onClick={this.reserveBook} class="btn btn-small btn-primary">
                             Reserve
                         </button> : <button type="button" href="#" class="btn btn-small btn-primary" disabled>
                             Not Available
                         </button> }
+                        { this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
+
                     </div>
                 </div>
             </div>

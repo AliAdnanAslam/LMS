@@ -20,11 +20,6 @@ class SideBar extends Component {
 		                	</Link>
 		                </li>
 		                <li>
-		                	<Link to='/user/ReserveBook'>
-		                		<i class="menu-icon icon-bullhorn"></i>Reserve Book
-		            		</Link>
-		                </li>
-		                <li>
 		                	<Link to='/user/DonateBook'>
 		                		<i class="menu-icon icon-inbox"></i>Donate Book
 		                    </Link>
