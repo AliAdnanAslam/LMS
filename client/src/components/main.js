@@ -1,7 +1,10 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './user/Home';
-import HomeAdmin from './admin/Home';
+import ManageUsers from './admin/ManageUsers';
+import ManageBooks from './admin/ManageBooks';
+import ModifyBook from './admin/ModifyBook';
+import AddBook from './admin/AddBook';
 import Login from './authentication/Login';
 import SignUp from './authentication/SignUp';
 import ForgetPassword from './authentication/ForgetPassword';
@@ -18,7 +21,10 @@ class Main extends Component {
         <div className='main'>
             <Route path='/' exact component={ FrontPage } />
             <Route path='/user' exact component={ Home } />
-            <Route path='/admin' exact component={ HomeAdmin } />
+            <Route path='/admin/manageusers' component={ ManageUsers } />
+            <Route path='/admin/managebooks' component={ ManageBooks } />
+            <Route path='/admin/modifybook' component={ ModifyBook } />
+            <Route path='/admin/addbook' component={ AddBook } />
             <Route path='/login'  component={ Login } />
             <Route path='/signup'  component={ SignUp } />
             <Route path='/forgetpassword'  component={ ForgetPassword } />

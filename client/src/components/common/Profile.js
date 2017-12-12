@@ -1,5 +1,8 @@
 // Importing the necessary packages.
 import React, { Component } from 'react';
+import Header from './Header';
+import Footer from './Footer';
+import SideBar from './SideBar';
 import { addBook } from '../apiCalls/Books';
 
 /**
@@ -83,84 +86,105 @@ getBase64(file) {
 //
 render() {
 return (
-	<div class="span9">
-		<div class="module span6 offset1">
-			<form class="form-vertical" onSubmit={ this.handleSubmission }>
-				<div class="module-head">
-					<h3>Please Enter Your Information</h3>
-				</div>
-				<div class="module-body">
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Your Name" />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.name}
-              				</span>
+      <div>
+		<Header userLoggedIn="true" />
+		<div class="wrapper">
+    		<div class="container">
+            	<div class="row">
+            		<SideBar />
+					<div class="span9">
+						<div class="module span6 offset1">
+							<form class="form-vertical" onSubmit={ this.handleSubmission }>
+								<div class="module-head">
+									<h3>Please Enter Your Information</h3>
+								</div>
+								<div class="module-body">
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Your Name" />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.name}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Author Name" />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.authorName}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" disabled />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.edition}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<input class="span12" type="text" name="email" onChange={this.handleChange} placeholder="Email" disabled />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.edition}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<input class="span12" type="password" name="password" onChange={this.handleChange} placeholder="Password"  required/>
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.publication}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password"  required/>
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.publicationYear}
+				              				</span>
+										</div>
+									</div>
+								</div>
+								<div style={{marginLeft: '20px'}}>
+									<label class="control-label"><b>Select Image From Your Computer</b></label>
+									<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
+									<br /><br />
+								</div>
+								<div class="module-foot">
+									<div class="control-group">
+										<div class="controls clearfix">
+											<button name="submit" type="submit" class="btn btn-primary pull-right">Submit</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							{ this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
 						</div>
 					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Author Name" />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.authorName}
-              				</span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" disabled />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.edition}
-              				</span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<input class="span12" type="text" name="email" onChange={this.handleChange} placeholder="Email" disabled />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.edition}
-              				</span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<input class="span12" type="password" name="password" onChange={this.handleChange} placeholder="Password"  required/>
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.publication}
-              				</span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password"  required/>
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.publicationYear}
-              				</span>
-						</div>
-					</div>
-				</div>
-				<div style={{marginLeft: '20px'}}>
-					<label class="control-label"><b>Select Image From Your Computer</b></label>
-					<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
-					<br /><br />
-				</div>
-				<div class="module-foot">
-					<div class="control-group">
-						<div class="controls clearfix">
-							<button name="submit" type="submit" class="btn btn-primary pull-right">Submit</button>
-						</div>
-					</div>
-				</div>
-			</form>
-			{ this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
-		</div>
-	</div>
+          		</div>
+            </div>
+        </div>
+        <Footer />
+      </div>
+
+
+
+
+
+
+
+
+
+
 );
 }
 }
