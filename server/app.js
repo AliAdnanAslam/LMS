@@ -349,7 +349,7 @@ app.get('/api/donatedBooks', (req, res) => {
 });
 
 
-// Create new order
+// Create new order.
 app.post(('/api/orders/new'), (req, res) => {
 	let loginToken = AuthCheck(req,res);
 	let userId = loginToken.id;
@@ -370,7 +370,49 @@ app.post(('/api/orders/new'), (req, res) => {
 });
 
 
-// Get all orders
+// Reserve a book.
+app.put('/api/reserveBook', (req, res) => {
+
+	let loginToken = AuthCheck (req, res);
+	let userId = loginToken.id;
+	let instanceId = req.body.bookId;
+	DonateBooks.reserveBook(instanceId, userId, {}, (err, info) => {
+		if(err) {
+			console.log(err)
+		}
+			else {
+				res.json(info);
+			}
+	})
+
+
+});
+
+
+/**
+ * API Route for getting books status for logged in user.
+ *
+ * @param  {String}   '/api/bookStatus' route path
+ * @param  {Function} (req,res) call back function
+ * @return {Json}	Books status.
+ * @since  1.0
+ */
+app.get('/api/bookStatus', (req, res) => {
+
+	let loginToken = AuthCheck(req,res);
+
+	Order.getAllOrders((err, orders) => {
+		if (err) {
+			console.log(err);
+		}
+		res.json(orders);
+	});
+});
+
+
+
+
+// Get all orders.
 app.get('/api/orders', (req, res) => {
 
 	let loginToken = AuthCheck(req,res);
@@ -384,6 +426,15 @@ app.get('/api/orders', (req, res) => {
 });
 
 
+
+/**
+ * API Route for forgetPassword. Sends forget password email and add reset token to user profile.
+ *
+ * @param  {String}   '/api/forgetPassword' route path
+ * @param  {Function} (req,res) call back function
+ * @return {Json}	Email status.
+ * @since  1.0
+ */
 app.put('/api/forgetPassword', (req,res) => {
 
 

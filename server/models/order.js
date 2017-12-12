@@ -7,6 +7,10 @@ let orderSchema = mongoose.Schema({
 		type: String,
 		required: true
 	},
+	bookId: {
+		type: String,
+		required: true,
+	},
 	status: {
 		type: String,
 		default: 'issue',
@@ -14,9 +18,15 @@ let orderSchema = mongoose.Schema({
 		lowercase: true,
 		required: true,
 	},
-	orderDate: {
+	issueDate: {
 		type: Date,
 		default: Date.now
+	},
+	expectedReturnDate: {
+		type: Date,
+	},
+	actualReturnDate: {
+		type: Date,
 	}
 });
 
