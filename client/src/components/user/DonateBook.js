@@ -94,6 +94,7 @@ return (
 				<div class="module-body">
 					<div class="control-group">
 						<div class="controls row-fluid">
+							<label class="control-label">Name</label>
 							<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Book Name" required />
 							<span>
                 				{this.state.errors &&
@@ -103,6 +104,7 @@ return (
 					</div>
 					<div class="control-group">
 						<div class="controls row-fluid">
+							<label class="control-label">Author Name</label>
 							<input class="span12" type="text" name="authorName" onChange={this.handleChange} placeholder="Author Name" required />
 							<span>
                 				{this.state.errors &&
@@ -112,6 +114,7 @@ return (
 					</div>
 					<div class="control-group">
 						<div class="controls row-fluid">
+							<label class="control-label">Edition</label>
 							<input class="span12" type="text" name="edition" onChange={this.handleChange} placeholder="Edition" required />
 							<span>
                 				{this.state.errors &&
@@ -121,6 +124,7 @@ return (
 					</div>
 					<div class="control-group">
 						<div class="controls row-fluid">
+							<label class="control-label">Publication</label>
 							<input class="span12" type="text" name="publication" onChange={this.handleChange} placeholder="Publication"  />
 							<span>
                 				{this.state.errors &&
@@ -130,6 +134,7 @@ return (
 					</div>
 					<div class="control-group">
 						<div class="controls row-fluid">
+							<label class="control-label">Publication Year</label>
 							<input class="span12" type="text" name="publicationYear" onChange={this.handleChange} placeholder="Publication Year"  />
 							<span>
                 				{this.state.errors &&
@@ -139,7 +144,7 @@ return (
 					</div>
 				</div>
 				<div style={{marginLeft: '20px'}}>
-					<label class="control-label"><b>Select Image From Your Computer</b></label>
+					<label class="control-label">Select Image From Your Computer</label>
 					<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
 					<br /><br />
 				</div>

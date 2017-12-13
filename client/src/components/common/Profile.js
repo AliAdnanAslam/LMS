@@ -101,7 +101,8 @@ return (
 								<div class="module-body">
 									<div class="control-group">
 										<div class="controls row-fluid">
-											<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Your Name" />
+											<label class="control-label">Name</label>
+											<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Name" />
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.name}
@@ -110,7 +111,8 @@ return (
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
-											<input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Author Name" />
+											<label class="control-label">Father Name</label>
+											<input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Father Name" />
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.authorName}
@@ -119,6 +121,7 @@ return (
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Registrtaion Number</label>
 											<input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" disabled />
 											<span>
 				                				{this.state.errors &&
@@ -128,6 +131,7 @@ return (
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Email</label>
 											<input class="span12" type="text" name="email" onChange={this.handleChange} placeholder="Email" disabled />
 											<span>
 				                				{this.state.errors &&
@@ -137,6 +141,7 @@ return (
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Password</label>
 											<input class="span12" type="password" name="password" onChange={this.handleChange} placeholder="Password"  required/>
 											<span>
 				                				{this.state.errors &&
@@ -146,6 +151,7 @@ return (
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Confirm Password</label>
 											<input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password"  required/>
 											<span>
 				                				{this.state.errors &&
@@ -155,7 +161,7 @@ return (
 									</div>
 								</div>
 								<div style={{marginLeft: '20px'}}>
-									<label class="control-label"><b>Select Image From Your Computer</b></label>
+									<label class="control-label">Select Image From Your Computer</label>
 									<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
 									<br /><br />
 								</div>

@@ -76,11 +76,12 @@ return (
                         <div class="module span6 offset1">
                             <form class="form-vertical" onSubmit={ this.handleSubmission }>
                                 <div class="module-head">
-                                    <h3>Enter User Information</h3>
+                                    <h3>Enter Information</h3>
                                 </div>
                                 <div class="module-body">
                                     <div class="control-group">
                                         <div class="controls row-fluid">
+                                            <label class="control-label">Name</label>
                                             <input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="User Name" required />
                                             <span>
                                                 {this.state.errors &&
@@ -90,6 +91,7 @@ return (
                                     </div>
                                     <div class="control-group">
                                         <div class="controls row-fluid">
+                                            <label class="control-label">Registrtaion Number</label>
                                             <input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" required />
                                             <span>
                                                 {this.state.errors &&
@@ -98,7 +100,7 @@ return (
                                         </div>
                                     </div>
                                     <div class="control-group">
-                                        <label class="control-label" for="basicinput">Reason</label>
+                                        <label class="control-label">Reason</label>
                                         <div class="controls">
                                             <textarea rows="5" style={{width:'530px'}}></textarea>
                                         </div>
