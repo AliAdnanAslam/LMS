@@ -8,7 +8,7 @@ import SideBar from '../common/SideBar';
 /**
  *
  */ 
-class ManageBooks extends Component {
+class ManageFines extends Component {
   render() {
     return (
 		<div>
@@ -21,41 +21,43 @@ class ManageBooks extends Component {
 							<div class="jumbotron well">
 								<div>
 									<br />
-									<button type="button" class="btn btn-primary pull-left">Add Book</button> 
+									<Link to='/admin/addfines'>
+									<button type="button" class="btn btn-primary pull-left">Add Fine</button> 
+									</Link>
 								</div>
 								<br />
 								<table class="table table-striped">
 								    <thead>
 								      <tr>
-								      	<th>Book Name</th>
-								        <th>Author</th>
-								        <th>Edition</th>
+								      	<th>Student Name</th>
+								        <th>Registration Number</th>
+								        <th>Fine</th>
 								        <th>Modify</th>
 								      </tr>
 								    </thead>
 								    <tbody>
 								      <tr>
-								      	<td>Software Engineering</td>
-								        <td>John Faloode wala</td>
-								        <td>5th</td>
+								      	<td>Mr. Ramzan</td>
+								        <td>2015-CS-54</td>
+								        <td>300</td>
 								        <button type="button" class="btn btn-primary">Modify</button>
 								      </tr>
 								      <tr>
-								      	<td>Software Engineering</td>
-								        <td>John Faloode wala</td>
-								        <td>5th</td>
+								      	<td>Mr. Ramzan</td>
+								        <td>2015-CS-54</td>
+								        <td>300</td>
 								        <button type="button" class="btn btn-primary">Modify</button>
 								      </tr>
 								      <tr>
-								      	<td>Software Engineering</td>
-								        <td>John Faloode wala</td>
-								        <td>5th</td>
+								      	<td>Mr. Ramzan</td>
+								        <td>2015-CS-54</td>
+								        <td>300</td>
 								        <button type="button" class="btn btn-primary">Modify</button>
 								      </tr>
 								      <tr>
-								      	<td>Software Engineering</td>
-								        <td>John Faloode wala</td>
-								        <td>5th</td>
+								      	<td>Mr. Ramzan</td>
+								        <td>2015-CS-54</td>
+								        <td>300</td>
 								        <button type="button" class="btn btn-primary">Modify</button>
 								      </tr>
 								    </tbody>
@@ -71,4 +73,4 @@ class ManageBooks extends Component {
   }
 }
 
-export default ManageBooks;
+export default ManageFines;

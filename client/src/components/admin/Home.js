@@ -15,18 +15,18 @@ import ModifyBook from './ModifyBook';
 class Home extends Component {
   render() {
     return (
-      <div>
-    		<Header userLoggedIn="true" />
-    		<div class="wrapper">
-    			<div class="container">
-            <div class="row">
-    						<SideBar />
-    						<ManageUsers />  
-          	</div>
-          </div>
-        </div>
-        <Footer />
-      </div>
+<div>
+<Header userLoggedIn="true" />
+<div class="wrapper">
+<div class="container">
+<div class="row">
+<SideBar />
+<ManageUsers />  
+</div>
+</div>
+</div>
+<Footer />
+</div>
     );
   }
 }
