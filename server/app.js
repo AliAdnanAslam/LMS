@@ -369,6 +369,15 @@ app.post(('/api/orders/new'), (req, res) => {
 
 });
 
+app.get('/api/userProfile', (req, res) => {
+	let loginToken = AuthCheck (req, res);
+	let userId = loginToken.id;
+	User.searchUserById (userId, (err, user) => {
+		if(err) console.log(err)
+			else res.json(user)
+	})
+})
+
 
 // Reserve a book.
 app.put('/api/reserveBook', (req, res) => {
