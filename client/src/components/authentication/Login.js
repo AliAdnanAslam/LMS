@@ -18,6 +18,7 @@ constructor(props) {
       email: '',
       password: '',
       isAuthenticated: isAuthenticated,
+      response: '',
     };
     this.handleLogin = this.handleLogin.bind(this);
     this.handleChange = this.handleChange.bind(this);
@@ -33,8 +34,10 @@ handleLogin(event) {
     .then((resp) =>{
       const token = resp.data.token;
       localStorage.setItem('token', token);
-      this.setState({isAuthenticated:isAuthorized()});
-    	console.log("authorized");
+      this.setState({isAuthenticated:isAuthorized(), response:
+      	"Wrong Email or Password"});
+      console.log("authorized");
+
     })
     .catch((err)=>console.log(err));
 }
@@ -95,6 +98,8 @@ let bool = true;
 							</div>
 						</div>
 					</form>
+					{ this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
+
 				</div>
 			</div>
 			<br /><br /><br />
