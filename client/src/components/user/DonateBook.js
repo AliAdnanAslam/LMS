@@ -1,5 +1,8 @@
 // Importing the necessary packages.
 import React, { Component } from 'react';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
+import SideBar from '../common/SideBar';
 import { addBook } from '../apiCalls/Books';
 
 /**
@@ -85,80 +88,91 @@ getBase64(file) {
 //
 render() {
 return (
-	<div class="span9">
-		<div class="module span6 offset1">
-			<form class="form-vertical" onSubmit={ this.handleDonation }>
-				<div class="module-head">
-					<h3>Please Enter the Book Information</h3>
+    <div>
+		<Header userLoggedIn="true" />
+		<div class="wrapper">
+			<div class="container">
+		  		<div class="row">
+		      		<SideBar />
+					<div class="span9">
+						<div class="module span6 offset1">
+							<form class="form-vertical" onSubmit={ this.handleDonation }>
+								<div class="module-head">
+									<h3>Please Enter the Book Information</h3>
+								</div>
+								<div class="module-body">
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<label class="control-label">Name</label>
+											<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Book Name" required />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.name}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<label class="control-label">Author Name</label>
+											<input class="span12" type="text" name="authorName" onChange={this.handleChange} placeholder="Author Name" required />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.authorName}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<label class="control-label">Edition</label>
+											<input class="span12" type="text" name="edition" onChange={this.handleChange} placeholder="Edition" required />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.edition}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<label class="control-label">Publication</label>
+											<input class="span12" type="text" name="publication" onChange={this.handleChange} placeholder="Publication"  />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.publication}
+				              				</span>
+										</div>
+									</div>
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<label class="control-label">Publication Year</label>
+											<input class="span12" type="text" name="publicationYear" onChange={this.handleChange} placeholder="Publication Year"  />
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.publicationYear}
+				              				</span>
+										</div>
+									</div>
+								</div>
+								<div style={{marginLeft: '20px'}}>
+									<label class="control-label">Select Image From Your Computer</label>
+									<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
+									<br /><br />
+								</div>
+								<div class="module-foot">
+									<div class="control-group">
+										<div class="controls clearfix">
+											<button name="submit" type="submit" class="btn btn-primary pull-right">Donate</button>
+										</div>
+									</div>
+								</div>
+							</form>
+							{ this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
+						</div>
+					</div>
 				</div>
-				<div class="module-body">
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<label class="control-label">Name</label>
-							<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Book Name" required />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.name}
-              				</span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<label class="control-label">Author Name</label>
-							<input class="span12" type="text" name="authorName" onChange={this.handleChange} placeholder="Author Name" required />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.authorName}
-              				</span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<label class="control-label">Edition</label>
-							<input class="span12" type="text" name="edition" onChange={this.handleChange} placeholder="Edition" required />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.edition}
-              				</span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<label class="control-label">Publication</label>
-							<input class="span12" type="text" name="publication" onChange={this.handleChange} placeholder="Publication"  />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.publication}
-              				</span>
-						</div>
-					</div>
-					<div class="control-group">
-						<div class="controls row-fluid">
-							<label class="control-label">Publication Year</label>
-							<input class="span12" type="text" name="publicationYear" onChange={this.handleChange} placeholder="Publication Year"  />
-							<span>
-                				{this.state.errors &&
-                				this.state.errors.publicationYear}
-              				</span>
-						</div>
-					</div>
-				</div>
-				<div style={{marginLeft: '20px'}}>
-					<label class="control-label">Select Image From Your Computer</label>
-					<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
-					<br /><br />
-				</div>
-				<div class="module-foot">
-					<div class="control-group">
-						<div class="controls clearfix">
-							<button name="submit" type="submit" class="btn btn-primary pull-right">Donate</button>
-						</div>
-					</div>
-				</div>
-			</form>
-			{ this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
+			</div>
 		</div>
-	</div>
+	<Footer />
+    </div>
 );
 }
 }

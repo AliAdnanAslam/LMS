@@ -1,8 +1,8 @@
 // Importing the necessary packages.
 import React, { Component } from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import SideBar from './SideBar';
+import Header from '../common/Header';
+import Footer from '../common/Footer';
+import SideBar from '../common/SideBar';
 import { addBook } from '../apiCalls/Books';
 import { getProfile } from '../apiCalls/getProfile';
 
@@ -12,22 +12,16 @@ class Profile extends Component {
 constructor(props) {
 	super(props);
 	this.state = {
-		name: '',
-		fatherName: '',
-		password: '',
+		previousPassword: '',
+		newPassword: '',
 		confirmPassword: '',
-		image: '',
 		response: '',
-		registrationNo: '',
 
 	};
 
 	// Binding functions to instances
 	this.handleSubmission = this.handleSubmission.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.imageUplaod = this.imageUplaod.bind(this);
-    this.getBase64 = this.getBase64.bind(this);
-
 }
 
 componentDidMount(){
@@ -61,11 +55,9 @@ handleSubmission = event => {
 		if(resp.status == 200){
 			console.log("im in");
 			this.setState({
-				name: '',
-				fatherName: '',
-				password: '',
+				previousPassword: '',
+				newPassword: '',
 				confirmPassword: '',
-				image: '',
 				response: 'Submitted'
 			})
 		}
@@ -84,24 +76,6 @@ handleChange(event) {
     this.setState(() => book);
 }
 
-// Uplaod image from local storage and save to monogoose in base64
-imageUplaod(e) {
-	const file = e.target.files[0];
-	this.getBase64(file).then(base64 => {
-		this.setState({ image: base64 });
-	});
-}
-
-// Getting the promise of image conversion
-getBase64(file) {
-  return new Promise((resolve,reject) => {
-     const reader = new FileReader();
-     reader.onload = () => resolve(reader.result);
-     reader.onerror = error => reject(error);
-     reader.readAsDataURL(file);
-  });
-}
-
 //
 render() {
 return (
@@ -115,54 +89,39 @@ return (
 						<div class="module span6 offset1">
 							<form class="form-vertical" onSubmit={ this.handleSubmission }>
 								<div class="module-head">
-									<h3>Please Enter Your Information</h3>
+									<h3>Change Password Form</h3>
 								</div>
-								<div class="module-body">
+								<div class="module-body">									
 									<div class="control-group">
 										<div class="controls row-fluid">
-											<label class="control-label">Name</label>
-											<input class="span12" type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name" />
+											<label class="control-label">Previous Password</label>
+											<input class="span12" type="password" name="PreviousPassword" onChange={this.handleChange} placeholder="Old Password"  required/>
 											<span>
 				                				{this.state.errors &&
-				                				this.state.errors.name}
+				                				this.state.errors.publication}
+				              				</span>
+										</div>
+									</div>									
+									<div class="control-group">
+										<div class="controls row-fluid">
+											<label class="control-label">New Password</label>
+											<input class="span12" type="password" name="newPassword" onChange={this.handleChange} placeholder="New Password"  required/>
+											<span>
+				                				{this.state.errors &&
+				                				this.state.errors.publication}
 				              				</span>
 										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
-											<label class="control-label">Father Name</label>
-											<input class="span12" type="text" id="fatherName" name="fatherName" onChange={this.handleChange} placeholder="Father Name" />
+											<label class="control-label">Confirm Password</label>
+											<input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password"  required/>
 											<span>
 				                				{this.state.errors &&
-				                				this.state.errors.authorName}
+				                				this.state.errors.publicationYear}
 				              				</span>
 										</div>
 									</div>
-									<div class="control-group">
-										<div class="controls row-fluid">
-											<label class="control-label">Registrtaion Number</label>
-											<input class="span12" type="text" id="registrationNo" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" disabled />
-											<span>
-				                				{this.state.errors &&
-				                				this.state.errors.edition}
-				              				</span>
-										</div>
-									</div>
-									<div class="control-group">
-										<div class="controls row-fluid">
-											<label class="control-label">Email</label>
-											<input class="span12" type="text" id="email" name="email" onChange={this.handleChange} placeholder="Email" disabled />
-											<span>
-				                				{this.state.errors &&
-				                				this.state.errors.edition}
-				              				</span>
-										</div>
-									</div>
-								</div>
-								<div style={{marginLeft: '20px'}}>
-									<label class="control-label">Select Image From Your Computer</label>
-									<input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
-									<br /><br />
 								</div>
 								<div class="module-foot">
 									<div class="control-group">

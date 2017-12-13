@@ -1,6 +1,10 @@
 import React, {Component} from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './user/Home';
+import BookStatus from './user/BookStatus';
+import Dashboard from './user/Dashboard';
+import DonateBook from './user/DonateBook';
+import FineStatus from './user/FineStatus';
 import ManageUsers from './admin/ManageUsers';
 import AddUser from './admin/AddUser';
 import ModifyUser from './admin/ModifyUser';
@@ -12,6 +16,7 @@ import AddFine from './admin/AddFine';
 import Login from './authentication/Login';
 import SignUp from './authentication/SignUp';
 import ForgetPassword from './authentication/ForgetPassword';
+import ChangePassword from './authentication/ChangePassword';
 import ResetPassword from './authentication/ResetPassword';
 import FrontPage from './FrontPage';
 import Search from './common/SearchResult';
@@ -36,10 +41,15 @@ class Main extends Component {
             <Route path='/admin/addfine' component={ AddFine } />
             <Route path='/login'  component={ Login } />
             <Route path='/signup'  component={ SignUp } />
-            <Route path='/forgetpassword'  component={ ForgetPassword } />
+            <Route path='/forgetpassword'  component={ ForgetPassword } />            
             <Route path="/search/:query" component={ Search }/>
             <Route path="/resetPassword/:token" component={ ResetPassword }/>
             <Route path="/user/profile" component={ Profile }/>
+            <Route path='/user/changepassword'  component={ ChangePassword } />
+            <Route path="/user/bookstatus" component={ BookStatus }/>
+            <Route path="/user/dashboard" component={ Dashboard }/>
+            <Route path="/user/donatebook" component={ DonateBook }/>
+            <Route path="/user/finestatus" component={ FineStatus }/>
         </div>
       </BrowserRouter>
     );

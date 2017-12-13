@@ -50,9 +50,9 @@ render() {
                                     Saqib
                                     <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-
+                                        <li><Link to='/user/dashboard'>Dashboard</Link></li>
                                         <li><Link to='/user/profile'> Edit Profile </Link></li>
-                                        <li><a href="">Dashboard</a></li>
+                                        <li><Link to='/user/changepassword'> Account Settings </Link></li>
                                         <li class="divider"></li>
                                         <li><a onClick={this.logout}>Logout</a></li>
                                     </ul>
