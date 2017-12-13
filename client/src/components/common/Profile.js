@@ -16,8 +16,6 @@ constructor(props) {
 	this.state = {
 		name: '',
 		fatherName: '',
-		password: '',
-		confirmPassword: '',
 		image: '',
 		response: '',
 		registrationNo: '',
@@ -42,6 +40,7 @@ componentDidMount(){
 			fatherName: data.fatherName,
 			registrationNo: data.registrationNo,
 			email: data.email,
+			image: data.image,
 		});
 		document.getElementById('name').value = this.state.name;
 		document.getElementById('fatherName').value = this.state.fatherName;

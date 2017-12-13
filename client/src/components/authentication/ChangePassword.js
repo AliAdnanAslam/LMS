@@ -4,7 +4,7 @@ import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from '../common/SideBar';
 import { addBook } from '../apiCalls/Books';
-import { getProfile } from '../apiCalls/getProfile';
+import { changePassword } from '../apiCalls/changePassword';
 
 class Profile extends Component {
 
@@ -12,11 +12,10 @@ class Profile extends Component {
 constructor(props) {
 	super(props);
 	this.state = {
-		previousPassword: '',
+		oldPassword: '',
 		newPassword: '',
 		confirmPassword: '',
 		response: '',
-
 	};
 
 	// Binding functions to instances
@@ -24,45 +23,34 @@ constructor(props) {
     this.handleChange = this.handleChange.bind(this);
 }
 
-componentDidMount(){
-	getProfile({})
-	.then(resp => {
-		console.log(resp);
-		let data = resp.data;
-		this.setState({
-			name: data.name,
-			fatherName: data.fatherName,
-			registrationNo: data.registrationNo,
-			email: data.email,
-		});
-		document.getElementById('name').value = this.state.name;
-		document.getElementById('fatherName').value = this.state.fatherName;
-		document.getElementById('registrationNo').value = this.state.registrationNo;
-		document.getElementById('email').value = this.state.email;
-
-	})
-	.catch((err)=>console.log(err));
-}
 
 // Function call onSubmit
 handleSubmission = event => {
 	event.preventDefault();
 	this.setState({response:''});
 	console.log(this.state);
-	addBook(this.state)
-	.then((resp) => {
-		console.log(resp);
-		if(resp.status == 200){
-			console.log("im in");
-			this.setState({
-				previousPassword: '',
-				newPassword: '',
-				confirmPassword: '',
-				response: 'Submitted'
-			})
-		}
-	})
-	.catch((err)=>console.log(err));
+	if (this.state.newPassword == this.state.confirmPassword) {
+		changePassword(this.state)
+		.then((resp) => {
+			console.log(resp);
+			let data = resp.data;
+			if (data.success == false ) this.setState({ response: 'Wrong Password'});
+				else {
+					this.setState(
+						{ response: 'Password Updated',
+						  oldPassword: '',
+						  newPassword: '',
+						  confirmPassword: '',
+					});
+					document.getElementById('oldPassword').value = '';
+					document.getElementById('newPassword').value = '';
+					document.getElementById('confirmPassword').value = '';
+				}
+		})
+		.catch((err)=>console.log(err));
+	} else {
+		this.setState({ response: 'Passwords do not match'});
+	}
 }
 
 
@@ -91,21 +79,21 @@ return (
 								<div class="module-head">
 									<h3>Change Password Form</h3>
 								</div>
-								<div class="module-body">									
+								<div class="module-body">
 									<div class="control-group">
 										<div class="controls row-fluid">
-											<label class="control-label">Previous Password</label>
-											<input class="span12" type="password" name="PreviousPassword" onChange={this.handleChange} placeholder="Old Password"  required/>
+											<label class="control-label">Old Password</label>
+											<input class="span12" type="password" name="oldPassword" id="oldPassword" onChange={this.handleChange} placeholder="Old Password"  required/>
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.publication}
 				              				</span>
 										</div>
-									</div>									
+									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
 											<label class="control-label">New Password</label>
-											<input class="span12" type="password" name="newPassword" onChange={this.handleChange} placeholder="New Password"  required/>
+											<input class="span12" type="password" name="newPassword" id="newPassword" onChange={this.handleChange} placeholder="New Password"  required/>
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.publication}
@@ -115,7 +103,7 @@ return (
 									<div class="control-group">
 										<div class="controls row-fluid">
 											<label class="control-label">Confirm Password</label>
-											<input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password"  required/>
+											<input class="span12" type="password" name="confirmPassword" id="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password"  required/>
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.publicationYear}

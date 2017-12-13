@@ -2,6 +2,7 @@
 import React, {Component} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import isAuthorized from '../../utils/validation/isAuthorized';
+import { getProfile } from '../apiCalls/getProfile';
 
 class Header extends Component {
 
@@ -17,11 +18,29 @@ constructor(props) {
         isSignUp: this.props.signup,
         isForgetPassword: this.props.resetPassword,
         hasLoggedOut: false,
+        name: '',
+        image: '',
     }
 
     this.logout = this.logout.bind(this);
 }
 
+componentDidMount(){
+
+    if(isAuthorized()) {
+        console.log("I'm authorized");
+    getProfile({})
+    .then(resp => {
+        console.log(resp);
+        let data = resp.data;
+        this.setState({
+            name: data.name,
+            image: data.image,
+        });
+    })
+    .catch((err)=>console.log(err));
+    }
+}
 
 logout(){
     localStorage.removeItem('token');
@@ -46,13 +65,13 @@ render() {
                         <div>
                             <ul class="nav  pull-right">
                                 <li class="nav-user dropdown"><a href="" class="dropdown-toggle" data-toggle="dropdown">
-                                    <img src="/images/user.png" alt="avatar" class="nav-avatar" />
-                                    Saqib
+                                    <img src={this.state.image ? this.state.image : "/images/user.png"} alt="avatar" class="nav-avatar" />
+                                    {this.state.name ? this.state.name : null}
                                     <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
                                         <li><Link to='/user/dashboard'>Dashboard</Link></li>
                                         <li><Link to='/user/profile'> Edit Profile </Link></li>
-                                        <li><Link to='/user/changepassword'> Account Settings </Link></li>
+                                        <li><Link to='/user/changepassword'> Change Password </Link></li>
                                         <li class="divider"></li>
                                         <li><a onClick={this.logout}>Logout</a></li>
                                     </ul>
