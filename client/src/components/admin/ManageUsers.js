@@ -1,5 +1,6 @@
 // Importing the necessary packages.
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import image from '../../images/user.png';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
@@ -24,15 +25,22 @@ class ManageUsers extends Component {
                                     <h3>
                                         All Members</h3>
                                 </div>
-                                <div class="module-option clearfix">
+                                <div class="module-option clearfix row">
                                     <form>
                                     <div class="input-append pull-left">
-                                        <input type="text" class="span3" placeholder="Filter by name..." />
+                                        <input type="text" class="span3" placeholder="Filter by registration number..." />
                                         <button type="submit" class="btn">
                                             <i class="icon-search"></i>
                                         </button>
                                     </div>
                                     </form>
+                                    <div class="pull-right">
+                                        <Link to='/admin/adduser'>
+                                        <button type="submit" class="btn btn-primary">
+                                            Add User
+                                        </button>
+                                        </Link>
+                                    </div>                                    
                                 </div>
                                 <div class="module-body">
                                     <div class="row-fluid">
@@ -48,9 +56,11 @@ class ManageUsers extends Component {
                                                     <p>
                                                         <small class="muted">Pakistan</small></p>
                                                     <div class="media-option btn-group shaded-icon">
+                                                        <Link to='/admin/modifyuser'>
                                                         <button class="btn btn-small">
                                                             <i class="icon-edit"></i>
                                                         </button>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </div>
@@ -66,9 +76,11 @@ class ManageUsers extends Component {
                                                     <p>
                                                         <small class="muted">Pakistan</small></p>
                                                     <div class="media-option btn-group shaded-icon">
+                                                        <Link to='/admin/modifyuser'>
                                                         <button class="btn btn-small">
                                                             <i class="icon-edit"></i>
                                                         </button>
+                                                        </Link>
                                                     </div>
                                                 </div>
                                             </div>
