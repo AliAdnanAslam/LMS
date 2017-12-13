@@ -1,6 +1,8 @@
 const isAuthorized = () => {
     if (localStorage.getItem('token')) {
-    	return true;
+    	if(localStorage.getItem('token') !== "undefined") return true
+    		else return false
+
     } else
     return false;
 }

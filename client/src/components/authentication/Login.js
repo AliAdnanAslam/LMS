@@ -5,7 +5,7 @@ import { Redirect, Link } from 'react-router-dom';
 import Footer from '../common/Footer';
 import { connect } from 'react-redux';
 import { validateLogin } from '../../utils/validation/auth';
-import { login } from '../../actions/login';
+import { login } from '../apiCalls/login';
 import isAuthorized from '../../utils/validation/isAuthorized';
 
 
@@ -29,7 +29,14 @@ handleLogin(event) {
     if (!isValid) {
       return this.setState({ errors });
     }
-    return this.props.login(this.state);
+    login(this.state)
+    .then((resp) =>{
+      const token = resp.data.token;
+      localStorage.setItem('token', token);
+      this.setState({isAuthenticated:isAuthorized()});
+    	console.log("authorized");
+    })
+    .catch((err)=>console.log(err));
 }
 
 
