@@ -2,6 +2,9 @@ import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import { resetPassword } from '../apiCalls/resetPassword';
+import isAuthorized from '../../utils/validation/isAuthorized';
+import { Redirect } from 'react-router-dom';
+
 
 
 
@@ -9,11 +12,13 @@ class ResetPassword extends Component {
 
 constructor(props) {
 	super(props);
+    let isAuthenticated = isAuthorized();
 	this.state = {
 		password: '',
 		confirmPassword: '',
 		token: this.props.match.params.token,
-		response: ''
+		response: '',
+        isAuthenticated: isAuthenticated,
 	};
 	this.handleSubmit = this.handleSubmit.bind(this);
 	this.handleChange = this.handleChange.bind(this);
@@ -63,10 +68,11 @@ handleChange(event) {
 
 
 render() {
-	let bool = true;
 	return (
 		<div>
-		<Header resetPassword = {bool}  />
+		{this.state.isAuthenticated ? <Redirect to='/' />  :
+		<div>
+		<Header />
 		<div class="wrapper">
 			<div class="container">
 				<div class="row">
@@ -99,6 +105,8 @@ render() {
 			</div>
 		</div>
 		<Footer />
+		</div>
+		}
 		</div>
 	);
 }

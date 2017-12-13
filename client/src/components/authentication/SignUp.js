@@ -4,11 +4,16 @@ import Footer from '../common/Footer';
 import { validateSignUp } from '../../utils/validation/auth';
 import { addUser } from '../apiCalls/addUser';
 import { login } from '../apiCalls/login';
+import isAuthorized from '../../utils/validation/isAuthorized';
+import { Redirect } from 'react-router-dom';
+
+
 class SignUp extends Component {
 
 
 constructor(props) {
     super(props);
+    let isAuthenticated = isAuthorized();
     this.state = {
       name: '',
       fatherName: '',
@@ -18,7 +23,8 @@ constructor(props) {
       type: '',
       confirmPassword: '',
       response: '',
-      redirect: false
+      redirect: false,
+      isAuthenticated: isAuthenticated,
     };
     this.defaultState = {
 	  name: '',
@@ -83,7 +89,9 @@ render() {
 	let bool = true;
 	return (
 		<div>
-			<Header signup = {bool} />
+		{this.state.isAuthenticated ? <Redirect to='/' />  :
+		<div>
+			<Header signup={bool} />
 			<div class="wrapper">
 				<div class="container">
 					<div class="row">
@@ -147,6 +155,8 @@ render() {
 				</div>
 			</div>
 			<Footer />
+		</div>
+	}
 		</div>
 	);
 }
