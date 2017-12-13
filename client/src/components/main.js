@@ -8,6 +8,7 @@ import ManageBooks from './admin/ManageBooks';
 import ModifyBook from './admin/ModifyBook';
 import AddBook from './admin/AddBook';
 import ManageFines from './admin/ManageFines';
+import AddFine from './admin/AddFine';
 import Login from './authentication/Login';
 import SignUp from './authentication/SignUp';
 import ForgetPassword from './authentication/ForgetPassword';
@@ -32,6 +33,7 @@ class Main extends Component {
             <Route path='/admin/modifybook' component={ ModifyBook } />
             <Route path='/admin/addbook' component={ AddBook } />
             <Route path='/admin/managefines' component={ ManageFines } />
+            <Route path='/admin/addfine' component={ AddFine } />
             <Route path='/login'  component={ Login } />
             <Route path='/signup'  component={ SignUp } />
             <Route path='/forgetpassword'  component={ ForgetPassword } />

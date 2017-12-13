@@ -8,7 +8,7 @@ import { addBook } from '../apiCalls/Books';
 /**
  *
  */
-class Profile extends Component {
+class AddUser extends Component {
 
 // Calling constructor
 constructor(props) {
@@ -101,7 +101,7 @@ return (
                                 <div class="module-body">
                                     <div class="control-group">
                                         <div class="controls row-fluid">
-                                            <input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Your Name" required />
+                                            <input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="User Name" required />
                                             <span>
                                                 {this.state.errors &&
                                                 this.state.errors.name}
@@ -110,7 +110,7 @@ return (
                                     </div>
                                     <div class="control-group">
                                         <div class="controls row-fluid">
-                                            <input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Author Name" required />
+                                            <input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Father Name" required />
                                             <span>
                                                 {this.state.errors &&
                                                 this.state.errors.authorName}
@@ -179,4 +179,4 @@ return (
 }
 }
 
-export default Profile;
+export default AddUser;
