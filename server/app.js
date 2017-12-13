@@ -105,6 +105,19 @@ app.get('/api/users/:id', (req, res) => {
 });
 
 
+
+// Update user profile
+app.put('/api/updateUser', (req,res) => {
+	let newUser = req.body;
+	let loginToken = AuthCheck (req, res);
+	let userId = loginToken.id;
+
+	User.updateUserProfile(userId, newUser, (err, info) => {
+		if(err) console.log(err)
+			else res.json(info)
+	} )
+})
+
 // Remove user.
 app.delete('/api/users/:id', (req, res) => {
 

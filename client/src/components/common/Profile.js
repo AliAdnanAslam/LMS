@@ -5,6 +5,8 @@ import Footer from './Footer';
 import SideBar from './SideBar';
 import { addBook } from '../apiCalls/Books';
 import { getProfile } from '../apiCalls/getProfile';
+import { updateUserProfile } from '../apiCalls/updateUserProfile';
+
 
 class Profile extends Component {
 
@@ -55,20 +57,13 @@ handleSubmission = event => {
 	event.preventDefault();
 	this.setState({response:''});
 	console.log(this.state);
-	addBook(this.state)
+	updateUserProfile(this.state)
 	.then((resp) => {
 		console.log(resp);
-		if(resp.status == 200){
-			console.log("im in");
-			this.setState({
-				name: '',
-				fatherName: '',
-				password: '',
-				confirmPassword: '',
-				image: '',
-				response: 'Submitted'
-			})
-		}
+		let data = resp.data;
+		this.setState({
+			response: 'Updated'
+		})
 	})
 	.catch((err)=>console.log(err));
 }
@@ -167,7 +162,7 @@ return (
 								<div class="module-foot">
 									<div class="control-group">
 										<div class="controls clearfix">
-											<button name="submit" type="submit" class="btn btn-primary pull-right">Update</button>
+											<button name="submit" type="submit" onClick={this.handleSubmission} class="btn btn-primary pull-right">Update</button>
 										</div>
 									</div>
 								</div>

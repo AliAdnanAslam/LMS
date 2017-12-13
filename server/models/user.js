@@ -79,6 +79,12 @@ User.updatePassword = (token, password, options, callback) => {
 };
 
 
+// Update user profile.
+User.updateUserProfile = (id, newUser, options, callback) => {
+	User.findOneAndUpdate ({_id: id}, newUser, options, callback);
+}
+
+
 // Add user token [UPDATE]
 User.addResetToken = (user, options, callback) => {
 	let token = randomToken(40);

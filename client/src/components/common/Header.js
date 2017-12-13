@@ -29,7 +29,7 @@ logout(){
 }
 
 render() {
-	return (
+    return (
         <div>
             { this.state.hasLoggedOut ? <Redirect to ='/' /> :
         <div class="navbar navbar-fixed-top">
@@ -89,7 +89,7 @@ render() {
             </div>
         </div>}
         </div>
-	);
+    );
 }
 }
 
