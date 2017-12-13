@@ -4,10 +4,8 @@ import Header from './Header';
 import Footer from './Footer';
 import SideBar from './SideBar';
 import { addBook } from '../apiCalls/Books';
+import { getProfile } from '../apiCalls/getProfile';
 
-/**
- *
- */
 class Profile extends Component {
 
 // Calling constructor
@@ -20,6 +18,7 @@ constructor(props) {
 		confirmPassword: '',
 		image: '',
 		response: '',
+		registrationNo: '',
 
 	};
 
@@ -29,6 +28,26 @@ constructor(props) {
     this.imageUplaod = this.imageUplaod.bind(this);
     this.getBase64 = this.getBase64.bind(this);
 
+}
+
+componentDidMount(){
+	getProfile({})
+	.then(resp => {
+		console.log(resp);
+		let data = resp.data;
+		this.setState({
+			name: data.name,
+			fatherName: data.fatherName,
+			registrationNo: data.registrationNo,
+			email: data.email,
+		});
+		document.getElementById('name').value = this.state.name;
+		document.getElementById('fatherName').value = this.state.fatherName;
+		document.getElementById('registrationNo').value = this.state.registrationNo;
+		document.getElementById('email').value = this.state.email;
+
+	})
+	.catch((err)=>console.log(err));
 }
 
 // Function call onSubmit
@@ -102,7 +121,7 @@ return (
 									<div class="control-group">
 										<div class="controls row-fluid">
 											<label class="control-label">Name</label>
-											<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Name" />
+											<input class="span12" type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name" />
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.name}
@@ -112,7 +131,7 @@ return (
 									<div class="control-group">
 										<div class="controls row-fluid">
 											<label class="control-label">Father Name</label>
-											<input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Father Name" />
+											<input class="span12" type="text" id="fatherName" name="fatherName" onChange={this.handleChange} placeholder="Father Name" />
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.authorName}
@@ -122,7 +141,7 @@ return (
 									<div class="control-group">
 										<div class="controls row-fluid">
 											<label class="control-label">Registrtaion Number</label>
-											<input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" disabled />
+											<input class="span12" type="text" id="registrationNo" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" disabled />
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.edition}
@@ -132,7 +151,7 @@ return (
 									<div class="control-group">
 										<div class="controls row-fluid">
 											<label class="control-label">Email</label>
-											<input class="span12" type="text" name="email" onChange={this.handleChange} placeholder="Email" disabled />
+											<input class="span12" type="text" id="email" name="email" onChange={this.handleChange} placeholder="Email" disabled />
 											<span>
 				                				{this.state.errors &&
 				                				this.state.errors.edition}

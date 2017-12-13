@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { validateLogin } from '../../utils/validation/auth';
 import { login } from '../apiCalls/login';
 import isAuthorized from '../../utils/validation/isAuthorized';
+import setAuthToken from '../../utils/setAuthToken';
 
 
 class Login extends Component {
@@ -34,6 +35,7 @@ handleLogin(event) {
     .then((resp) =>{
       const token = resp.data.token;
       localStorage.setItem('token', token);
+      setAuthToken(token);
       this.setState({isAuthenticated:isAuthorized(), response:
       	"Wrong Email or Password"});
       console.log("authorized");
