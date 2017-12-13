@@ -1,6 +1,6 @@
 // Importing the necessary packages.
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import isAuthorized from '../../utils/validation/isAuthorized';
 
 class Header extends Component {
@@ -16,6 +16,7 @@ constructor(props) {
         isLogIn: this.props.login,
         isSignUp: this.props.signup,
         isForgetPassword: this.props.resetPassword,
+        hasLoggedOut: false,
     }
 
     this.logout = this.logout.bind(this);
@@ -24,10 +25,13 @@ constructor(props) {
 
 logout(){
     localStorage.removeItem('token');
+    this.setState({ hasLoggedOut: true })
 }
 
 render() {
 	return (
+        <div>
+            { this.state.hasLoggedOut ? <Redirect to ='/' /> :
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
@@ -83,6 +87,7 @@ render() {
                     </div>
                 </div>
             </div>
+        </div>}
         </div>
 	);
 }
