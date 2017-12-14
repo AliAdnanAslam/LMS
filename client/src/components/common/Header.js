@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import isAuthorized from '../../utils/validation/isAuthorized';
 import { getProfile } from '../apiCalls/getProfile';
+import jwt from 'jsonwebtoken';
 
 class Header extends Component {
 
@@ -20,6 +21,7 @@ constructor(props) {
         hasLoggedOut: false,
         name: '',
         image: '',
+        isAdmin: false,
     }
 
     this.logout = this.logout.bind(this);
@@ -37,6 +39,18 @@ componentDidMount(){
             name: data.name,
             image: data.image,
         });
+        let token = localStorage.getItem('token');
+        let decodedId = '';
+        jwt.verify(token, 'iReact', function(err, decoded) {
+        if (err) console.log(err);
+        decodedId = decoded.id;
+        console.log(decodedId);
+        });
+        if( decodedId == '5a2f93a9ab39a821b8837aa5') {
+            this.setState ({ isAdmin: true })
+            console.log("admin set");
+        }
+
     })
     .catch((err)=>console.log(err));
     }
@@ -69,7 +83,9 @@ render() {
                                     {this.state.name ? this.state.name : null}
                                     <b class="caret"></b></a>
                                     <ul class="dropdown-menu">
-                                        <li><Link to='/user/dashboard'>Dashboard</Link></li>
+                                        {this.state.isAdmin ?
+                                            <li><Link to='/admin/dashboard'>Dashboard</Link></li> :
+                                            <li><Link to='/user/dashboard'>Dashboard</Link></li> }
                                         <li><Link to='/user/profile'> Edit Profile </Link></li>
                                         <li><Link to='/user/changepassword'> Change Password </Link></li>
                                         <li class="divider"></li>
