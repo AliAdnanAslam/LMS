@@ -18,8 +18,9 @@ app.set('superSecret', config.secret);
 let db = mongoose.connection;
 
 // use body parser so we can get info from POST and/or URL parameters
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '10mb'}));
+app.use(bodyParser.urlencoded({ extended: false, limit: '10mb', parameterLimit:50000 }));
+app.use(bodyParser.text({ limit: '10mb' }));
 
 
 // Settin up routes
@@ -104,6 +105,42 @@ app.get('/api/users/:id', (req, res) => {
 
 });
 
+// Change user password.
+app.put('/api/changePassword', (req,res) => {
+	let userObj = req.body;
+	let loginToken = AuthCheck (req, res);
+	let userId = loginToken.id;
+
+	User.searchUserById(userId, (err, user) => {
+		if(err) console.log(err)
+			else {
+				console.log(user);
+				let passwordIsValid	 = bcrypt.compareSync(userObj.oldPassword, user.password);
+				if (!passwordIsValid) {
+					res.json({ success: false, message: 'Password is wrong' });
+				} else {
+					User.changePassword( userId, userObj.newPassword, {}, (err2, info) => {
+						if(err2) console.log(err2)
+							else res.json({ ...info, success:true});
+					})
+				}
+			}
+	} )
+})
+
+
+// Update user profile
+app.put('/api/updateUser', (req,res) => {
+	let newUser = req.body;
+	let loginToken = AuthCheck (req, res);
+	let userId = loginToken.id;
+
+
+	User.updateUserProfile(userId, newUser, (err, info) => {
+		if(err) console.log(err)
+			else res.json(info)
+	} )
+})
 
 // Remove user.
 app.delete('/api/users/:id', (req, res) => {
@@ -369,12 +406,13 @@ app.post(('/api/orders/new'), (req, res) => {
 
 });
 
+
 app.get('/api/userProfile', (req, res) => {
 	let loginToken = AuthCheck (req, res);
 	let userId = loginToken.id;
 	User.searchUserById (userId, (err, user) => {
-		if(err) console.log(err)
-			else res.json(user)
+		if(err) {console.log(err)}
+			else {res.json(user)}
 	})
 })
 
