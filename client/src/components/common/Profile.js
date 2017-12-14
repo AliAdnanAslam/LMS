@@ -104,9 +104,9 @@ return (
 		<div class="wrapper">
     		<div class="container">
             	<div class="row">
-            		<SideBar />
+
 					<div class="span9">
-						<div class="module span6 offset1">
+						<div class="module span6 offset3">
 							<form class="form-vertical" onSubmit={ this.handleSubmission }>
 								<div class="module-head">
 									<h3>Please Enter Your Information</h3>
