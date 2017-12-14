@@ -119,6 +119,7 @@ app.put('/api/changePassword', (req,res) => {
 				if (!passwordIsValid) {
 					res.json({ success: false, message: 'Password is wrong' });
 				} else {
+					userObj.newPassword = bcrypt.hashSync(userObj.newPassword, 8);
 					User.changePassword( userId, userObj.newPassword, {}, (err2, info) => {
 						if(err2) console.log(err2)
 							else res.json({ ...info, success:true});
@@ -411,7 +412,7 @@ app.get('/api/userProfile', (req, res) => {
 	let loginToken = AuthCheck (req, res);
 	let userId = loginToken.id;
 	User.searchUserById (userId, (err, user) => {
-		if(err) {console.log(err)}
+		if(err) {res.json(err)}
 			else {res.json(user)}
 	})
 })

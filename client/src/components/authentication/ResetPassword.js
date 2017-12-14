@@ -84,8 +84,14 @@ render() {
 							<div class="module-body">
 								<div class="control-group">
 									<div class="controls row-fluid">
-										<input class="span12" type="text" name="password" onChange={this.handleChange} placeholder="New Password" required />
-										<input class="span12" type="text" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password" required />
+										<input class="span12" type="password" name="password" onChange={this.handleChange} placeholder="New Password" required />
+									</div>
+								</div>
+							</div>
+							<div class="module-body">
+								<div class="control-group">
+									<div class="controls row-fluid">
+										<input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password" required />
 									</div>
 								</div>
 							</div>

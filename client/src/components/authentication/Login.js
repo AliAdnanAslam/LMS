@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Header from '../common/Header';
-import PropTypes from 'prop-types';
 import { Redirect, Link } from 'react-router-dom';
 import Footer from '../common/Footer';
 import { connect } from 'react-redux';
@@ -72,7 +71,7 @@ let bool = true;
 						<div class="module-body">
 							<div class="control-group">
 								<div class="controls row-fluid">
-									<input class="span12" type="text" name="email" onChange={this.handleChange} id="inputEmail" placeholder="Username" required />
+									<input class="span12" type="text" name="email" onChange={this.handleChange} id="inputEmail" placeholder="Email" required />
 									<span>
                         				{this.state.errors &&
                         				this.state.errors.username}
@@ -119,14 +118,5 @@ let bool = true;
 }
 
 
-Login.propTypes = {
-  login: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool,
-  isLoading: PropTypes.bool,
-};
 
-const mapStateToProps = ({ authReducer }) => (
-  { isLoggedIn: authReducer.isLoggedIn, isLoading: authReducer.authLoading }
-);
-
-export default connect(mapStateToProps, { login })(Login);
+export default Login;
