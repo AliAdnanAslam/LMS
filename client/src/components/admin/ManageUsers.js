@@ -5,11 +5,32 @@ import image from '../../images/user.png';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
- 
+import { getAllUsers } from '../apiCalls/getAllUsers';
+
+
 /**
  * Home class proviedes the main interface of admin
- */ 
+ */
 class ManageUsers extends Component {
+
+constructor(props) {
+    super(props);
+    this.state = {
+        users :[],
+        exists: false,
+    }
+}
+
+componentDidMount(){
+    getAllUsers({})
+    .then(resp => {
+        this.setState( {users: resp.data, exists: true} );
+        console.log(this.state.users);
+        })
+    .catch((err)=>console.log(err));
+}
+
+
   render() {
     return (
       <div>
@@ -40,21 +61,23 @@ class ManageUsers extends Component {
                                             Add User
                                         </button>
                                         </Link>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="module-body">
                                     <div class="row-fluid">
-                                        <div class="span6">
+                                        { this.state.exists ? this.state.users.map(user =>
+
+
+                                        <div class="span5">
                                             <div class="media user well">
-                                                <a class="media-avatar pull-left" href="">
-                                                    <img src={ image } />
+                                                <a class="media-avatar pull-left" href='javascript:void(0)'>
+                                                    <img src={ user.image ? user.image : image } />
                                                 </a>
                                                 <div class="media-body">
                                                     <h3 class="media-title">
-                                                        John Donga
-                                                    </h3>
+                                                        {user.name}</h3>
                                                     <p>
-                                                        <small class="muted">Pakistan</small></p>
+                                                        <small class="muted">{user.registrationNo}</small></p>
                                                     <div class="media-option btn-group shaded-icon">
                                                         <Link to='/admin/modifyuser'>
                                                         <button class="btn btn-small">
@@ -65,35 +88,19 @@ class ManageUsers extends Component {
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="span6">
-                                            <div class="media user well">
-                                                <a class="media-avatar pull-left" href="">
-                                                    <img src={ image } />
-                                                </a>
-                                                <div class="media-body">
-                                                    <h3 class="media-title">
-                                                        Donga John</h3>
-                                                    <p>
-                                                        <small class="muted">Pakistan</small></p>
-                                                    <div class="media-option btn-group shaded-icon">
-                                                        <Link to='/admin/modifyuser'>
-                                                        <button class="btn btn-small">
-                                                            <i class="icon-edit"></i>
-                                                        </button>
-                                                        </Link>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
+
+                                            ) : null
+                                        }
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>  
+                    </div>
                 </div>
             </div>
         </div>
-        <Footer />   
+        <Footer />
       </div>
     );
   }

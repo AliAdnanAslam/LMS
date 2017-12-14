@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
-import { addBook } from '../apiCalls/Books';
+import { validateSignUp } from '../../utils/validation/auth';
+import { addUser } from '../apiCalls/addUser';
 
 /**
  *
@@ -14,74 +15,68 @@ class AddUser extends Component {
 constructor(props) {
     super(props);
     this.state = {
-        name: '',
-        fatherName: '',
-        password: '',
-        confirmPassword: '',
-        image: '',
-        response: '',
-
+      name: '',
+      fatherName: '',
+      registrationNo: '',
+      password: '',
+      email: '',
+      type: '',
+      confirmPassword: '',
+      response: '',
     };
 
-    // Binding functions to instances
-    this.handleSubmission = this.handleSubmission.bind(this);
+    this.defaultState = {
+      name: '',
+      fatherName: '',
+      registrationNo: '',
+      password: '',
+      email: '',
+      type: '',
+      confirmPassword: '',
+      response: '',
+      redirect: false
+    }
+
+    this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-    this.imageUplaod = this.imageUplaod.bind(this);
-    this.getBase64 = this.getBase64.bind(this);
+  }
 
-}
-
-// Function call onSubmit
-handleSubmission = event => {
-    event.preventDefault();
-    this.setState({response:''});
-    console.log(this.state);
-    addBook(this.state)
-    .then((resp) => {
-        console.log(resp);
-        if(resp.status == 200){
-            console.log("im in");
-            this.setState({
-                name: '',
-                fatherName: '',
-                password: '',
-                confirmPassword: '',
-                image: '',
-                response: 'Submitted'
-            })
-        }
-    })
-    .catch((err)=>console.log(err));
-}
-
-
-
-// Tracking the input change state
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
-    const book = { ...this.state };
-    book[formField] = event.target.value.trim();
-    this.setState(() => book);
+    const user = { ...this.state };
+    user[formField] = event.target.value.trim();
+    this.setState(() => user);
 }
 
-// Uplaod image from local storage and save to monogoose in base64
-imageUplaod(e) {
-    const file = e.target.files[0];
-    this.getBase64(file).then(base64 => {
-        this.setState({ image: base64 });
-    });
+handleSubmit = event => {
+    event.preventDefault();
+    this.setState({ response: "" });
+    const { errors, isValid } = validateSignUp(this.state);
+    if (!isValid) {
+      return this.setState({ response: errors });
+    } else {
+        addUser(this.state)
+        .then((resp) => {
+            if(resp.data.success == false){
+                console.log("im in !200 status");
+                document.getElementById("signup-form").reset();
+                this.setState({
+                    response: 'This email already exists'
+                });
+                console.log(this.state);
+            } else if (resp.status == 200) {
+                console.log("im in");
+                this.setState({
+                        ...this.defaultState,
+                        response: 'Successfully User Added ',
+                })
+            }
+        })
+        .catch((err)=>console.log(err));
+    }
 }
 
-// Getting the promise of image conversion
-getBase64(file) {
-  return new Promise((resolve,reject) => {
-     const reader = new FileReader();
-     reader.onload = () => resolve(reader.result);
-     reader.onerror = error => reject(error);
-     reader.readAsDataURL(file);
-  });
-}
 
 //
 render() {
@@ -94,7 +89,7 @@ return (
                     <SideBar />
                     <div class="span9">
                         <div class="module span6 offset1">
-                            <form class="form-vertical" onSubmit={ this.handleSubmission }>
+                            <form class="form-vertical" id="signup-form" onSubmit={ this.handleSubmission }>
                                 <div class="module-head">
                                     <h3>Enter User Information</h3>
                                 </div>
@@ -159,16 +154,18 @@ return (
                                             </span>
                                         </div>
                                     </div>
-                                </div>
-                                <div style={{marginLeft: '20px'}}>
-                                    <label class="control-label">Select Image From Your Computer</label>
-                                    <input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
-                                    <br /><br />
+                                    <div class="control-group">
+                                            <select class="controls row-fluid" onChange={this.handleChange} name="type" required>
+                                                <option value="" disabled selected>Type</option>
+                                                <option value="student">Student</option>
+                                                <option value="faculty">Faculty</option>
+                                            </select>
+                                    </div>
                                 </div>
                                 <div class="module-foot">
                                     <div class="control-group">
                                         <div class="controls clearfix">
-                                            <button name="submit" type="submit" class="btn btn-primary pull-right">Submit</button>
+                                            <button name="submit" type="submit" onClick={this.handleSubmit} class="btn btn-primary pull-right">Submit</button>
                                         </div>
                                     </div>
                                 </div>
