@@ -84,13 +84,13 @@ render() {
 							<div class="module-body">
 								<div class="control-group">
 									<div class="controls row-fluid">
+										<label class="control-label">New Password</label>
 										<input class="span12" type="password" name="password" onChange={this.handleChange} placeholder="New Password" required />
 									</div>
 								</div>
-							</div>
-							<div class="module-body">
 								<div class="control-group">
 									<div class="controls row-fluid">
+										<label class="control-label">Confirm Password</label>
 										<input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password" required />
 									</div>
 								</div>

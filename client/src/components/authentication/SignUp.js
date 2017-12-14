@@ -103,31 +103,37 @@ render() {
 								<div class="module-body">
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Name</label>
 											<input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="Name" required />
 										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Father Name</label>
 											<input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Father Name" required />
 										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Registration Number</label>
 											<input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registration Number" required />
 										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Email</label>
 											<input class="span12" type="text" name="email" onChange={this.handleChange} placeholder="Email" required />
 										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Password</label>
 											<input class="span12" type="password" name="password" onChange={this.handleChange} placeholder="Password" required />
 										</div>
 									</div>
 									<div class="control-group">
 										<div class="controls row-fluid">
+											<label class="control-label">Confirm Password</label>
 											<input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password" required />
 										</div>
 									</div>
