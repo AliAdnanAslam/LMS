@@ -407,10 +407,22 @@ app.post(('/api/orders/new'), (req, res) => {
 
 });
 
+app.post('/api/userProfileById', (req, res) => {
+
+	let userId = req.body.id;
+
+	User.searchUserById (userId, (err, user) => {
+		if(err) {res.json(err)}
+			else {res.json(user)}
+	})
+})
+
 
 app.get('/api/userProfile', (req, res) => {
+
 	let loginToken = AuthCheck (req, res);
 	let userId = loginToken.id;
+
 	User.searchUserById (userId, (err, user) => {
 		if(err) {res.json(err)}
 			else {res.json(user)}

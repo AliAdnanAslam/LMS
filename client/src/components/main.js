@@ -35,7 +35,7 @@ class Main extends Component {
             <Route path='/user' exact component={ Home } />
             <Route path='/admin/manageusers' component={ ManageUsers } />
             <Route path='/admin/adduser' component={ AddUser } />
-            <Route path='/admin/modifyuser' component={ ModifyUser } />
+            <Route path='/admin/modifyuser/:userId' component={ ModifyUser } />
             <Route path='/admin/managebooks' component={ ManageBooks } />
             <Route path='/admin/modifybook' component={ ModifyBook } />
             <Route path='/admin/addbook' component={ AddBook } />
@@ -45,7 +45,7 @@ class Main extends Component {
             <Route path='/admin/dashboard' component={ DashboardAdmin } />
             <Route path='/login'  component={ Login } />
             <Route path='/signup'  component={ SignUp } />
-            <Route path='/forgetpassword'  component={ ForgetPassword } />            
+            <Route path='/forgetpassword'  component={ ForgetPassword } />
             <Route path="/search/:query" component={ Search }/>
             <Route path="/resetPassword/:token" component={ ResetPassword }/>
             <Route path="/user/profile" component={ Profile }/>

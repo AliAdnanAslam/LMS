@@ -4,6 +4,8 @@ import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
 import { addBook } from '../apiCalls/Books';
+import { userProfileById } from '../apiCalls/userProfileById';
+import { updateUserProfile } from '../apiCalls/updateUserProfile';
 
 /**
  *
@@ -14,12 +16,12 @@ class Profile extends Component {
 constructor(props) {
     super(props);
     this.state = {
+        id: this.props.match.params.userId,
         name: '',
         fatherName: '',
-        password: '',
-        confirmPassword: '',
         image: '',
         response: '',
+        registrationNo: '',
 
     };
 
@@ -31,25 +33,39 @@ constructor(props) {
 
 }
 
+componentDidMount(){
+    userProfileById(this.state)
+    .then(resp => {
+        console.log(resp);
+        let data = resp.data;
+        this.setState({
+            name: data.name,
+            fatherName: data.fatherName,
+            registrationNo: data.registrationNo,
+            email: data.email,
+            image: data.image,
+        });
+        document.getElementById('name').value = this.state.name;
+        document.getElementById('fatherName').value = this.state.fatherName;
+        document.getElementById('registrationNo').value = this.state.registrationNo;
+        document.getElementById('email').value = this.state.email;
+
+    })
+    .catch((err)=>console.log(err));
+}
+
 // Function call onSubmit
 handleSubmission = event => {
     event.preventDefault();
     this.setState({response:''});
     console.log(this.state);
-    addBook(this.state)
+    updateUserProfile(this.state)
     .then((resp) => {
         console.log(resp);
-        if(resp.status == 200){
-            console.log("im in");
-            this.setState({
-                name: '',
-                fatherName: '',
-                password: '',
-                confirmPassword: '',
-                image: '',
-                response: 'Submitted'
-            })
-        }
+        let data = resp.data;
+        this.setState({
+            response: 'Updated'
+        })
     })
     .catch((err)=>console.log(err));
 }
@@ -91,18 +107,18 @@ return (
         <div class="wrapper">
             <div class="container">
                 <div class="row">
-                    <SideBar />
+
                     <div class="span9">
-                        <div class="module span6 offset1">
+                        <div class="module span6 offset3">
                             <form class="form-vertical" onSubmit={ this.handleSubmission }>
                                 <div class="module-head">
-                                    <h3>Enter User Information</h3>
+                                    <h3>Please Enter Your Information</h3>
                                 </div>
                                 <div class="module-body">
                                     <div class="control-group">
                                         <div class="controls row-fluid">
                                             <label class="control-label">Name</label>
-                                            <input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="User Name" required />
+                                            <input class="span12" type="text" id="name" name="name" onChange={this.handleChange} placeholder="Name" />
                                             <span>
                                                 {this.state.errors &&
                                                 this.state.errors.name}
@@ -112,7 +128,7 @@ return (
                                     <div class="control-group">
                                         <div class="controls row-fluid">
                                             <label class="control-label">Father Name</label>
-                                            <input class="span12" type="text" name="fatherName" onChange={this.handleChange} placeholder="Father Name" required />
+                                            <input class="span12" type="text" id="fatherName" name="fatherName" onChange={this.handleChange} placeholder="Father Name" />
                                             <span>
                                                 {this.state.errors &&
                                                 this.state.errors.authorName}
@@ -122,7 +138,7 @@ return (
                                     <div class="control-group">
                                         <div class="controls row-fluid">
                                             <label class="control-label">Registrtaion Number</label>
-                                            <input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" required />
+                                            <input class="span12" type="text" id="registrationNo" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" disabled />
                                             <span>
                                                 {this.state.errors &&
                                                 this.state.errors.edition}
@@ -132,30 +148,10 @@ return (
                                     <div class="control-group">
                                         <div class="controls row-fluid">
                                             <label class="control-label">Email</label>
-                                            <input class="span12" type="text" name="email" onChange={this.handleChange} placeholder="Email" required />
+                                            <input class="span12" type="text" id="email" name="email" onChange={this.handleChange} placeholder="Email" disabled />
                                             <span>
                                                 {this.state.errors &&
                                                 this.state.errors.edition}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="controls row-fluid">
-                                            <label class="control-label">Password</label>
-                                            <input class="span12" type="password" name="password" onChange={this.handleChange} placeholder="Password"  required/>
-                                            <span>
-                                                {this.state.errors &&
-                                                this.state.errors.publication}
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="control-group">
-                                        <div class="controls row-fluid">
-                                            <label class="control-label">Confirm Password</label>
-                                            <input class="span12" type="password" name="confirmPassword" onChange={this.handleChange} placeholder="Confirm Password"  required/>
-                                            <span>
-                                                {this.state.errors &&
-                                                this.state.errors.publicationYear}
                                             </span>
                                         </div>
                                     </div>
@@ -168,7 +164,7 @@ return (
                                 <div class="module-foot">
                                     <div class="control-group">
                                         <div class="controls clearfix">
-                                            <button name="submit" type="submit" class="btn btn-primary pull-right">Submit</button>
+                                            <button name="submit" type="submit" onClick={this.handleSubmission} class="btn btn-primary pull-right">Update</button>
                                         </div>
                                     </div>
                                 </div>

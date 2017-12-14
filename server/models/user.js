@@ -132,6 +132,7 @@ User.searchUserbyToken = (token, callback) => {
 	User.findOne ( {resetToken: token}, callback);
 }
 
+
 // Search user by id
 User.searchUserById = (id, callback) => {
 	User.findOne({_id: id}, callback);

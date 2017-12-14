@@ -79,7 +79,7 @@ componentDidMount(){
                                                     <p>
                                                         <small class="muted">{user.registrationNo}</small></p>
                                                     <div class=" btn-group shaded-icon">
-                                                        <Link to='/admin/modifyuser'>
+                                                        <Link to={`/admin/modifyuser/${user._id}`}>
                                                             <button class="btn btn-small">
                                                                 <i class="icon-edit"></i>
                                                             </button>
