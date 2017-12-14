@@ -33,7 +33,7 @@ class DonationRequests extends Component {
 	                                                    Book Title
 	                                                </td>
 	                                                <td>
-	                                                    Author name
+	                                                    Accept Request
 	                                                </td>	                                                
 	                                            </tr>
 	                                            <tr class="unread">
@@ -44,7 +44,7 @@ class DonationRequests extends Component {
 	                                                    Sample Work
 	                                                </td>
 	                                                <td>
-	                                                    John
+	                                                    <button type="button" class="btn btn-primary">Accept</button>
 	                                                </td>	
 	                                            </tr>
 	                                            <tr class="unread">
@@ -55,7 +55,7 @@ class DonationRequests extends Component {
 	                                                    Test Title
 	                                                </td>
 	                                                <td>
-	                                                    John
+	                                                    <button type="button" class="btn btn-primary">Accept</button>
 	                                                </td>	
 	                                            </tr>
 	                                            <tr class="unread">
@@ -66,7 +66,7 @@ class DonationRequests extends Component {
 	                                                    Dongi sents you a friend request!
 	                                                </td>
 	                                                <td>
-	                                                    John
+	                                                    <button type="button" class="btn btn-primary">Accept</button>
 	                                                </td>	
 	                                            </tr>
 	                                            <tr class="unread">
@@ -77,7 +77,7 @@ class DonationRequests extends Component {
 	                                                    Something
 	                                                </td>
 	                                                <td>
-	                                                    John
+	                                                    <button type="button" class="btn btn-primary">Accept</button>
 	                                                </td>	                                                
 	                                            </tr>
 	                                        </tbody>
