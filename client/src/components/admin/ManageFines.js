@@ -32,7 +32,7 @@ class ManageFines extends Component {
 								      	<th>Student Name</th>
 								        <th>Registration Number</th>
 								        <th>Fine</th>
-								        <th>Modify</th>
+								        <th>Accept Fines</th>
 								      </tr>
 								    </thead>
 								    <tbody>
@@ -40,25 +40,25 @@ class ManageFines extends Component {
 								      	<td>Mr. Ramzan</td>
 								        <td>2015-CS-54</td>
 								        <td>300</td>
-								        <button type="button" class="btn btn-primary">Modify</button>
+								        <button type="button" class="btn btn-primary">Accept Fines</button>
 								      </tr>
 								      <tr>
 								      	<td>Mr. Ramzan</td>
 								        <td>2015-CS-54</td>
 								        <td>300</td>
-								        <button type="button" class="btn btn-primary">Modify</button>
+								        <button type="button" class="btn btn-primary">Accept Fines</button>
 								      </tr>
 								      <tr>
 								      	<td>Mr. Ramzan</td>
 								        <td>2015-CS-54</td>
 								        <td>300</td>
-								        <button type="button" class="btn btn-primary">Modify</button>
+								        <button type="button" class="btn btn-primary">Accept Fines</button>
 								      </tr>
 								      <tr>
 								      	<td>Mr. Ramzan</td>
 								        <td>2015-CS-54</td>
 								        <td>300</td>
-								        <button type="button" class="btn btn-primary">Modify</button>
+								        <button type="button" class="btn btn-primary">Accept Fines</button>
 								      </tr>
 								    </tbody>
 								</table>

@@ -21,7 +21,9 @@ class ManageBooks extends Component {
 							<div class="jumbotron well">
 								<div>
 									<br />
-									<button type="button" class="btn btn-primary pull-left">Add Book</button> 
+									<Link to='/admin/addbook'>
+										<button type="button" class="btn btn-primary pull-left">Add Book</button> 
+									</Link>
 								</div>
 								<br />
 								<table class="table table-striped">
@@ -38,25 +40,9 @@ class ManageBooks extends Component {
 								      	<td>Software Engineering</td>
 								        <td>John Faloode wala</td>
 								        <td>5th</td>
-								        <button type="button" class="btn btn-primary">Modify</button>
-								      </tr>
-								      <tr>
-								      	<td>Software Engineering</td>
-								        <td>John Faloode wala</td>
-								        <td>5th</td>
-								        <button type="button" class="btn btn-primary">Modify</button>
-								      </tr>
-								      <tr>
-								      	<td>Software Engineering</td>
-								        <td>John Faloode wala</td>
-								        <td>5th</td>
-								        <button type="button" class="btn btn-primary">Modify</button>
-								      </tr>
-								      <tr>
-								      	<td>Software Engineering</td>
-								        <td>John Faloode wala</td>
-								        <td>5th</td>
-								        <button type="button" class="btn btn-primary">Modify</button>
+								        <Link to='/admin/modifybook'>
+									        <button type="button" class="btn btn-primary">Modify</button>
+										</Link>
 								      </tr>
 								    </tbody>
 								</table>
