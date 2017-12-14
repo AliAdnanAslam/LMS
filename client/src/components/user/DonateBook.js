@@ -10,7 +10,12 @@ import { addBook } from '../apiCalls/Books';
  */
 class DonateBook extends Component {
 
-// Calling constructor
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
 	super(props);
 	this.state = {
@@ -32,7 +37,12 @@ constructor(props) {
 
 }
 
-// Function call onSubmit
+/**
+ * handle Donation form event onSubmit
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleDonation = event => {
 	event.preventDefault();
 	this.setState({response:''});
@@ -56,9 +66,12 @@ handleDonation = event => {
 	.catch((err)=>console.log(err));
 }
 
-
-
-// Tracking the input change state
+/**
+ * handle handle event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -85,7 +98,12 @@ getBase64(file) {
   });
 }
 
-//
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 return (
     <div>

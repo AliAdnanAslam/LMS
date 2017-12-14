@@ -10,6 +10,10 @@ import { Redirect } from 'react-router-dom';
 
 class ResetPassword extends Component {
 
+/**
+ * constructor
+ * @param {object} props
+ */
 constructor(props) {
 	super(props);
     let isAuthenticated = isAuthorized();
@@ -24,7 +28,12 @@ constructor(props) {
 	this.handleChange = this.handleChange.bind(this);
 }
 
-// Function call onSubmit
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmit = event => {
 	event.preventDefault();
 	this.setState({response:''});
@@ -56,7 +65,12 @@ handleSubmit = event => {
 
 }
 
-// Tracking the input change state
+/**
+ * handle handle event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -65,8 +79,12 @@ handleChange(event) {
     this.setState(() => user);
 }
 
-
-
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 	return (
 		<div>

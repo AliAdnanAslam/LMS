@@ -13,29 +13,36 @@ import DonateBook from './DonateBook';
  * Home class proviedes the main interface of user
  */
 class Home extends Component {
-  render() {
-    return (
-      <BrowserRouter>
-        <div>
-      		<Header userLoggedIn="true" />
-      		<div class="wrapper">
-      			<div class="container">
-              <div class="row">
-                  <SideBar />
-                    <div className='userDashboard'>
-                        <Route path='/user/Dashboard' exact component={ Dashboard } />
-                        <Route path='/user/DonateBook' exact component={ DonateBook } />
-                        <Route path='/user/FineStatus' exact component={ FineStatus } />
-                        <Route path='/user/BookStatus' exact component={ BookStatus } />
-                    </div>
-            	</div>
-            </div>
+
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */   
+render() {
+  return (
+    <BrowserRouter>
+      <div>
+    		<Header userLoggedIn="true" />
+    		<div class="wrapper">
+    			<div class="container">
+            <div class="row">
+                <SideBar />
+                  <div className='userDashboard'>
+                      <Route path='/user/Dashboard' exact component={ Dashboard } />
+                      <Route path='/user/DonateBook' exact component={ DonateBook } />
+                      <Route path='/user/FineStatus' exact component={ FineStatus } />
+                      <Route path='/user/BookStatus' exact component={ BookStatus } />
+                  </div>
+          	</div>
           </div>
-          <Footer />
         </div>
-      </BrowserRouter>
-    );
-  }
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
+}
 }
 
 export default Home;

@@ -10,7 +10,10 @@ import { Redirect } from 'react-router-dom';
 
 class SignUp extends Component {
 
-
+/**
+ * constructor
+ * @param {object} props
+ */
 constructor(props) {
     super(props);
     let isAuthenticated = isAuthorized();
@@ -40,8 +43,14 @@ constructor(props) {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
+}
 
+/**
+ * handle handle event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -50,6 +59,12 @@ handleChange(event) {
     this.setState(() => user);
 }
 
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmit = event => {
 	event.preventDefault();
 	this.setState({ response: "" });
@@ -85,6 +100,12 @@ handleSubmit = event => {
 	}
 }
 
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 	let bool = true;
 	return (

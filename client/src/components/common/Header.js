@@ -7,6 +7,12 @@ import jwt from 'jsonwebtoken';
 
 class Header extends Component {
 
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
     super(props);
 
@@ -61,6 +67,12 @@ logout(){
     this.setState({ hasLoggedOut: true })
 }
 
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */ 
 render() {
     return (
         <div>

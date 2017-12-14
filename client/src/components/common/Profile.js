@@ -10,7 +10,12 @@ import { updateUserProfile } from '../apiCalls/updateUserProfile';
 
 class Profile extends Component {
 
-// Calling constructor
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
 	super(props);
 	this.state = {
@@ -51,7 +56,12 @@ componentDidMount(){
 	.catch((err)=>console.log(err));
 }
 
-// Function call onSubmit
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmission = event => {
 	event.preventDefault();
 	this.setState({response:''});
@@ -69,7 +79,12 @@ handleSubmission = event => {
 
 
 
-// Tracking the input change state
+/**
+ * handle change event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -96,7 +111,12 @@ getBase64(file) {
   });
 }
 
-//
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 return (
       <div>

@@ -10,7 +10,10 @@ import { addBook } from '../apiCalls/Books';
  */
 class AddFine extends Component {
 
-// Calling constructor
+/**
+ * constructor
+ * @param {object} props
+ */
 constructor(props) {
     super(props);
     this.state = {
@@ -29,7 +32,12 @@ constructor(props) {
 
 }
 
-// Function call onSubmit
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmission = event => {
     event.preventDefault();
     this.setState({response:''});
@@ -52,9 +60,12 @@ handleSubmission = event => {
     .catch((err)=>console.log(err));
 }
 
-
-
-// Tracking the input change state
+/**
+ * handle handle event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -63,7 +74,12 @@ handleChange(event) {
     this.setState(() => book);
 }
 
-//
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */ 
 render() {
 return (
       <div>

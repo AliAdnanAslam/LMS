@@ -13,6 +13,10 @@ import { getAllUsers } from '../apiCalls/getAllUsers';
  */
 class ManageUsers extends Component {
 
+/**
+ * constructor
+ * @param {object} props
+ */
 constructor(props) {
     super(props);
     this.state = {
@@ -30,69 +34,73 @@ componentDidMount(){
     .catch((err)=>console.log(err));
 }
 
-
-  render() {
-    return (
-      <div>
-        <Header userLoggedIn="true" />
-        <div class="wrapper">
-            <div class="container">
-                <div class="row">
-                    <SideBar />
-                    <div class="span9">
-                        <div class="content">
-                            <div class="module">
-                                <div class="module-head">
-                                    <h3>
-                                        All Members</h3>
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */ 
+render() {
+return (
+  <div>
+    <Header userLoggedIn="true" />
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <SideBar />
+                <div class="span9">
+                    <div class="content">
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>
+                                    All Members</h3>
+                            </div>
+                            <div class="module-option clearfix row">
+                                <form>
+                                <div class="input-append pull-left">
+                                    <input type="text" class="span3" placeholder="Filter by registration number..." />
+                                    <button type="submit" class="btn">
+                                        <i class="icon-search"></i>
+                                    </button>
                                 </div>
-                                <div class="module-option clearfix row">
-                                    <form>
-                                    <div class="input-append pull-left">
-                                        <input type="text" class="span3" placeholder="Filter by registration number..." />
-                                        <button type="submit" class="btn">
-                                            <i class="icon-search"></i>
-                                        </button>
-                                    </div>
-                                    </form>
-                                    <div class="pull-right">
-                                        <Link to='/admin/adduser'>
-                                        <button type="submit" class="btn btn-primary">
-                                            Add User
-                                        </button>
-                                        </Link>
-                                    </div>
+                                </form>
+                                <div class="pull-right">
+                                    <Link to='/admin/adduser'>
+                                    <button type="submit" class="btn btn-primary">
+                                        Add User
+                                    </button>
+                                    </Link>
                                 </div>
-                                <div class="module-body">
-                                    <div class="row-fluid">
-                                        { this.state.exists ? this.state.users.map(user =>
+                            </div>
+                            <div class="module-body">
+                                <div class="row-fluid">
+                                    { this.state.exists ? this.state.users.map(user =>
 
 
-                                        <div class="span5">
-                                            <div class="media well">
-                                                <a class="media-avatar pull-left" href='javascript:void(0)'>
-                                                    <img src={ user.image ? user.image : image } />
-                                                </a>
-                                                <div class="media-body">
-                                                    <h3 class="media-title">
-                                                        {user.name}</h3>
-                                                    <p>
-                                                        <small class="muted">{user.registrationNo}</small></p>
-                                                    <div class=" btn-group shaded-icon">
-                                                        <Link to={`/admin/modifyuser/${user._id}`}>
-                                                            <button class="btn btn-small">
-                                                                <i class="icon-edit"></i>
-                                                            </button>
-                                                        </Link>
-                                                    </div>
+                                    <div class="span5">
+                                        <div class="media well">
+                                            <a class="media-avatar pull-left" href='javascript:void(0)'>
+                                                <img src={ user.image ? user.image : image } />
+                                            </a>
+                                            <div class="media-body">
+                                                <h3 class="media-title">
+                                                    {user.name}</h3>
+                                                <p>
+                                                    <small class="muted">{user.registrationNo}</small></p>
+                                                <div class=" btn-group shaded-icon">
+                                                    <Link to={`/admin/modifyuser/${user._id}`}>
+                                                        <button class="btn btn-small">
+                                                            <i class="icon-edit"></i>
+                                                        </button>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                            ) : null
-                                        }
                                     </div>
+
+
+                                        ) : null
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -100,10 +108,11 @@ componentDidMount(){
                 </div>
             </div>
         </div>
-        <Footer />
-      </div>
-    );
-  }
+    </div>
+    <Footer />
+  </div>
+);
+}
 }
 
 export default ManageUsers;

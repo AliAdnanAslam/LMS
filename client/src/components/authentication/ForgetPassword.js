@@ -9,6 +9,12 @@ import isAuthorized from '../../utils/validation/isAuthorized';
 
 class ForgetPassword extends Component {
 
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
 	super(props);
     let isAuthenticated = isAuthorized();
@@ -21,7 +27,12 @@ constructor(props) {
 	this.handleChange = this.handleChange.bind(this);
 }
 
-// Function call onSubmit
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmit = event => {
 	event.preventDefault();
 	this.setState({response:''});
@@ -46,7 +57,12 @@ handleSubmit = event => {
 	.catch((err)=>console.log(err));
 }
 
-// Tracking the input change state
+/**
+ * handle change event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -56,7 +72,12 @@ handleChange(event) {
 }
 
 
-
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 	let bool = true;
 	return (

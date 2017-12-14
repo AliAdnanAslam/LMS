@@ -10,9 +10,20 @@ import isAuthorized from '../utils/validation/isAuthorized';
 
 
 class FrontPage extends Component {
-
+    
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
     super(props);
+
+    /**
+     * @type {object}
+     * @property {string} inputArtist search artist
+     */    
     this.state = {
         query: "",
         redirect: false,
@@ -21,6 +32,12 @@ constructor(props) {
     this.handleChange = this.handleChange.bind(this);
 }
 
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmit = (event) => {
     event.preventDefault();
     if(this.state.query !== ""){
@@ -30,6 +47,12 @@ handleSubmit = (event) => {
     }
 }
 
+/**
+ * handle handle event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -38,6 +61,12 @@ handleChange(event) {
     this.setState(() => search);
 }
 
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */ 
 render() {
 	if (this.state.redirect) {
         let expr = `/search/${this.state.query}`;

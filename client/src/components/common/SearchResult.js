@@ -8,6 +8,12 @@ import { bookSearch } from '../apiCalls/bookSearch';
 
 class Search extends Component {
 
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
     super(props);
     this.state = {
@@ -36,10 +42,14 @@ componentDidMount() {
 
         })
         .catch((err)=>console.log(err));
-  }
+}
 
-
-
+/**
+ * handle Change event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -48,7 +58,12 @@ handleChange(event) {
     this.setState(() => search);
 }
 
-
+/**
+ * handle Search form event onSubmit
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSearch = (event) => {
     event.preventDefault();
     if(this.state.query !== '') { // If query is not empty.
@@ -74,7 +89,12 @@ handleSearch = (event) => {
 
 }
 
-
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */ 
 render() {
 	return (
         <div>

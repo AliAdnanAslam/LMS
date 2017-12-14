@@ -11,6 +11,12 @@ import setAuthToken from '../../utils/setAuthToken';
 
 class Login extends Component {
 
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
     super(props);
     let isAuthenticated = isAuthorized();
@@ -24,6 +30,12 @@ constructor(props) {
     this.handleChange = this.handleChange.bind(this);
   }
 
+/**
+ * handle login form event onSubmit
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleLogin(event) {
     event.preventDefault();
     const { errors, isValid } = validateLogin(this.state);
@@ -52,6 +64,12 @@ handleChange(event) {
     this.setState(() => user);
 }
 
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 
 let bool = true;

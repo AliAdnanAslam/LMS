@@ -6,6 +6,12 @@ import { reserveBook } from '../apiCalls/reserveBook';
 
 class BookItem extends Component {
 
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
     super(props);
     let isLoggedIn = false;
@@ -41,7 +47,12 @@ reserveBook = (event) => {
 
 }
 
-
+/**
+ * Render.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */ 
 render() {
     return (
         <section>
