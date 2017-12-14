@@ -72,6 +72,7 @@ let bool = true;
 						<div class="module-body">
 							<div class="control-group">
 								<div class="controls row-fluid">
+									<label class="control-label">Email</label>
 									<input class="span12" type="text" name="email" onChange={this.handleChange} id="inputEmail" placeholder="Username" required />
 									<span>
                         				{this.state.errors &&
@@ -81,6 +82,7 @@ let bool = true;
 							</div>
 							<div class="control-group">
 								<div class="controls row-fluid">
+									<label class="control-label">Password</label>
 									<input class="span12" name="password" type="password" onChange={this.handleChange} id="inputPassword" placeholder="Password" required />
 									<span className="red-text">
                        					 {this.state.errors &&
