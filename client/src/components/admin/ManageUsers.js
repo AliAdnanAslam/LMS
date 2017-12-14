@@ -69,7 +69,7 @@ componentDidMount(){
 
 
                                         <div class="span5">
-                                            <div class="media user well">
+                                            <div class="media well">
                                                 <a class="media-avatar pull-left" href='javascript:void(0)'>
                                                     <img src={ user.image ? user.image : image } />
                                                 </a>
@@ -78,11 +78,11 @@ componentDidMount(){
                                                         {user.name}</h3>
                                                     <p>
                                                         <small class="muted">{user.registrationNo}</small></p>
-                                                    <div class="media-option btn-group shaded-icon">
+                                                    <div class=" btn-group shaded-icon">
                                                         <Link to='/admin/modifyuser'>
-                                                        <button class="btn btn-small">
-                                                            <i class="icon-edit"></i>
-                                                        </button>
+                                                            <button class="btn btn-small">
+                                                                <i class="icon-edit"></i>
+                                                            </button>
                                                         </Link>
                                                     </div>
                                                 </div>
