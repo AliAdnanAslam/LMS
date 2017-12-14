@@ -26,7 +26,7 @@ class Dashboard extends Component {
                                     <p class="text-muted">
                                         Pending Books</p>
                                 </a>
-                                <a href="" class="btn-box big span4"><i class="icon-save"></i><b>15,152</b>
+                                <a href="" class="btn-box big span4"><i class="icon-money"></i><b>15,152</b>
                                     <p class="text-muted">
                                         Total Fines</p>
                                 </a>
