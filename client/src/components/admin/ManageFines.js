@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar';
+import SideBar from './SideBar';
 
 /**
  *
@@ -21,7 +21,7 @@ class ManageFines extends Component {
 							<div class="jumbotron well">
 								<div>
 									<br />
-									<Link to='/admin/addfines'>
+									<Link to='/admin/addfine'>
 									<button type="button" class="btn btn-primary pull-left">Add Fine</button> 
 									</Link>
 								</div>

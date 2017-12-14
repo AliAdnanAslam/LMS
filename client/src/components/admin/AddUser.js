@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar';
+import SideBar from './SideBar';
 import { addBook } from '../apiCalls/Books';
 
 /**

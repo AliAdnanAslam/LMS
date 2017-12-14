@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar';
+import SideBar from './SideBar';
 
 /**
  *

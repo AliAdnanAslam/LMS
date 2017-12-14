@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 import image from '../../images/user.png';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar';
+import SideBar from './SideBar';
  
 /**
  * Home class proviedes the main interface of admin
