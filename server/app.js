@@ -132,9 +132,15 @@ app.put('/api/changePassword', (req,res) => {
 
 // Update user profile
 app.put('/api/updateUser', (req,res) => {
+	let userId = '';
 	let newUser = req.body;
-	let loginToken = AuthCheck (req, res);
-	let userId = loginToken.id;
+
+	if( req.body.id ) {
+		userId = req.body.id;
+	} else {
+		let loginToken = AuthCheck (req, res);
+		userId = loginToken.id;
+	}
 
 
 	User.updateUserProfile(userId, newUser, (err, info) => {
@@ -407,6 +413,12 @@ app.post(('/api/orders/new'), (req, res) => {
 
 });
 
+
+
+
+
+//POST get profile by id
+
 app.post('/api/userProfileById', (req, res) => {
 
 	let userId = req.body.id;
@@ -417,6 +429,10 @@ app.post('/api/userProfileById', (req, res) => {
 	})
 })
 
+
+
+
+//GET Profile
 
 app.get('/api/userProfile', (req, res) => {
 
