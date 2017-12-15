@@ -8,7 +8,13 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import isAuthorized from '../utils/validation/isAuthorized';
 
-
+/**
+ * FrontPage component for main page of user and admin.
+ *
+ * @class FrontPage
+ * @extends {Component}
+ * @since  1.0
+ */
 class FrontPage extends Component {
     
 /**
@@ -22,12 +28,15 @@ constructor(props) {
 
     /**
      * @type {object}
-     * @property {string} inputArtist search artist
+     * @property {string} query
+     * @property {boolean} redirect redirection on authentication     
      */    
     this.state = {
         query: "",
         redirect: false,
     }
+
+    // Binding functions to instances
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
 }
@@ -48,7 +57,7 @@ handleSubmit = (event) => {
 }
 
 /**
- * handle handle event at input form
+ * handle change event at input form
  *
  * @param {SytheticEvent} event
  * @since  1.0
@@ -62,7 +71,7 @@ handleChange(event) {
 }
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

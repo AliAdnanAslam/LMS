@@ -1,3 +1,4 @@
+// Importing the necessary packages.
 import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
@@ -7,7 +8,13 @@ import { login } from '../apiCalls/login';
 import isAuthorized from '../../utils/validation/isAuthorized';
 import { Redirect } from 'react-router-dom';
 
-
+/**
+ * SignUp component for new user to get registered.
+ *
+ * @class SignUpSignUp
+ * @extends {Component}
+ * @since  1.0
+ */
 class SignUp extends Component {
 
 /**
@@ -101,7 +108,7 @@ handleSubmit = event => {
 }
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

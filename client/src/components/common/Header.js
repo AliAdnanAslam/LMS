@@ -5,6 +5,13 @@ import isAuthorized from '../../utils/validation/isAuthorized';
 import { getProfile } from '../apiCalls/getProfile';
 import jwt from 'jsonwebtoken';
 
+/**
+ * Header component for static header.
+ *
+ * @class Header
+ * @extends {Component}
+ * @since  1.0
+ */ 
 class Header extends Component {
 
 /**
@@ -29,10 +36,15 @@ constructor(props) {
         image: '',
         isAdmin: false,
     }
-
+    // Binding functions to instances
     this.logout = this.logout.bind(this);
 }
 
+/**
+ * componentDidMount provides lifecycle methods called after component mounts the DOM
+ *
+ * @since  1.0
+ */
 componentDidMount(){
 
     if(isAuthorized()) {
@@ -61,14 +73,18 @@ componentDidMount(){
     .catch((err)=>console.log(err));
     }
 }
-
+/**
+ * logout function removes the local browser token and logouts the user.
+ *
+ * @since  1.0
+ */
 logout(){
     localStorage.removeItem('token');
     this.setState({ hasLoggedOut: true })
 }
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

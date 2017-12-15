@@ -1,5 +1,13 @@
+// Importing the necessary packages.
 import React, {Component} from 'react';
 
+/**
+ * Footer component for static footer.
+ *
+ * @class Footer
+ * @extends {Component}
+ * @since  1.0
+ */
 class Footer extends Component {
 
 /**

@@ -2,12 +2,16 @@
 import React, {Component} from 'react';
 
 /**
+ * ReserveBook component for user to reserve book.
  *
+ * @class ReserveBook
+ * @extends {Component}
+ * @since  1.0
  */
 class ReserveBook extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

@@ -6,12 +6,16 @@ import Footer from '../common/Footer';
 import SideBar from './SideBar';
 
 /**
+ * ManageBooks component for admin to add or modify books.
  *
- */ 
+ * @class ManageBooks
+ * @extends {Component}
+ * @since  1.0
+ */
 class ManageBooks extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

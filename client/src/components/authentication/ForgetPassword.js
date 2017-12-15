@@ -5,8 +5,13 @@ import { Redirect } from 'react-router-dom';
 import { forgetPassword } from '../apiCalls/forgetPassword';
 import isAuthorized from '../../utils/validation/isAuthorized';
 
-
-
+/**
+ * ForgetPassword component recovers user password.
+ *
+ * @class ForgetPassword
+ * @extends {Component}
+ * @since  1.0
+ */
 class ForgetPassword extends Component {
 
 /**
@@ -70,7 +75,6 @@ handleChange(event) {
     user[formField] = event.target.value.trim();
     this.setState(() => user);
 }
-
 
 /**
  * Render.

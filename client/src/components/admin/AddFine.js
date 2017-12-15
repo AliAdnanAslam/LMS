@@ -6,7 +6,11 @@ import SideBar from './SideBar';
 import { addBook } from '../apiCalls/Books';
 
 /**
+ * AddFine component to fine the user on late submission.
  *
+ * @class AddFine
+ * @extends {Component}
+ * @since  1.0
  */
 class AddFine extends Component {
 
@@ -75,7 +79,7 @@ handleChange(event) {
 }
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

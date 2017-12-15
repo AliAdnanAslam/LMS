@@ -5,14 +5,19 @@ import { resetPassword } from '../apiCalls/resetPassword';
 import isAuthorized from '../../utils/validation/isAuthorized';
 import { Redirect } from 'react-router-dom';
 
-
-
-
+/**
+ * ResetPassword component resets password via email tokening.
+ *
+ * @class ResetPassword
+ * @extends {Component}
+ * @since  1.0
+ */
 class ResetPassword extends Component {
 
 /**
  * constructor
  * @param {object} props
+ * @since 1.0
  */
 constructor(props) {
 	super(props);
@@ -80,7 +85,7 @@ handleChange(event) {
 }
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

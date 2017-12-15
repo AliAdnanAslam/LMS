@@ -6,6 +6,13 @@ import SideBar from '../common/SideBar';
 import { addBook } from '../apiCalls/Books';
 import { changePassword } from '../apiCalls/changePassword';
 
+/**
+ * Profile component provides editing of user profile.
+ *
+ * @class Profile
+ * @extends {Component}
+ * @since  1.0
+ */
 class Profile extends Component {
 
 /**
@@ -63,8 +70,6 @@ handleSubmission = event => {
 	}
 }
 
-
-
 /**
  * handle change event at input form
  *
@@ -80,7 +85,7 @@ handleChange(event) {
 }
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

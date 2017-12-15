@@ -3,14 +3,18 @@ import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from '../common/SideBar';
- 
+
 /**
+ * FineStatus component for displaying the user fines.
  *
- */ 
+ * @class FineStatus
+ * @extends {Component}
+ * @since  1.0
+ */
 class FineStatus extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

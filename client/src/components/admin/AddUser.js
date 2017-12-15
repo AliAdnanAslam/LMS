@@ -7,13 +7,18 @@ import { validateSignUp } from '../../utils/validation/auth';
 import { addUser } from '../apiCalls/addUser';
 
 /**
+ * If admin wants to add a new user.
  *
+ * @class AddUser
+ * @extends {Component}
+ * @since  1.0
  */
 class AddUser extends Component {
 
 /**
  * constructor
  * @param {object} props
+ * @since 1.0
  */
 constructor(props) {
     super(props);
@@ -94,7 +99,7 @@ handleSubmit = event => {
 
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

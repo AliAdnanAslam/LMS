@@ -5,12 +5,16 @@ import Footer from '../common/Footer';
 import SideBar from '../common/SideBar';
 
 /**
- * Book Status component for user resered and issued books
- */
+ * BookStatus component for displaying the reserved and issued books by user.
+ *
+ * @class BookStatus
+ * @extends {Component}
+ * @since  1.0
+ */ 
 class BookStatus extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

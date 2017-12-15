@@ -4,11 +4,17 @@ import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
 
-
+/**
+ * DonationRequests component for admin to approve the user book donation request.
+ *
+ * @class DonationRequests
+ * @extends {Component}
+ * @since  1.0
+ */
 class DonationRequests extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

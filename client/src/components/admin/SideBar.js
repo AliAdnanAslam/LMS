@@ -3,12 +3,16 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 
 /**
- * SideBar class provides the static sidebar.
+ * SideBar component provides the static sidebar.
+ *
+ * @class SideBar
+ * @extends {Component}
+ * @since  1.0
  */
 class SideBar extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

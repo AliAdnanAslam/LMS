@@ -10,12 +10,16 @@ import FineStatus from './FineStatus';
 import DonateBook from './DonateBook';
 
 /**
- * Home class proviedes the main interface of user
+ * Home component for the main interface of user.
+ *
+ * @class Home
+ * @extends {Component}
+ * @since  1.0
  */
 class Home extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

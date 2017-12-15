@@ -5,12 +5,16 @@ import Footer from '../common/Footer';
 import SideBar from './SideBar';
 
 /**
+ * ModifyBook component for admin to modify books.
  *
- */ 
+ * @class ModifyBook
+ * @extends {Component}
+ * @since  1.0
+ */
 class ModifyBook extends Component {
   
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

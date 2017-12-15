@@ -6,12 +6,16 @@ import Footer from '../common/Footer';
 import SideBar from './SideBar';
 
 /**
+ * ManageFines component for admin to add or modify fines.
  *
- */ 
+ * @class ManageFines
+ * @extends {Component}
+ * @since  1.0
+ */
 class ManageFines extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

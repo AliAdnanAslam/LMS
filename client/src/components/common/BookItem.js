@@ -1,9 +1,15 @@
+// Importing the necessary packages.
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { reserveBook } from '../apiCalls/reserveBook';
 
-
-
+/**
+ * BookItem component reserves the user book if available.
+ *
+ * @class BookItem
+ * @extends {Component}
+ * @since  1.0
+ */
 class BookItem extends Component {
 
 /**
@@ -29,9 +35,16 @@ constructor(props) {
         this.available = false;
     }
 
+    // Binding functions to instances
     this.reserveBook = this.reserveBook.bind(this);
 }
 
+/**
+ * reserveBook function reserves the book and set availability to false.
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 reserveBook = (event) => {
     if(this.state.isLoggedIn) {
         reserveBook(this.state)
@@ -90,7 +103,6 @@ render() {
         </section>
     )
 }
-
 }
 
 export default BookItem;

@@ -27,12 +27,16 @@ import Profile from './common/Profile';
 import PrivateRoute from './common/PrivateRoute';
 
 /**
- * Main component for the routing of all the components
+ * Main component for the routing of whole app.
+ *
+ * @class Main
+ * @extends {Component}
+ * @since  1.0
  */
 class Main extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0

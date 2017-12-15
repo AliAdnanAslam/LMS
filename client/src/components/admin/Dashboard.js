@@ -5,12 +5,16 @@ import Footer from '../common/Footer';
 import SideBar from './SideBar'; 
 
 /**
+ * Dashboard component for admin dashboard.
  *
+ * @class Dashboard
+ * @extends {Component}
+ * @since  1.0
  */ 
 class Dashboard extends Component {
 
 /**
- * Render.
+ * Renders components to DOM.
  *
  * @return {ReactElement} markup
  * @since  1.0
