@@ -30,10 +30,8 @@ constructor(props) {
 componentDidMount(){
 
     if(isAuthorized()) {
-        console.log("I'm authorized");
     getProfile({})
     .then(resp => {
-        console.log(resp);
         let data = resp.data;
         this.setState({
             name: data.name,
@@ -44,11 +42,9 @@ componentDidMount(){
         jwt.verify(token, 'iReact', function(err, decoded) {
         if (err) console.log(err);
         decodedId = decoded.id;
-        console.log(decodedId);
         });
         if( decodedId == '5a2f93a9ab39a821b8837aa5') {
             this.setState ({ isAdmin: true })
-            console.log("admin set");
         }
 
     })

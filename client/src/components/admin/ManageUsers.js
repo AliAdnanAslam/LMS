@@ -57,7 +57,6 @@ componentDidMount(){
     getAllUsers({})
     .then(resp => {
         this.setState( {users: resp.data, originalUser: resp.data, exists: true} );
-        console.log(this.state.users);
         })
     .catch((err)=>console.log(err));
 }

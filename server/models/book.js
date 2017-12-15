@@ -73,7 +73,7 @@ Book.searchBookByName = (name, callback) => {
 // Update book.
 Book.updateBook = (id, book, options, callback) => {
   let query = { _id:id };
-  Book.findOneAndUpdate(query, update, options, callback);
+  Book.findOneAndUpdate(query, book, options, callback);
 };
 
 

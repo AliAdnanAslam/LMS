@@ -37,7 +37,7 @@ class Main extends Component {
             <Route path='/admin/adduser' component={ AddUser } />
             <Route path='/admin/modifyuser/:userId' component={ ModifyUser } />
             <Route path='/admin/managebooks' component={ ManageBooks } />
-            <Route path='/admin/modifybook' component={ ModifyBook } />
+            <Route path='/admin/modifybook/:bookId' component={ ModifyBook } />
             <Route path='/admin/addbook' component={ AddBook } />
             <Route path='/admin/managefines' component={ ManageFines } />
             <Route path='/admin/addfine' component={ AddFine } />
