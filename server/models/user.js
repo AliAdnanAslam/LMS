@@ -43,7 +43,7 @@ let userSchema = {
 	}
 }
 
-let User = mongoose.model ( 'user', userSchema);
+let User = mongoose.model ( 'User', userSchema, 'users');
 
 
 // Get users.

@@ -69,6 +69,16 @@ app.post('/api/users', (req, res) => {
 });
 
 
+// Update Donated Book Status
+app.put('/api/updateBookStatus', (req, res) => {
+	let bookId = req.body.id;
+	let bookStatus = req.body.status;
+	DonateBooks.updateBookStatus(bookId, bookStatus, {}, (err, book) => {
+		if(err) console.log(err);
+			else res.json(book);
+	 } )
+})
+
 // Update book.
 app.put('/api/updateBook', (req, res) => {
 	let book = req.body;
@@ -466,8 +476,11 @@ app.get('/api/userProfile', (req, res) => {
 	let userId = loginToken.id;
 
 	User.searchUserById (userId, (err, user) => {
-		if(err) {res.json(err)}
-			else {res.json(user)}
+		if(err) {
+			res.json(err)
+		} else {
+			res.json(user)
+		}
 	})
 })
 

@@ -3,9 +3,36 @@ import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
+import { donatedBooks } from '../apiCalls/donationRequests';
+import { updateBookStatus } from '../apiCalls/updateBookStatus';
+import DonationItem from './DonationItem';
 
 
 class DonationRequests extends Component {
+
+constructor(props) {
+	super(props);
+	this.state = {
+		donatedBook: [],
+		pendingBooks: [],
+		exists: false,
+	}
+}
+
+componentDidMount() {
+	donatedBooks()
+	.then(resp => {
+		this.setState({donatedBook: resp.data});
+		console.log(this.state.donatedBook);
+        let book = this.state.donatedBook.filter( book => { return book.status == "donated" });
+        if( book.length !== 0 ) {
+			this.setState({pendingBooks: book, exists: true});
+        }
+	})
+	.catch((err)=>console.log(err));
+
+}
+
   render() {
     return (
 		<div>
@@ -33,53 +60,19 @@ class DonationRequests extends Component {
 	                                                    Book Title
 	                                                </td>
 	                                                <td>
+	                                                    Edition
+	                                                </td>
+	                                                <td>
+	                                                    Author
+	                                                </td>
+	                                                <td>
 	                                                    Accept Request
-	                                                </td>	                                                
+	                                                </td>
+
 	                                            </tr>
-	                                            <tr class="unread">
-	                                                <td>
-	                                                    John Donga
-	                                                </td>
-	                                                <td>
-	                                                    Sample Work
-	                                                </td>
-	                                                <td>
-	                                                    <button type="button" class="btn btn-primary">Accept</button>
-	                                                </td>	
-	                                            </tr>
-	                                            <tr class="unread">
-	                                                <td>
-	                                                    John Donga
-	                                                </td>
-	                                                <td>
-	                                                    Test Title
-	                                                </td>
-	                                                <td>
-	                                                    <button type="button" class="btn btn-primary">Accept</button>
-	                                                </td>	
-	                                            </tr>
-	                                            <tr class="unread">
-	                                                <td>
-	                                                    Facebook
-	                                                </td>
-	                                                <td>
-	                                                    Dongi sents you a friend request!
-	                                                </td>
-	                                                <td>
-	                                                    <button type="button" class="btn btn-primary">Accept</button>
-	                                                </td>	
-	                                            </tr>
-	                                            <tr class="unread">
-	                                                <td>
-	                                                    John Donga
-	                                                </td>
-	                                                <td>
-	                                                    Something
-	                                                </td>
-	                                                <td>
-	                                                    <button type="button" class="btn btn-primary">Accept</button>
-	                                                </td>	                                                
-	                                            </tr>
+	                                            {this.state.exists ? this.state.pendingBooks.map(book =>
+	                                            	<DonationItem book={book} />
+	                                            ) : <div> No Pending Request !!</div>}
 	                                        </tbody>
 	                                    </table>
 	                                </div>

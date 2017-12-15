@@ -1,14 +1,17 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+const Book = require('./book');
+const User = require('./user');
 
 // Book Schema
 
 let donateBooksSchema = mongoose.Schema({
 	bookId: {
-		type: String,
+		type: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
 		required: true
 	},
 	userId: {
-		type: String,
+		type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 		required: true
 	},
 	status: {
@@ -32,13 +35,18 @@ let DonateBooks = mongoose.model('DonatedBooks', donateBooksSchema, 'donateBooks
 
 
 DonateBooks.getDonatedBooks = (callback) => {
-	DonateBooks.find(callback);
+	DonateBooks.find(callback).populate('bookId').populate('userId');
 }
 
 // Add Book.
 DonateBooks.addBook = (donatedBook, callback) => {
 	DonateBooks.create(donatedBook, callback);
 };
+
+// Update Book Status
+DonateBooks.updateBookStatus = (id, status, options, callback) => {
+	DonateBooks.findOneAndUpdate( { _id: id }, { status: status }, {}, callback);
+}
 
 // Search Book by id.
 DonateBooks.searchBookById = (id, callback) => {
