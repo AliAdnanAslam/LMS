@@ -22,7 +22,7 @@ let donateBooksSchema = mongoose.Schema({
 		required: true,
 	},
 	reservedBy: {
-		type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+		type: String,
 		default: '',
 	},
 	donationDate: {
