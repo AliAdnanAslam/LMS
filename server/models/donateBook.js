@@ -22,7 +22,7 @@ let donateBooksSchema = mongoose.Schema({
 		required: true,
 	},
 	reservedBy: {
-		type: String,
+		type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
 		default: '',
 	},
 	donationDate: {
@@ -50,7 +50,7 @@ DonateBooks.updateBookStatus = (id, status, options, callback) => {
 
 // Search Book by id.
 DonateBooks.searchBookById = (id, callback) => {
-	DonateBooks.find( {bookId: {$in:id}}, callback);
+	DonateBooks.find( {bookId: {$in:id}}, callback).populate('bookId').populate('userId');
 }
 
 // Reserve Book.

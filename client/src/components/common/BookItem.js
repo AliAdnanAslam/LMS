@@ -52,14 +52,14 @@ render() {
                 <div class="media-body">
                     <div class="stream-headline">
                         <h3>
-                            {this.props.item.name}
+                            {this.props.item.bookId[0].name}
                         </h3>
                         <div class="stream-text">
                             <ul class="inline">
-                                <li><h4>Author: </h4>{this.props.item.authorName}</li>
-                                <li><h4>Edition: </h4>{this.props.item.edition}</li>
-                                <li><h4>Donated By: </h4>{this.props.item.donerName ? this.props.item.donerName: "null"}</li>
-                                <li><h4>Status: </h4>{this.props.item.status ? this.props.item.status: "undefined"}</li>
+                                <li><h4>Author: </h4>{this.props.item.bookId[0].authorName}</li>
+                                <li><h4>Edition: </h4>{this.props.item.bookId[0].edition}</li>
+                                <li><h4>Donated By: </h4>{this.props.item.userId[0].name ? this.props.item.userId[0].name: "null"}</li>
+                                <li><h4>Status: </h4>{this.props.item.bookId[0].status ? this.props.item.bookId[0].status: "undefined"}</li>
                             </ul>
                         </div>
                     </div>

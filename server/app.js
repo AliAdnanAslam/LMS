@@ -356,41 +356,10 @@ app.get('/api/books/search/:name', (req, res) => {
 							console.log(err);
 						} else {
 							if(book.length !== 0){ // If instances exists
-								let users = [...new Set(book.map(item => item.userId))]; // Unique doners name.
-								let ret= [];
-								User.getUserNames(users, (err,doners) => {
-									if(err) {
-										console.log(err);
-									} else {
-										console.log(doners); // Got profiles of all the users.
-										// Time to finalize our return statement
-										ret = book.map(instance => {
-											var userName = doners.filter(doner => doner._id == instance.userId);
-											var bookSample = books.filter(item => item._id == instance.bookId);
-											return {
-												status: instance.status,
-										        donationDate: instance.donationDate,
-										        userId: instance.userId,
-										        bookId: instance.bookId,
-										        _id: instance.id ,
-												donerName: userName[0].name,
-												name: bookSample[0].name,
-												authorName: bookSample[0].authorName,
-												edition: bookSample[0].edition,
-												image: bookSample[0].image,
-												donationDate: bookSample[0].donataionDate,
-											}
-										});
-										console.log(ret);
-										res.json(ret);
-									}
-								})
-
+								res.json(book);
 							}
 						}
 					});
-
-			//	res.json(books);
 			} else { // If no book with this name exists.
 				res.json(books);
 			}

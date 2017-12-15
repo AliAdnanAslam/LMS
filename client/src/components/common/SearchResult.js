@@ -27,6 +27,7 @@ componentDidMount() {
     bookSearch({query: this.props.match.params.query}) // Find books.
         .then((resp) => {
             if(resp.data.length !== 0) { // If books found.
+                console.log(resp.data);
                 this.setState ({
                     books: resp.data,
                     totalResults: resp.data.length,
