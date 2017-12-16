@@ -5,11 +5,20 @@ import { resetPassword } from '../apiCalls/resetPassword';
 import isAuthorized from '../../utils/validation/isAuthorized';
 import { Redirect } from 'react-router-dom';
 
-
-
-
+/**
+ * ResetPassword component resets password via email tokening.
+ *
+ * @class ResetPassword
+ * @extends {Component}
+ * @since  1.0
+ */
 class ResetPassword extends Component {
 
+/**
+ * constructor
+ * @param {object} props
+ * @since 1.0
+ */
 constructor(props) {
 	super(props);
     let isAuthenticated = isAuthorized();
@@ -24,7 +33,12 @@ constructor(props) {
 	this.handleChange = this.handleChange.bind(this);
 }
 
-// Function call onSubmit
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmit = event => {
 	event.preventDefault();
 	this.setState({response:''});
@@ -56,7 +70,12 @@ handleSubmit = event => {
 
 }
 
-// Tracking the input change state
+/**
+ * handle handle event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -65,8 +84,12 @@ handleChange(event) {
     this.setState(() => user);
 }
 
-
-
+/**
+ * Renders components to DOM.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 	return (
 		<div>

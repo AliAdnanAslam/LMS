@@ -15,25 +15,41 @@ class SideBar extends Component {
 		        <div class="sidebar">
 		            <ul class="widget widget-menu unstyled">
 		                <li class="active">
-		                	<Link to='/user/Dashboard'>
+		                	<Link to='/admin/dashboard'>
 		                		<i class="menu-icon icon-dashboard"></i>Dashboard
 		                	</Link>
 		                </li>
 		                <li>
-		                	<Link to='/user/DonateBook'>
-		                		<i class="menu-icon icon-inbox"></i>Donate Book
+		                	<Link to='/admin/manageusers'>
+		                		<i class="menu-icon icon-inbox"></i>Manage Users
 		                    </Link>
 		                </li>
 		                <li>
-		                	<Link to='/user/FineStatus'>
-		                		<i class="menu-icon icon-tasks"></i>Fine Status
+		                	<Link to='/admin/managebooks'>
+		                		<i class="menu-icon icon-inbox"></i>Manage Books
 		                    </Link>
 		                </li>
 		                <li>
-		                	<Link to="/user/BookStatus">
-		                		<i class="menu-icon icon-tasks"></i>Books Status
+		                	<Link to='/admin/managefines'>
+		                		<i class="menu-icon icon-inbox"></i>Manage Fines
 		                    </Link>
 		                </li>
+		               <li>
+		                	<Link to="/admin/booksIssued">
+		                		<i class="menu-icon icon-tasks"></i>Books Issued
+		                    </Link>
+		                </li>
+		                <li>
+		                	<Link to="/admin/donationrequests">
+		                		<i class="menu-icon icon-tasks"></i>Book Donation Requests
+		                    </Link>
+		                </li>
+		                <li>
+		                	<Link to="/admin/booksResRequests">
+		                		<i class="menu-icon icon-tasks"></i>Books Reservation Requests
+		                    </Link>
+		                </li>
+
 		            </ul>
 		        </div>
 		    </div>

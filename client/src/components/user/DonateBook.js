@@ -6,11 +6,20 @@ import SideBar from '../common/SideBar';
 import { addBook } from '../apiCalls/Books';
 
 /**
+ * DonateBook component for user to donate book.
  *
+ * @class DonateBook
+ * @extends {Component}
+ * @since  1.0
  */
 class DonateBook extends Component {
 
-// Calling constructor
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
 	super(props);
 	this.state = {
@@ -32,7 +41,12 @@ constructor(props) {
 
 }
 
-// Function call onSubmit
+/**
+ * handle Donation form event onSubmit
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleDonation = event => {
 	event.preventDefault();
 	this.setState({response:''});
@@ -56,9 +70,12 @@ handleDonation = event => {
 	.catch((err)=>console.log(err));
 }
 
-
-
-// Tracking the input change state
+/**
+ * handle change event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -67,7 +84,12 @@ handleChange(event) {
     this.setState(() => book);
 }
 
-// Uplaod image from local storage and save to monogoose in base64
+/**
+ * Uplaod image from local storage and save to monogoose in base64
+ *
+ * @param {SytheticEvent} e
+ * @since  1.0
+ */
 imageUplaod(e) {
 	const file = e.target.files[0];
 	this.getBase64(file).then(base64 => {
@@ -75,7 +97,12 @@ imageUplaod(e) {
 	});
 }
 
-// Getting the promise of image conversion
+/**
+ * Getting the promise of image conversion
+ *
+ * @param {string} file image to base64
+ * @since  1.0
+ */
 getBase64(file) {
   return new Promise((resolve,reject) => {
      const reader = new FileReader();
@@ -85,7 +112,12 @@ getBase64(file) {
   });
 }
 
-//
+/**
+ * Renders components to DOM.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 return (
     <div>

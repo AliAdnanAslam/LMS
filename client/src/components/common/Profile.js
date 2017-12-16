@@ -7,10 +7,21 @@ import { addBook } from '../apiCalls/Books';
 import { getProfile } from '../apiCalls/getProfile';
 import { updateUserProfile } from '../apiCalls/updateUserProfile';
 
-
+/**
+ * Profile component for edit profile.
+ *
+ * @class Profile
+ * @extends {Component}
+ * @since  1.0
+ */ 
 class Profile extends Component {
 
-// Calling constructor
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
 	super(props);
 	this.state = {
@@ -30,6 +41,11 @@ constructor(props) {
 
 }
 
+/**
+ * componentDidMount provides lifecycle methods called after component mounts the DOM
+ *
+ * @since  1.0
+ */
 componentDidMount(){
 	getProfile({})
 	.then(resp => {
@@ -51,7 +67,12 @@ componentDidMount(){
 	.catch((err)=>console.log(err));
 }
 
-// Function call onSubmit
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmission = event => {
 	event.preventDefault();
 	this.setState({response:''});
@@ -67,9 +88,12 @@ handleSubmission = event => {
 	.catch((err)=>console.log(err));
 }
 
-
-
-// Tracking the input change state
+/**
+ * handle change event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -78,7 +102,12 @@ handleChange(event) {
     this.setState(() => book);
 }
 
-// Uplaod image from local storage and save to monogoose in base64
+/**
+ * Uplaod image from local storage and save to monogoose in base64
+ *
+ * @param {SytheticEvent} e
+ * @since  1.0
+ */
 imageUplaod(e) {
 	const file = e.target.files[0];
 	this.getBase64(file).then(base64 => {
@@ -86,7 +115,12 @@ imageUplaod(e) {
 	});
 }
 
-// Getting the promise of image conversion
+/**
+ * Getting the promise of image conversion
+ *
+ * @param {string} file image to base64
+ * @since  1.0
+ */
 getBase64(file) {
   return new Promise((resolve,reject) => {
      const reader = new FileReader();
@@ -96,7 +130,12 @@ getBase64(file) {
   });
 }
 
-//
+/**
+ * Renders components to DOM.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 return (
       <div>

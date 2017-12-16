@@ -7,7 +7,13 @@ import { donatedBooks } from '../apiCalls/donationRequests';
 import { updateBookStatus } from '../apiCalls/updateBookStatus';
 import DonationItem from './DonationItem';
 
-
+/**
+ * DonationRequests component for admin to approve the user book donation request.
+ *
+ * @class DonationRequests
+ * @extends {Component}
+ * @since  1.0
+ */
 class DonationRequests extends Component {
 
 constructor(props) {
@@ -82,12 +88,12 @@ componentDidMount() {
 	                        </div>
 	                    </div>
 					</div>
-				</div>
 			</div>
-			<Footer />
 		</div>
-    );
-  }
+		<Footer />
+	</div>
+);
+}
 }
 
 export default DonationRequests;

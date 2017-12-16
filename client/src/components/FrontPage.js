@@ -8,19 +8,45 @@ import { Redirect } from 'react-router-dom'
 import { connect } from 'react-redux';
 import isAuthorized from '../utils/validation/isAuthorized';
 
-
+/**
+ * FrontPage component for main page of user and admin.
+ *
+ * @class FrontPage
+ * @extends {Component}
+ * @since  1.0
+ */
 class FrontPage extends Component {
-
+    
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
     super(props);
+
+    /**
+     * @type {object}
+     * @property {string} query
+     * @property {boolean} redirect redirection on authentication     
+     */    
     this.state = {
         query: "",
         redirect: false,
     }
+
+    // Binding functions to instances
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
 }
 
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmit = (event) => {
     event.preventDefault();
     if(this.state.query !== ""){
@@ -30,6 +56,12 @@ handleSubmit = (event) => {
     }
 }
 
+/**
+ * handle change event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -38,6 +70,12 @@ handleChange(event) {
     this.setState(() => search);
 }
 
+/**
+ * Renders components to DOM.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */ 
 render() {
 	if (this.state.redirect) {
         let expr = `/search/${this.state.query}`;

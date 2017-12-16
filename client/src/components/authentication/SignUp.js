@@ -1,3 +1,4 @@
+// Importing the necessary packages.
 import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
@@ -7,10 +8,19 @@ import { login } from '../apiCalls/login';
 import isAuthorized from '../../utils/validation/isAuthorized';
 import { Redirect } from 'react-router-dom';
 
-
+/**
+ * SignUp component for new user to get registered.
+ *
+ * @class SignUpSignUp
+ * @extends {Component}
+ * @since  1.0
+ */
 class SignUp extends Component {
 
-
+/**
+ * constructor
+ * @param {object} props
+ */
 constructor(props) {
     super(props);
     let isAuthenticated = isAuthorized();
@@ -40,8 +50,14 @@ constructor(props) {
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
-  }
+}
 
+/**
+ * handle handle event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -50,6 +66,12 @@ handleChange(event) {
     this.setState(() => user);
 }
 
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmit = event => {
 	event.preventDefault();
 	this.setState({ response: "" });
@@ -85,6 +107,12 @@ handleSubmit = event => {
 	}
 }
 
+/**
+ * Renders components to DOM.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
 render() {
 	let bool = true;
 	return (

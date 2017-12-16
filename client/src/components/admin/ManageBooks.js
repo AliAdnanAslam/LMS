@@ -7,6 +7,7 @@ import SideBar from './SideBar';
 import { getAllBooks } from '../apiCalls/getAllBooks';
 
 /**
+ * ManageBooks component for admin to add or modify books.
  *
  */
 class ManageBooks extends Component {
@@ -126,12 +127,12 @@ componentDidMount() {
 							</div>
 						</div>
 					</div>
-				</div>
 			</div>
-			<Footer />
 		</div>
-    );
-  }
+		<Footer />
+	</div>
+);
+}
 }
 
 export default ManageBooks;

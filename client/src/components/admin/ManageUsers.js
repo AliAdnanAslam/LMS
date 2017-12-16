@@ -9,10 +9,20 @@ import { getAllUsers } from '../apiCalls/getAllUsers';
 
 
 /**
- * Home class proviedes the main interface of admin
+ * ManageUsers component for admin to add or modify users.
+ *
+ * @class ManageUsers
+ * @extends {Component}
+ * @since  1.0
  */
 class ManageUsers extends Component {
 
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since  1.0 
+ */
 constructor(props) {
     super(props);
     this.state = {
@@ -26,8 +36,12 @@ constructor(props) {
     this.clearSearch = this.clearSearch.bind(this);
 }
 
-
-
+/**
+ * handle search form event onSubmit
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 search = event => {
     event.preventDefault();
     let query = document.getElementById('search-query').value;
@@ -48,11 +62,22 @@ search = event => {
     }
 }
 
+/**
+ * Clear search form event clears search bar
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 clearSearch = event => {
-    console.log("im in clear searchc");
+    console.log("im in clear search");
     this.setState( { searched: false, exists: true, users: this.state.originalUser });
 }
 
+/**
+ * componentDidMount provides lifecycle methods called after component mounts the DOM
+ *
+ * @since  1.0
+ */
 componentDidMount(){
     getAllUsers({})
     .then(resp => {
@@ -61,77 +86,81 @@ componentDidMount(){
     .catch((err)=>console.log(err));
 }
 
-
-  render() {
-    return (
-      <div>
-        <Header userLoggedIn="true" />
-        <div class="wrapper">
-            <div class="container">
-                <div class="row">
-                    <SideBar />
-                    <div class="span9">
-                        <div class="content">
-                            <div class="module">
-                                <div class="module-head">
-                                    <h3>
-                                        All Members</h3>
+/**
+ * Renders components to DOM.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */ 
+render() {
+return (
+<div>
+    <Header userLoggedIn="true" />
+    <div class="wrapper">
+        <div class="container">
+            <div class="row">
+                <SideBar />
+                <div class="span9">
+                    <div class="content">
+                        <div class="module">
+                            <div class="module-head">
+                                <h3>
+                                    All Members</h3>
+                            </div>
+                            <div class="module-option clearfix row">
+                                <form>
+                                <div class="input-append pull-left">
+                                    <input type="text" class="span3" id="search-query" placeholder="Filter by registration number..." />
+                                    <button type="submit" onClick={this.search} class="btn">
+                                        <i class="icon-search"></i>
+                                    </button>
                                 </div>
-                                <div class="module-option clearfix row">
+                                </form>
+                                {this.state.searched ?
                                     <form>
-                                    <div class="input-append pull-left">
-                                        <input type="text" class="span3" id="search-query" placeholder="Filter by registration number..." />
-                                        <button type="submit" onClick={this.search} class="btn">
-                                            <i class="icon-search"></i>
-                                        </button>
-                                    </div>
-                                    </form>
-                                    {this.state.searched ?
-                                        <form>
-                                    <div class="input-append pull-left">
-                                        <button style = { {'marginLeft': '20px'} } type="submit" onClick={this.clearSearch} class="btn btn-danger"> Clear Search </button>
-                                    </div>
-                                    </form>
-
-                                         : null}
-                                    <div class="pull-right">
-                                        <Link to='/admin/adduser'>
-                                        <button type="submit" class="btn btn-primary">
-                                            Add User
-                                        </button>
-                                        </Link>
-                                    </div>
+                                <div class="input-append pull-left">
+                                    <button style = { {'marginLeft': '20px'} } type="submit" onClick={this.clearSearch} class="btn btn-danger"> Clear Search </button>
                                 </div>
-                                <div class="module-body">
-                                    <div class="row-fluid">
-                                        { this.state.exists ? this.state.users.map(user =>
+                                </form>
+
+                                     : null}
+                                <div class="pull-right">
+                                    <Link to='/admin/adduser'>
+                                    <button type="submit" class="btn btn-primary">
+                                        Add User
+                                    </button>
+                                    </Link>
+                                </div>
+                            </div>
+                            <div class="module-body">
+                                <div class="row-fluid">
+                                    { this.state.exists ? this.state.users.map(user =>
 
 
-                                        <div class="span5">
-                                            <div class="media well">
-                                                <a class="media-avatar pull-left" href='javascript:void(0)'>
-                                                    <img src={ user.image ? user.image : image } />
-                                                </a>
-                                                <div class="media-body">
-                                                    <h3 class="media-title">
-                                                        {user.name}</h3>
-                                                    <p>
-                                                        <small class="muted">{user.registrationNo}</small></p>
-                                                    <div class=" btn-group shaded-icon">
-                                                        <Link to={`/admin/modifyuser/${user._id}`}>
-                                                            <button class="btn btn-small">
-                                                                <i class="icon-edit"></i>
-                                                            </button>
-                                                        </Link>
-                                                    </div>
+                                    <div class="span5">
+                                        <div class="media well">
+                                            <a class="media-avatar pull-left" href='javascript:void(0)'>
+                                                <img src={ user.image ? user.image : image } />
+                                            </a>
+                                            <div class="media-body">
+                                                <h3 class="media-title">
+                                                    {user.name}</h3>
+                                                <p>
+                                                    <small class="muted">{user.registrationNo}</small></p>
+                                                <div class=" btn-group shaded-icon">
+                                                    <Link to={`/admin/modifyuser/${user._id}`}>
+                                                        <button class="btn btn-small">
+                                                            <i class="icon-edit"></i>
+                                                        </button>
+                                                    </Link>
                                                 </div>
                                             </div>
                                         </div>
-
-
-                                            ) : <div> No User Found </div>
-                                        }
                                     </div>
+
+
+                                        ) : <div> No User Found </div>
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -139,10 +168,11 @@ componentDidMount(){
                 </div>
             </div>
         </div>
-        <Footer />
-      </div>
-    );
-  }
+    </div>
+    <Footer />
+</div>
+);
+}
 }
 
 export default ManageUsers;

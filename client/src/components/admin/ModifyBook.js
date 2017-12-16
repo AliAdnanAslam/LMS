@@ -7,6 +7,7 @@ import { bookById } from '../apiCalls/bookById';
 import { updateBook } from '../apiCalls/updateBook';
 
 
+<<<<<<< HEAD
 class ModifyBook extends Component {
 
 // Calling constructor
@@ -168,12 +169,12 @@ getBase64(file) {
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
-            <Footer />
         </div>
-    );
-  }
+        <Footer />
+    </div>
+);
+}
 }
 
 export default ModifyBook;
