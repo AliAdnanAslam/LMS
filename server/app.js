@@ -370,6 +370,43 @@ app.get('/api/books/search/:name', (req, res) => {
 
 
 
+// Issue book.
+app.put('/api/issueBook', (req, res) => {
+	let bookId = req.body.bookId;
+	let loginToken = AuthCheck(req,res);
+	let userId = loginToken.id;
+	let CurrentDate = new Date();
+	CurrentDate.setMonth(CurrentDate.getMonth() + 2);
+
+	let orderObj = { userId: userId, bookId: bookId, expectedReturnDate: CurrentDate };
+
+	Order.addOrder ( orderObj, (err, order) => {
+		if(err) console.log(err)
+			else {
+				DonateBooks.issueBook(bookId, userId, {}, (err, book) => {
+					if(err) console.log(err)
+						else {
+							res.json({'success': true, ...book});
+						}
+				})
+			}
+	} )
+})
+
+// Get all reserved books.
+app.get('/api/reservedBooks', (req, res) => {
+	// Post the query.
+	DonateBooks.getReservedBooks((err, books) => {
+		if(err) { // If error
+			console.log(err);
+		}
+		console.log("found books", books);
+		res.json(books); // Show result.
+	});
+});
+
+
+
 // Get all donated books.
 app.get('/api/donatedBooks', (req, res) => {
 	// Post the query.

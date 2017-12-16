@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
-import { updateBookStatus } from '../apiCalls/updateBookStatus';
+import { issueBook } from '../apiCalls/issueBook';
 
 
 
@@ -11,10 +11,11 @@ class ReserveItem extends Component {
 
 constructor(props) {
 	super(props);
-	this.state = {
-		accepted : false
-	}
 	this.book = this.props.book;
+	this.state = {
+		accepted : false,
+		bookId: this.book._id
+	}
 	this.handleAccept = this.handleAccept.bind(this);
 }
 
@@ -24,8 +25,7 @@ componentDidMount() {
 }
 
 handleAccept = (event) => {
-	let id = this.book._id;
-	updateBookStatus({status: 'available', id: id})
+	issueBook(this.state)
 	.then( resp => {
 		this.setState({accepted: true})
 	} )
@@ -51,8 +51,8 @@ handleAccept = (event) => {
 		        </td>
 		        <td>
 		            {this.state.accepted === false ?
-		            <button type="button" onClick={this.handleAccept} class="btn btn-primary">Accept</button>
-		            : <button type="button" class="btn btn-primary" disabled>Accepted</button>
+		            <button type="button" onClick={this.handleAccept} class="btn btn-primary">Issue</button>
+		            : <button type="button" class="btn btn-primary" disabled>Issued</button>
 		            }
 
 		        </td>

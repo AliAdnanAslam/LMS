@@ -1,4 +1,3 @@
-// Importing the necessary packages.
 import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';

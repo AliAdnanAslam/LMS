@@ -13,8 +13,8 @@ let orderSchema = mongoose.Schema({
 	},
 	status: {
 		type: String,
-		default: 'issue',
-		enum: ['issue', 'return'],
+		default: 'issued',
+		enum: ['issued', 'returned'],
 		lowercase: true,
 		required: true,
 	},
@@ -36,7 +36,8 @@ let Order = mongoose.model('Orders', orderSchema, 'orders');
 Order.getAllOrders = (callback) => { Order.find(callback)};
 
 // Add new order.
-Order.add = (order, callback) => {
+Order.addOrder = (order, callback) => {
+	console.log(order);
 	Order.create(order, callback);
 }
 
