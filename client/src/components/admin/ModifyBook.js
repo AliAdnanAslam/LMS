@@ -7,7 +7,6 @@ import { bookById } from '../apiCalls/bookById';
 import { updateBook } from '../apiCalls/updateBook';
 
 
-<<<<<<< HEAD
 class ModifyBook extends Component {
 
 // Calling constructor
