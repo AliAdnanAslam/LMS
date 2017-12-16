@@ -3,30 +3,26 @@ import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
-import { issueBook } from '../apiCalls/issueBook';
+import { receiveBook } from '../apiCalls/receiveBook';
 
 
 
-class ReserveItem extends Component {
+class IssueItem extends Component {
 
 constructor(props) {
 	super(props);
+	console.log(this.props.book);
 	this.book = this.props.book;
 	this.state = {
 		accepted : false,
-		bookId: this.book.bookId[0]._id,
-		instanceId: this.book._id,
+		orderId: this.book._id
 	}
 	this.handleAccept = this.handleAccept.bind(this);
 }
 
 
-componentDidMount() {
-
-}
-
 handleAccept = (event) => {
-	issueBook(this.state)
+	receiveBook(this.state)
 	.then( resp => {
 		this.setState({accepted: true})
 	} )
@@ -39,7 +35,7 @@ handleAccept = (event) => {
 
 	    	<tr class="unread">
 		        <td>
-		            {this.book.reservedBy}
+		            {this.book.userId[0].name}
 		        </td>
 		        <td>
 		            {this.book.bookId[0].name}
@@ -51,9 +47,15 @@ handleAccept = (event) => {
 		            {this.book.bookId[0].authorName}
 		        </td>
 		        <td>
+		            {this.book.issueDate}
+		        </td>
+		        <td>
+		            {this.book.expectedReturnDate}
+		        </td>
+		        <td>
 		            {this.state.accepted === false ?
-		            <button type="button" onClick={this.handleAccept} class="btn btn-primary">Issue</button>
-		            : <button type="button" class="btn btn-primary" disabled>Issued</button>
+		            <button type="button" onClick={this.handleAccept} class="btn btn-primary">Receive</button>
+		            : <button type="button" class="btn btn-primary" disabled>Received</button>
 		            }
 
 		        </td>
@@ -63,4 +65,4 @@ handleAccept = (event) => {
   }
 }
 
-export default ReserveItem;
+export default IssueItem;

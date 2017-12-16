@@ -370,20 +370,37 @@ app.get('/api/books/search/:name', (req, res) => {
 
 
 
+// Receive book.
+app.put('/api/receiveBook', (req,res) => {
+	let orderId = req.body.orderId;
+	Order.receive(orderId, (err, order) => {
+		if(err) console.log(err)
+			else {
+				DonateBooks.receiveBook(order.instanceId, (err, book) => {
+					if(err) console.log(err)
+						else {
+							res.json({success: 'true', ...book});
+						}
+				})
+			}
+	})
+})
+
 // Issue book.
 app.put('/api/issueBook', (req, res) => {
 	let bookId = req.body.bookId;
+	let instanceId = req.body.instanceId;
 	let loginToken = AuthCheck(req,res);
 	let userId = loginToken.id;
 	let CurrentDate = new Date();
 	CurrentDate.setMonth(CurrentDate.getMonth() + 2);
-
-	let orderObj = { userId: userId, bookId: bookId, expectedReturnDate: CurrentDate };
+	console.log(bookId);
+	let orderObj = { userId: userId, bookId: bookId, instanceId:instanceId , expectedReturnDate: CurrentDate };
 
 	Order.addOrder ( orderObj, (err, order) => {
 		if(err) console.log(err)
 			else {
-				DonateBooks.issueBook(bookId, userId, {}, (err, book) => {
+				DonateBooks.issueBook(instanceId, userId, {}, (err, book) => {
 					if(err) console.log(err)
 						else {
 							res.json({'success': true, ...book});
@@ -536,7 +553,6 @@ app.get('/api/bookStatus', (req, res) => {
 // Get all orders.
 app.get('/api/orders', (req, res) => {
 
-	let loginToken = AuthCheck(req,res);
 
 	Order.getAllOrders((err, orders) => {
 		if (err) {

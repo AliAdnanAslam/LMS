@@ -1,30 +1,31 @@
-// Importing the necessary packages.
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
-import { getAllBooks } from '../apiCalls/getAllBooks';
+import { getAllOrders } from '../apiCalls/getAllOrders';
+import IssueItem from './IssueItem';
 
-/**
- *
- */
-class BooksIssued extends Component {
+
+class BooksResRequests extends Component {
 
 constructor(props) {
 	super(props);
 	this.state = {
-		books: [],
-		originalBooks: [],
+		donatedBook: [],
+		reservedBooks: [],
 		exists: false,
-		searched: false,
 	}
 }
 
 componentDidMount() {
-	getAllBooks()
+	getAllOrders()
 	.then(resp => {
-		this.setState({books: resp.data, originalBooks: resp.data , exists: true})
+		this.setState({donatedBook: resp.data});
+		console.log(resp.data);
+        let book = this.state.donatedBook.filter( book => { return book.status == "issued" });
+        if( book.length !== 0 ) {
+			this.setState({reservedBooks: book, exists: true});
+        }
 	})
 	.catch((err)=>console.log(err));
 
@@ -38,38 +39,52 @@ componentDidMount() {
 				<div class="container">
 					<div class="row">
 						<SideBar />
-						<div class="span9">
-							<div class="jumbotron well">
-								<br />
-								<table class="table table-striped">
-								    <thead>
-								      <tr>
-								      	<th>Book Name</th>
-								        <th>Author</th>
-								        <th>Edition</th>
-								        <th>Modify</th>
-								      </tr>
-								    </thead>
-								    <tbody>
-								     {  this.state.exists ? this.state.books.map(book =>
+	                    <div class="span9">
+	                        <div class="content">
+	                            <div class="module message">
+	                                <div class="module-head">
+	                                    <h3>
+	                                        Book Issued
+	                                    </h3>
+	                                </div>
+	                                <div class="module-body table">
+	                                    <table class="table table-message clearfix">
+	                                        <tbody>
+	                                            <tr class="heading">
+	                                                <td>
+	                                                    Issued to
+	                                                </td>
+	                                                <td>
+	                                                    Book Title
+	                                                </td>
+	                                                <td>
+	                                                    Edition
+	                                                </td>
+	                                                <td>
+	                                                    Author
+	                                                </td>
+	                                                <td>
+	                                                    Issue Date
+	                                                </td>
+	                                                <td>
+	                                                    Expect. Return Date
+	                                                </td>
+	                                                <td>
+	                                                    Receive Back
+	                                                </td>
 
-								     	<tr>
-								      	<td>{book.name}</td>
-								        <td>{book.authorName}</td>
-								        <td>{book.edition}</td>
-								        <Link to={`/admin/modifybook/${book._id}`}>
-									        <button type="button" style={{'marginTop':'5px'}} class="btn btn-info">Modify</button>
-										</Link>
-								      </tr>
-
-								     ) :
-								     <div> No Books :| </div>
-								     }
-
-								    </tbody>
-								</table>
-							</div>
-						</div>
+	                                            </tr>
+	                                            {this.state.exists ? this.state.reservedBooks.map(book =>
+	                                            	<IssueItem book={book} />
+	                                            ) : <div> No Pending Request !!</div>}
+	                                        </tbody>
+	                                    </table>
+	                                </div>
+	                                <div class="module-foot">
+	                                </div>
+	                            </div>
+	                        </div>
+	                    </div>
 					</div>
 				</div>
 			</div>
@@ -79,4 +94,4 @@ componentDidMount() {
   }
 }
 
-export default BooksIssued;
+export default BooksResRequests;
