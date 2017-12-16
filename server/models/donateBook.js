@@ -22,8 +22,8 @@ let donateBooksSchema = mongoose.Schema({
 		required: true,
 	},
 	reservedBy: {
-		type: String,
-		default: '',
+		type: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+		//type: String
 	},
 	donationDate: {
 		type: Date,
@@ -35,7 +35,11 @@ let DonateBooks = mongoose.model('DonatedBooks', donateBooksSchema, 'donateBooks
 
 
 DonateBooks.getDonatedBooks = (callback) => {
-	DonateBooks.find(callback).populate('bookId').populate('userId');
+	DonateBooks.find(callback).populate('bookId').populate('userId').populate(
+		{
+            path: 'reservedBy',
+            match: { _id: { $ne: null }}
+        });
 }
 
 // Add Book.

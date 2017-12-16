@@ -12,6 +12,8 @@ import ManageBooks from './admin/ManageBooks';
 import ModifyBook from './admin/ModifyBook';
 import AddBook from './admin/AddBook';
 import ManageFines from './admin/ManageFines';
+import BooksResRequests from './admin/BooksResRequests';
+import BooksIssued from './admin/BooksIssued';
 import AddFine from './admin/AddFine';
 import DonationRequests from './admin/DonationRequests';
 import DashboardAdmin from './admin/Dashboard';
@@ -39,7 +41,9 @@ class Main extends Component {
             <Route path='/admin/managebooks' component={ ManageBooks } />
             <Route path='/admin/modifybook/:bookId' component={ ModifyBook } />
             <Route path='/admin/addbook' component={ AddBook } />
+            <Route path='/admin/booksResRequests' component={ BooksResRequests } />
             <Route path='/admin/managefines' component={ ManageFines } />
+            <Route path='/admin/BooksIssued' component={ BooksIssued } />
             <Route path='/admin/addfine' component={ AddFine } />
             <Route path='/admin/donationrequests' component={ DonationRequests } />
             <Route path='/admin/dashboard' component={ DashboardAdmin } />

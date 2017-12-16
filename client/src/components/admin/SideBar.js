@@ -34,11 +34,22 @@ class SideBar extends Component {
 		                		<i class="menu-icon icon-inbox"></i>Manage Fines
 		                    </Link>
 		                </li>
+		               <li>
+		                	<Link to="/admin/booksIssued">
+		                		<i class="menu-icon icon-tasks"></i>Books Issued
+		                    </Link>
+		                </li>
 		                <li>
 		                	<Link to="/admin/donationrequests">
 		                		<i class="menu-icon icon-tasks"></i>Book Donation Requests
 		                    </Link>
 		                </li>
+		                <li>
+		                	<Link to="/admin/booksResRequests">
+		                		<i class="menu-icon icon-tasks"></i>Books Reservation Requests
+		                    </Link>
+		                </li>
+
 		            </ul>
 		        </div>
 		    </div>
