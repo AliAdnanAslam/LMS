@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar';
+import SideBar from './SideBar';
 
 /**
  * FineStatus component for displaying the user fines.
@@ -18,7 +18,7 @@ class FineStatus extends Component {
  *
  * @return {ReactElement} markup
  * @since  1.0
- */		
+ */
 render() {
 return (
     <div>
@@ -66,12 +66,12 @@ return (
 							    </tbody>
 							</table>
 						</div>
-					</div> 
+					</div>
         		</div>
         	</div>
         </div>
         <Footer />
-    </div>          
+    </div>
 );
 }
 }

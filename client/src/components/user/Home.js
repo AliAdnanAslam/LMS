@@ -3,7 +3,7 @@ import React, {Component} from 'react';
 import { BrowserRouter, Route} from 'react-router-dom';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar';
+import SideBar from './SideBar';
 import Dashboard from './Dashboard';
 import BookStatus from './BookStatus';
 import FineStatus from './FineStatus';
@@ -23,7 +23,7 @@ class Home extends Component {
  *
  * @return {ReactElement} markup
  * @since  1.0
- */   
+ */
 render() {
   return (
     <BrowserRouter>

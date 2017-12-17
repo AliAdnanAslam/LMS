@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar';
+import SideBar from './SideBar';
 import { addBook } from '../apiCalls/Books';
 
 /**
@@ -18,7 +18,7 @@ class DonateBook extends Component {
  * constructor
  *
  * @param {object} props
- * @since  1.0 
+ * @since  1.0
  */
 constructor(props) {
 	super(props);
@@ -117,7 +117,7 @@ getBase64(file) {
  *
  * @return {ReactElement} markup
  * @since  1.0
- */	
+ */
 render() {
 return (
     <div>

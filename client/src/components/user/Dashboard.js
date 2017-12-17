@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar'; 
+import SideBar from './SideBar';
 
 /**
  * Dashboard component for user dashboard.
@@ -18,7 +18,7 @@ class Dashboard extends Component {
  *
  * @return {ReactElement} markup
  * @since  1.0
- */     
+ */
 render() {
 return (
     <div>
@@ -41,13 +41,13 @@ return (
                                 <p class="text-muted">
                                     Total Fines</p>
                             </a>
-                        </div>       
-                    </div> 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <Footer />
-    </div>          
+    </div>
 );
 }
 }

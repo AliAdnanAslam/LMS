@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from '../common/SideBar';
+import SideBar from './SideBar';
 
 /**
  * BookStatus component for displaying the reserved and issued books by user.
@@ -10,7 +10,7 @@ import SideBar from '../common/SideBar';
  * @class BookStatus
  * @extends {Component}
  * @since  1.0
- */ 
+ */
 class BookStatus extends Component {
 
 /**
@@ -18,7 +18,7 @@ class BookStatus extends Component {
  *
  * @return {ReactElement} markup
  * @since  1.0
- */	
+ */
 render() {
 return (
     <div>
@@ -71,12 +71,12 @@ return (
 							    </tbody>
 							</table>
 						</div>
-					</div>  
+					</div>
                 </div>
         	</div>
         </div>
     <Footer />
-  	</div>  
+  	</div>
 );
 }
 }
