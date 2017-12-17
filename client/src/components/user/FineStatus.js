@@ -3,6 +3,7 @@ import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
+import { getFineById } from '../apiCalls/getFineById';
 
 /**
  * FineStatus component for displaying the user fines.
@@ -12,6 +13,24 @@ import SideBar from './SideBar';
  * @since  1.0
  */
 class FineStatus extends Component {
+
+constructor(props){
+	super(props);
+	this.state = {
+		fines: [],
+		exists: false,
+	}
+}
+
+componentDidMount() {
+	getFineById()
+	.then(resp => {
+		if(resp.data.length != 0) {
+			this.setState({ fines: resp.data, exists: true});
+		}
+	})
+	.catch(err =>(console.log(err)));
+}
 
 /**
  * Renders components to DOM.
@@ -37,32 +56,22 @@ return (
 							<table class="table table-striped">
 							    <thead>
 							      <tr>
-							      	<th>Date</th>
-							        <th>Rupees</th>
+							      	<th>Amount</th>
+							        <th>Date</th>
 							        <th>Reason</th>
 							      </tr>
 							    </thead>
 							    <tbody>
-							      <tr>
-							        <td>May 09, 2017</td>
-							        <td>Rs. 500</td>
-							        <td>Due to kharab book</td>
-							      </tr>
-							      <tr>
-							        <td>May 09, 2017</td>
-							        <td>Rs. 500</td>
-							        <td>Due to late submission</td>
-							      </tr>
-							      <tr>
-							        <td>May 09, 2017</td>
-							        <td>Rs. 500</td>
-							        <td>Due to late submission</td>
-							      </tr>
-							      <tr>
-							        <td>May 09, 2017</td>
-							        <td>Rs. 500</td>
-							        <td>Due to late submission</td>
-							      </tr>
+							      	{ this.state.exists ?
+							      		this.state.fines.map (fine =>
+							      			<tr>
+										        <td>{fine.amount}</td>
+										        <td>{fine.fineDate}</td>
+										        <td>{fine.reason}</td>
+										    </tr>
+							      			) :
+							      		<div> no fine :P  </div>
+							      	}
 							    </tbody>
 							</table>
 						</div>

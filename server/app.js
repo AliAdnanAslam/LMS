@@ -9,6 +9,7 @@ const Book			 = require('./models/book');
 const DonateBooks 	 = require('./models/donateBook');
 const Order			 = require('./models/order');
 const Emailer 		 = require('./utils/email/emailTransporter.js');
+const Fine			 = require('./models/fine');
 
 let app = express();
 
@@ -472,7 +473,20 @@ app.post(('/api/orders/new'), (req, res) => {
 });
 
 
+app.get(('/api/fines'), (req, res) => {
+	Fine.getAllFine( (err, fine) => {
+		if(err) console.log(err)
+			else res.json(fine)
+	} )
+})
 
+
+app.post(('/api/addFine'), (req, res) => {
+	Fine.addFine( req.body, (err,fine) => {
+		if (err) console.log(err)
+			else res.json(fine)
+	})
+})
 
 
 
@@ -486,6 +500,26 @@ app.post('/api/bookById', (req, res) => {
 		if(err) {res.json(err)}
 			else {res.json(user)}
 	})
+})
+
+// Get Fine by Id
+app.get('/api/getFineById', (req,res) => {
+	let loginToken = AuthCheck (req, res);
+	let userId = loginToken.id;
+	Fine.getFineById (userId, (err,fine) => {
+		if(err) console.log(err)
+			else res.json(fine);
+	})
+})
+
+
+// Receive Fine
+app.put('/api/receiveFine', (req, res) => {
+	let fineId = req.body.fineId;
+	Fine.receiveFine (fineId, (err, fine) => {
+		if(err) console.log(err)
+			else res.json(fine);
+	} )
 })
 
 
