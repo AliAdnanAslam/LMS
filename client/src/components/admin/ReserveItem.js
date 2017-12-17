@@ -16,6 +16,7 @@ constructor(props) {
 		accepted : false,
 		bookId: this.book.bookId[0]._id,
 		instanceId: this.book._id,
+		reservedBy: this.book.reservedBy
 	}
 	this.handleAccept = this.handleAccept.bind(this);
 }

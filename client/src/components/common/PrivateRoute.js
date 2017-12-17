@@ -10,7 +10,7 @@ import isAuthorized from '../../utils/validation/isAuthorized';
  */
 const PrivateRoute = ({ component: Component, ...rest }) => (
 <Route {...rest} render={(props) => (
-isAuthorized === true
+isAuthorized() === true
   ? <Component {...props} />
   : <Redirect to='/login' />
 )} />

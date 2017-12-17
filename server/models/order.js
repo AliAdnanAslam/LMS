@@ -2,6 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Book = require('./book');
 const User = require('./user');
+const DoanteBook = require('./donateBook');
 
 // Order Schema
 
@@ -15,7 +16,7 @@ let orderSchema = mongoose.Schema({
 		required: true,
 	},
 	instanceId: {
-		type: [{ type: Schema.Types.ObjectId, ref: 'Book' }],
+		type: [{ type: Schema.Types.ObjectId, ref: 'DonatedBooks' }],
 		required: true,
 	},
 	status: {
@@ -40,13 +41,14 @@ let orderSchema = mongoose.Schema({
 let Order = mongoose.model('Orders', orderSchema, 'orders');
 
 // Get all orders.
-Order.getAllOrders = (callback) => { Order.find(callback).populate('userId','name').populate('bookId','name authorName edition')};
+Order.getAllOrders = (callback) => { Order.find(callback).populate('userId','name').populate('bookId','name authorName edition').populate('instanceId','status reservedBy')};
 
 // Receive book
 Order.receive = (id, callback) => {
 	let date = Date.now();
 	Order.findOneAndUpdate({ _id: id}, {status: "returned", actualReturnDate: date}, {} , callback);
 }
+
 
 // Add new order.
 Order.addOrder = (order, callback) => {

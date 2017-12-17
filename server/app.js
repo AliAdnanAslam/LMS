@@ -185,6 +185,21 @@ app.delete('/api/users/:id', (req, res) => {
 
 });
 
+
+// Book Status of user by id
+app.get('/api/users/bookStatus', (req, res) => {
+	let loginToken = AuthCheck (req, res);
+	let userId = loginToken.id;
+	Order.searchById( (err, order) => {
+		if(err){
+			console.log(err);
+		} else {
+				console.log("here I am", order);
+				res.json( {user: userId, ...order});
+			}
+	})
+})
+
 // Login user.
 app.post('/api/users/authenticate', (req, res) => {
 
@@ -390,8 +405,7 @@ app.put('/api/receiveBook', (req,res) => {
 app.put('/api/issueBook', (req, res) => {
 	let bookId = req.body.bookId;
 	let instanceId = req.body.instanceId;
-	let loginToken = AuthCheck(req,res);
-	let userId = loginToken.id;
+	let userId = req.body.reservedBy;
 	let CurrentDate = new Date();
 	CurrentDate.setMonth(CurrentDate.getMonth() + 2);
 	console.log(bookId);
@@ -400,7 +414,7 @@ app.put('/api/issueBook', (req, res) => {
 	Order.addOrder ( orderObj, (err, order) => {
 		if(err) console.log(err)
 			else {
-				DonateBooks.issueBook(instanceId, userId, {}, (err, book) => {
+				DonateBooks.issueBook(instanceId, {}, (err, book) => {
 					if(err) console.log(err)
 						else {
 							res.json({'success': true, ...book});

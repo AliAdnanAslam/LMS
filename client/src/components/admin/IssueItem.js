@@ -11,11 +11,10 @@ class IssueItem extends Component {
 
 constructor(props) {
 	super(props);
-	console.log(this.props.book);
 	this.book = this.props.book;
 	this.state = {
 		accepted : false,
-		orderId: this.book._id
+		orderId: this.book._id,
 	}
 	this.handleAccept = this.handleAccept.bind(this);
 }

@@ -34,30 +34,30 @@ class Main extends Component {
       <BrowserRouter>
         <div className='main'>
             <Route path='/' exact component={ FrontPage } />
-            <Route path='/user' exact component={ Home } />
-            <Route path='/admin/manageusers' component={ ManageUsers } />
-            <Route path='/admin/adduser' component={ AddUser } />
-            <Route path='/admin/modifyuser/:userId' component={ ModifyUser } />
-            <Route path='/admin/managebooks' component={ ManageBooks } />
-            <Route path='/admin/modifybook/:bookId' component={ ModifyBook } />
-            <Route path='/admin/addbook' component={ AddBook } />
-            <Route path='/admin/booksResRequests' component={ BooksResRequests } />
-            <Route path='/admin/managefines' component={ ManageFines } />
-            <Route path='/admin/BooksIssued' component={ BooksIssued } />
-            <Route path='/admin/addfine' component={ AddFine } />
-            <Route path='/admin/donationrequests' component={ DonationRequests } />
-            <Route path='/admin/dashboard' component={ DashboardAdmin } />
+            <PrivateRoute path='/user' exact component={ Home } />
+            <PrivateRoute path='/admin/manageusers' component={ ManageUsers } />
+            <PrivateRoute path='/admin/adduser' component={ AddUser } />
+            <PrivateRoute path='/admin/modifyuser/:userId' component={ ModifyUser } />
+            <PrivateRoute path='/admin/managebooks' component={ ManageBooks } />
+            <PrivateRoute path='/admin/modifybook/:bookId' component={ ModifyBook } />
+            <PrivateRoute path='/admin/addbook' component={ AddBook } />
+            <PrivateRoute path='/admin/booksResRequests' component={ BooksResRequests } />
+            <PrivateRoute path='/admin/managefines' component={ ManageFines } />
+            <PrivateRoute path='/admin/BooksIssued' component={ BooksIssued } />
+            <PrivateRoute path='/admin/addfine' component={ AddFine } />
+            <PrivateRoute path='/admin/donationrequests' component={ DonationRequests } />
+            <PrivateRoute path='/admin/dashboard' component={ DashboardAdmin } />
             <Route path='/login'  component={ Login } />
             <Route path='/signup'  component={ SignUp } />
             <Route path='/forgetpassword'  component={ ForgetPassword } />
             <Route path="/search/:query" component={ Search }/>
             <Route path="/resetPassword/:token" component={ ResetPassword }/>
-            <Route path="/user/profile" component={ Profile }/>
-            <Route path='/user/changepassword'  component={ ChangePassword } />
-            <Route path="/user/bookstatus" component={ BookStatus }/>
-            <Route path="/user/dashboard" component={ Dashboard }/>
-            <Route path="/user/donatebook" component={ DonateBook }/>
-            <Route path="/user/finestatus" component={ FineStatus }/>
+            <PrivateRoute path="/user/profile" component={ Profile }/>
+            <PrivateRoute path='/user/changepassword'  component={ ChangePassword } />
+            <PrivateRoute path="/user/bookstatus" component={ BookStatus }/>
+            <PrivateRoute path="/user/dashboard" component={ Dashboard }/>
+            <PrivateRoute path="/user/donatebook" component={ DonateBook }/>
+            <PrivateRoute path="/user/finestatus" component={ FineStatus }/>
         </div>
       </BrowserRouter>
     );

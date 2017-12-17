@@ -42,8 +42,8 @@ DonateBooks.receiveBook = (id, callback) => {
 	DonateBooks.findOneAndUpdate( { _id:id}, {status: "available", reservedBy: null}, {}, callback);
 }
 
-DonateBooks.issueBook = (id, reservedBy, options, callback) => {
-	DonateBooks.findOneAndUpdate( { _id:id}, {status: "issued", reservedBy: reservedBy}, options, callback);
+DonateBooks.issueBook = (id, options, callback) => {
+	DonateBooks.findOneAndUpdate( { _id:id}, {status: "issued"}, options, callback);
 }
 
 DonateBooks.getReservedBooks = (callback) => {
