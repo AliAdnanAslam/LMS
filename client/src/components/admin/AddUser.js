@@ -17,6 +17,7 @@ class AddUser extends Component {
 
 /**
  * constructor
+ *
  * @param {object} props
  * @since 1.0
  */

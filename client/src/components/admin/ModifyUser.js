@@ -8,7 +8,7 @@ import { userProfileById } from '../apiCalls/userProfileById';
 import { updateUserProfile } from '../apiCalls/updateUserProfile';
 
 /**
- * ModifyUser component for admin to modify books.
+ * ModifyUser component for admin to modify users.
  *
  * @class ModifyUser
  * @extends {Component}
@@ -18,6 +18,7 @@ class ModifyUser extends Component {
 
 /**
  * constructor
+ *
  * @param {object} props
  * @since 1.0
  */
@@ -89,7 +90,7 @@ handleSubmission = event => {
 }
 
 /**
- * handle handle event at input form
+ * handle change event at input form
  *
  * @param {SytheticEvent} event
  * @since  1.0
