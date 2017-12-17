@@ -29,7 +29,8 @@ return (
                     <SideBar />
                     <div class="span9">
                         <div class="btn-box-row row-fluid">
-                            <a href="" class="btn-box big span4"><i class=" icon-book"></i><b>65%</b>
+                            {/**
+                                <a href="" class="btn-box big span4"><i class=" icon-book"></i><b>65%</b>
                                 <p class="text-muted">
                                     Issued Books</p>
                             </a>
@@ -41,6 +42,8 @@ return (
                                 <p class="text-muted">
                                     Total Fines</p>
                             </a>
+                            */}
+                            <h3> Welcome to the Dashboard</h3>
                         </div>
                     </div>
                 </div>

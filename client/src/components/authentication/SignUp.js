@@ -79,6 +79,7 @@ handleSubmit = event => {
 	if (!isValid) {
 	  return this.setState({ response: errors });
 	} else {
+
 		addUser(this.state)
 		.then((resp) => {
 			if(resp.data.success == false){
@@ -112,7 +113,7 @@ handleSubmit = event => {
  *
  * @return {ReactElement} markup
  * @since  1.0
- */	
+ */
 render() {
 	let bool = true;
 	return (

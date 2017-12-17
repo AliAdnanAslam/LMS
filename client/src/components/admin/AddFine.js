@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
 import SideBar from './SideBar';
-import { addBook } from '../apiCalls/Books';
+import { addFine } from '../apiCalls/addFine';
 
 /**
  * AddFine component to fine the user on late submission.
@@ -21,13 +21,10 @@ class AddFine extends Component {
 constructor(props) {
     super(props);
     this.state = {
-        name: '',
-        fatherName: '',
-        password: '',
-        confirmPassword: '',
-        image: '',
+        registrationNo: '',
+        amount: '',
+        reason: '',
         response: '',
-
     };
 
     // Binding functions to instances
@@ -45,23 +42,28 @@ constructor(props) {
 handleSubmission = event => {
     event.preventDefault();
     this.setState({response:''});
-    console.log(this.state);
-    addBook(this.state)
-    .then((resp) => {
-        console.log(resp);
-        if(resp.status == 200){
-            console.log("im in");
-            this.setState({
-                name: '',
-                fatherName: '',
-                password: '',
-                confirmPassword: '',
-                image: '',
-                response: 'Submitted'
-            })
-        }
-    })
-    .catch((err)=>console.log(err));
+
+    const regNoRegex = /^[0-9]{4}\-[A-Za-z]{2}\-[0-9]+$/;
+    if (!regNoRegex.test(this.state.registrationNo.trim())) {
+        this.setState({response: "invalid registrationNo"})
+    } else {
+        addFine(this.state)
+        .then((resp) => {
+            console.log(resp);
+            if(resp.status == 200){
+                console.log("im in");
+                this.setState({
+                    registrationNo: '',
+                    amount: '',
+                    reason: '',
+                    response: 'Fine Added'
+                })
+            }
+        })
+        .catch((err)=>console.log(err));
+    }
+
+
 }
 
 /**
@@ -83,7 +85,7 @@ handleChange(event) {
  *
  * @return {ReactElement} markup
  * @since  1.0
- */ 
+ */
 render() {
 return (
       <div>
@@ -101,8 +103,8 @@ return (
                                 <div class="module-body">
                                     <div class="control-group">
                                         <div class="controls row-fluid">
-                                            <label class="control-label">Name</label>
-                                            <input class="span12" type="text" name="name" onChange={this.handleChange} placeholder="User Name" required />
+                                            <label class="control-label">Registration No</label>
+                                            <input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registration No" required />
                                             <span>
                                                 {this.state.errors &&
                                                 this.state.errors.name}
@@ -111,8 +113,8 @@ return (
                                     </div>
                                     <div class="control-group">
                                         <div class="controls row-fluid">
-                                            <label class="control-label">Registrtaion Number</label>
-                                            <input class="span12" type="text" name="registrationNo" onChange={this.handleChange} placeholder="Registrtaion Number" required />
+                                            <label class="control-label">Amount</label>
+                                            <input class="span12" type="number" name="amount" onChange={this.handleChange} placeholder="Amount" required />
                                             <span>
                                                 {this.state.errors &&
                                                 this.state.errors.edition}
@@ -122,9 +124,9 @@ return (
                                     <div class="control-group">
                                         <label class="control-label">Reason</label>
                                         <div class="controls">
-                                            <textarea rows="5" style={{width:'530px'}}></textarea>
+                                            <textarea rows="5" name="reason" onChange={this.handleChange} style={{width:'530px'}}></textarea>
                                         </div>
-                                    </div>                                    
+                                    </div>
                                 </div>
                                 <div class="module-foot">
                                     <div class="control-group">
