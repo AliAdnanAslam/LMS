@@ -2,7 +2,7 @@
 import React, {Component} from 'react';
 import Header from '../common/Header';
 import Footer from '../common/Footer';
-import SideBar from './SideBar'; 
+import SideBar from './SideBar';
 
 /**
  * Dashboard component for admin dashboard.
@@ -10,7 +10,7 @@ import SideBar from './SideBar';
  * @class Dashboard
  * @extends {Component}
  * @since  1.0
- */ 
+ */
 class Dashboard extends Component {
 
 /**
@@ -18,7 +18,7 @@ class Dashboard extends Component {
  *
  * @return {ReactElement} markup
  * @since  1.0
- */ 
+ */
 render() {
 return (
     <div>
@@ -29,7 +29,8 @@ return (
                     <SideBar />
                     <div class="span9">
                         <div class="btn-box-row row-fluid">
-                            <a href="" class="btn-box big span4"><i class=" icon-book"></i><b>65%</b>
+                            {/**
+                                <a href="" class="btn-box big span4"><i class=" icon-book"></i><b>65%</b>
                                 <p class="text-muted">
                                     Issued Books</p>
                             </a>
@@ -41,13 +42,15 @@ return (
                                 <p class="text-muted">
                                     Total Fines</p>
                             </a>
-                        </div>       
-                    </div> 
+                            */}
+                            <h3> Welcome to the Dashboard</h3>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <Footer />
-    </div>          
+    </div>
 );
 }
 }
