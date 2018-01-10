@@ -104,7 +104,6 @@ render() {
 }
 }
 
-
 FrontPage.propTypes = {
   isLoggedIn: PropTypes.bool,
 };

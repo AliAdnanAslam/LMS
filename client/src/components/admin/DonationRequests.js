@@ -16,6 +16,12 @@ import DonationItem from './DonationItem';
  */
 class DonationRequests extends Component {
 
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since 1.0
+ */
 constructor(props) {
 	super(props);
 	this.state = {
@@ -25,6 +31,11 @@ constructor(props) {
 	}
 }
 
+/**
+ * componentDidMount provides lifecycle methods called after component mounts the DOM
+ *
+ * @since  1.0
+ */
 componentDidMount() {
 	donatedBooks()
 	.then(resp => {
@@ -39,55 +50,61 @@ componentDidMount() {
 
 }
 
-  render() {
-    return (
-		<div>
-			<Header userLoggedIn="true" />
-			<div class="wrapper">
-				<div class="container">
-					<div class="row">
-						<SideBar />
-	                    <div class="span9">
-	                        <div class="content">
-	                            <div class="module message">
-	                                <div class="module-head">
-	                                    <h3>
-	                                        Book Donation Requests
-	                                    </h3>
-	                                </div>
-	                                <div class="module-body table">
-	                                    <table class="table table-message clearfix">
-	                                        <tbody>
-	                                            <tr class="heading">
-	                                                <td>
-	                                                    Sender
-	                                                </td>
-	                                                <td>
-	                                                    Book Title
-	                                                </td>
-	                                                <td>
-	                                                    Edition
-	                                                </td>
-	                                                <td>
-	                                                    Author
-	                                                </td>
-	                                                <td>
-	                                                    Accept Request
-	                                                </td>
+/**
+ * Renders components to DOM.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */	
+render() {
+return (
+	<div>
+		<Header userLoggedIn="true" />
+		<div class="wrapper">
+			<div class="container">
+				<div class="row">
+					<SideBar />
+                    <div class="span9">
+                        <div class="content">
+                            <div class="module message">
+                                <div class="module-head">
+                                    <h3>
+                                        Book Donation Requests
+                                    </h3>
+                                </div>
+                                <div class="module-body table">
+                                    <table class="table table-message clearfix">
+                                        <tbody>
+                                            <tr class="heading">
+                                                <td>
+                                                    Sender
+                                                </td>
+                                                <td>
+                                                    Book Title
+                                                </td>
+                                                <td>
+                                                    Edition
+                                                </td>
+                                                <td>
+                                                    Author
+                                                </td>
+                                                <td>
+                                                    Accept Request
+                                                </td>
 
-	                                            </tr>
-	                                            {this.state.exists ? this.state.pendingBooks.map(book =>
-	                                            	<DonationItem book={book} />
-	                                            ) : <div> No Pending Request !!</div>}
-	                                        </tbody>
-	                                    </table>
-	                                </div>
-	                                <div class="module-foot">
-	                                </div>
-	                            </div>
-	                        </div>
-	                    </div>
-					</div>
+                                            </tr>
+                                            {this.state.exists ? this.state.pendingBooks.map(book =>
+                                            	<DonationItem book={book} />
+                                            ) : <div> No Pending Request !!</div>}
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="module-foot">
+                            	</div>
+                        	</div>
+                    	</div>
+                	</div>
+				</div>
 			</div>
 		</div>
 		<Footer />

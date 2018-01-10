@@ -6,10 +6,21 @@ import SideBar from './SideBar';
 import { bookById } from '../apiCalls/bookById';
 import { updateBook } from '../apiCalls/updateBook';
 
-
+/**
+ * ModifyBook component for admin to modify books.
+ *
+ * @class ModifyBook
+ * @extends {Component}
+ * @since  1.0
+ */
 class ModifyBook extends Component {
 
-// Calling constructor
+/**
+ * constructor
+ *
+ * @param {object} props
+ * @since 1.0
+ */
 constructor(props) {
     super(props);
     this.state = {
@@ -32,6 +43,11 @@ constructor(props) {
 
 }
 
+/**
+ * componentDidMount provides lifecycle methods called after component mounts the DOM
+ *
+ * @since  1.0
+ */
 componentDidMount(){
     bookById(this.state)
     .then(resp => {
@@ -55,7 +71,12 @@ componentDidMount(){
     .catch((err)=>console.log(err));
 }
 
-// Function call onSubmit
+/**
+ * handle submit form event
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleSubmission = event => {
     event.preventDefault();
     this.setState({response:''});
@@ -71,9 +92,12 @@ handleSubmission = event => {
     .catch((err)=>console.log(err));
 }
 
-
-
-// Tracking the input change state
+/**
+ * handle change event at input form
+ *
+ * @param {SytheticEvent} event
+ * @since  1.0
+ */
 handleChange(event) {
     event.preventDefault();
     const formField = event.target.name;
@@ -82,7 +106,12 @@ handleChange(event) {
     this.setState(() => book);
 }
 
-// Uplaod image from local storage and save to monogoose in base64
+/**
+ * Uplaod image from local storage and save to monogoose in base64
+ *
+ * @param {SytheticEvent} e
+ * @since  1.0
+ */
 imageUplaod(e) {
     const file = e.target.files[0];
     this.getBase64(file).then(base64 => {
@@ -90,7 +119,12 @@ imageUplaod(e) {
     });
 }
 
-// Getting the promise of image conversion
+/**
+ * Getting the promise of image conversion
+ *
+ * @param {string} file image to base64
+ * @since  1.0
+ */
 getBase64(file) {
   return new Promise((resolve,reject) => {
      const reader = new FileReader();
@@ -100,74 +134,75 @@ getBase64(file) {
   });
 }
 
-
-
-
-
-
-  render() {
-    return (
-        <div>
-            <Header userLoggedIn="true" />
-            <div class="wrapper">
-                <div class="container">
-                    <div class="row">
-                        <SideBar />
-                        <div class="span9">
-                            <div class="module span6 offset1">
-                                <form class="form-vertical">
-                                    <div class="module-head">
-                                        <h3>Please Enter the Book Information</h3>
-                                    </div>
-                                    <div class="module-body">
-                                        <div class="control-group">
-                                            <div class="controls row-fluid">
-                                                <label class="control-label">Name</label>
-                                                <input class="span12" type="text" name="name" id="name" onChange={this.handleChange} placeholder="Book Name" required />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <div class="controls row-fluid">
-                                                <label class="control-label">Author Name</label>
-                                                <input class="span12" type="text" name="authorName" id="authorName" onChange={this.handleChange} placeholder="Author Name" required />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <div class="controls row-fluid">
-                                                <label class="control-label">Edition</label>
-                                                <input class="span12" type="text" name="edition" id="edition" onChange={this.handleChange} placeholder="Edition" required />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <div class="controls row-fluid">
-                                                <label class="control-label">Publication</label>
-                                                <input class="span12" type="text" name="publication" id="publication" onChange={this.handleChange} placeholder="Publication" required />
-                                            </div>
-                                        </div>
-                                        <div class="control-group">
-                                            <div class="controls row-fluid">
-                                                <label class="control-label">Publication Year</label>
-                                                <input class="span12" type="text" name="publicationYear" id="publicationYear" onChange={this.handleChange} placeholder="Publication Year" required />
-                                            </div>
+/**
+ * Renders components to DOM.
+ *
+ * @return {ReactElement} markup
+ * @since  1.0
+ */
+render() {
+return (
+    <div>
+        <Header userLoggedIn="true" />
+        <div class="wrapper">
+            <div class="container">
+                <div class="row">
+                    <SideBar />
+                    <div class="span9">
+                        <div class="module span6 offset1">
+                            <form class="form-vertical">
+                                <div class="module-head">
+                                    <h3>Please Enter the Book Information</h3>
+                                </div>
+                                <div class="module-body">
+                                    <div class="control-group">
+                                        <div class="controls row-fluid">
+                                            <label class="control-label">Name</label>
+                                            <input class="span12" type="text" name="name" id="name" onChange={this.handleChange} placeholder="Book Name" required />
                                         </div>
                                     </div>
-                                    <div style={{marginLeft: '20px'}}>
-                                        <label class="control-label">Select Image From Your Computer</label>
-                                        <input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
-                                        <br /><br />
-                                    </div>
-                                    <div class="module-foot">
-                                        <div class="control-group">
-                                            <div class="controls clearfix">
-                                                <button type="" onClick={this.handleSubmission} class="btn btn-primary pull-right">Submit</button>
-                                            </div>
+                                    <div class="control-group">
+                                        <div class="controls row-fluid">
+                                            <label class="control-label">Author Name</label>
+                                            <input class="span12" type="text" name="authorName" id="authorName" onChange={this.handleChange} placeholder="Author Name" required />
                                         </div>
                                     </div>
-                                </form>
-                                { this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
-                            </div>
+                                    <div class="control-group">
+                                        <div class="controls row-fluid">
+                                            <label class="control-label">Edition</label>
+                                            <input class="span12" type="text" name="edition" id="edition" onChange={this.handleChange} placeholder="Edition" required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls row-fluid">
+                                            <label class="control-label">Publication</label>
+                                            <input class="span12" type="text" name="publication" id="publication" onChange={this.handleChange} placeholder="Publication" required />
+                                        </div>
+                                    </div>
+                                    <div class="control-group">
+                                        <div class="controls row-fluid">
+                                            <label class="control-label">Publication Year</label>
+                                            <input class="span12" type="text" name="publicationYear" id="publicationYear" onChange={this.handleChange} placeholder="Publication Year" required />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div style={{marginLeft: '20px'}}>
+                                    <label class="control-label">Select Image From Your Computer</label>
+                                    <input type="file" class="file" name="image" onChange={ this.imageUplaod } accept="image/*" />
+                                    <br /><br />
+                                </div>
+                                <div class="module-foot">
+                                    <div class="control-group">
+                                        <div class="controls clearfix">
+                                            <button type="" onClick={this.handleSubmission} class="btn btn-primary pull-right">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            { this.state.response ? <div class="alert alert-info"> {this.state.response} </div> : null }
                         </div>
                     </div>
+                </div>
             </div>
         </div>
         <Footer />
